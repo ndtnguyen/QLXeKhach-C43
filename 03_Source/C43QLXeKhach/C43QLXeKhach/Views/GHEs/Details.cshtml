@@ -1,0 +1,58 @@
+﻿@model C43QLXeKhach.Models.GHE
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>GHE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.createUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastupdateUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastupdateUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastupdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastupdateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

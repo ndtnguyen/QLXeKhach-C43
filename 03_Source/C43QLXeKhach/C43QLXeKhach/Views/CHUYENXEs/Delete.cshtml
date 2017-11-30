@@ -1,0 +1,104 @@
+﻿@model C43QLXeKhach.Models.CHUYENXE
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>CHUYENXE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayKH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayKH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayDen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayDen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTuyen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTuyen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaXe)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaXe)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTX)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTX)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastupdateUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastupdateUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastupdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastupdateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDeleted)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

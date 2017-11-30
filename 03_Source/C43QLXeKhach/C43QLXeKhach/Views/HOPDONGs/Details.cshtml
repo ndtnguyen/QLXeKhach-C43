@@ -1,0 +1,114 @@
+﻿@model C43QLXeKhach.Models.HOPDONG
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HOPDONG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayLap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayLap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GiaThoaThuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GiaThoaThuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTram)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTram)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThoiHanThue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThoiHanThue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MaDT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaDT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NguoiLap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NguoiLap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastupdateUser)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastupdateUser)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.createDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.createDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.lastupdateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.lastupdateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.isDeleted)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.isDeleted)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHD }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
