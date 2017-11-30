@@ -1,4 +1,4 @@
-﻿@model IEnumerable<C43QLXeKhach.Models.KHAOSAT>
+﻿@model IEnumerable<C43QLXeKhach.Models.TAIXE>
 
 @{
     ViewBag.Title = "Index";
@@ -12,19 +12,28 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NgayKS)
+            @Html.DisplayNameFor(model => model.TenTX)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NguoiKS)
+            @Html.DisplayNameFor(model => model.CMND)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiaChiKS)
+            @Html.DisplayNameFor(model => model.SDT)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TiLeDonKhach)
+            @Html.DisplayNameFor(model => model.DiaChi)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GiaKS)
+            @Html.DisplayNameFor(model => model.NgaySinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoBangLai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiBangLai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ThoiHanBangLai)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.createUser)
@@ -47,19 +56,28 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.NgayKS)
+            @Html.DisplayFor(modelItem => item.TenTX)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NguoiKS)
+            @Html.DisplayFor(modelItem => item.CMND)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DiaChiKS)
+            @Html.DisplayFor(modelItem => item.SDT)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TiLeDonKhach)
+            @Html.DisplayFor(modelItem => item.DiaChi)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GiaKS)
+            @Html.DisplayFor(modelItem => item.NgaySinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoBangLai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoaiBangLai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThoiHanBangLai)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.createUser)
@@ -77,9 +95,9 @@
             @Html.DisplayFor(modelItem => item.isDeleted)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaKS }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaKS }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaKS })
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaTX }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaTX }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaTX })
         </td>
     </tr>
 }

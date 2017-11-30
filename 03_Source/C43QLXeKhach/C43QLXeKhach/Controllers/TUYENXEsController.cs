@@ -10,107 +10,107 @@ using C43QLXeKhach.Models;
 
 namespace C43QLXeKhach.Controllers
 {
-    public class KHAOSATs1Controller : Controller
+    public class TUYENXEsController : Controller
     {
         private QLXeKhachEntities db = new QLXeKhachEntities();
 
-        // GET: KHAOSATs1
+        // GET: TUYENXEs
         public ActionResult Index()
         {
-            return View(db.KHAOSATs.ToList());
+            return View(db.TUYENXEs.ToList());
         }
 
-        // GET: KHAOSATs1/Details/5
+        // GET: TUYENXEs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
-            if (kHAOSAT == null)
+            TUYENXE tUYENXE = db.TUYENXEs.Find(id);
+            if (tUYENXE == null)
             {
                 return HttpNotFound();
             }
-            return View(kHAOSAT);
+            return View(tUYENXE);
         }
 
-        // GET: KHAOSATs1/Create
+        // GET: TUYENXEs/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: KHAOSATs1/Create
+        // POST: TUYENXEs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaKS,NgayKS,NguoiKS,DiaChiKS,TiLeDonKhach,GiaKS,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] KHAOSAT kHAOSAT)
+        public ActionResult Create([Bind(Include = "MaTuyen,DiemDi,DiemDen,QuangDuong,ThoiGian,SoChuyen1Ngay,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] TUYENXE tUYENXE)
         {
             if (ModelState.IsValid)
             {
-                db.KHAOSATs.Add(kHAOSAT);
+                db.TUYENXEs.Add(tUYENXE);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(kHAOSAT);
+            return View(tUYENXE);
         }
 
-        // GET: KHAOSATs1/Edit/5
+        // GET: TUYENXEs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
-            if (kHAOSAT == null)
+            TUYENXE tUYENXE = db.TUYENXEs.Find(id);
+            if (tUYENXE == null)
             {
                 return HttpNotFound();
             }
-            return View(kHAOSAT);
+            return View(tUYENXE);
         }
 
-        // POST: KHAOSATs1/Edit/5
+        // POST: TUYENXEs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaKS,NgayKS,NguoiKS,DiaChiKS,TiLeDonKhach,GiaKS,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] KHAOSAT kHAOSAT)
+        public ActionResult Edit([Bind(Include = "MaTuyen,DiemDi,DiemDen,QuangDuong,ThoiGian,SoChuyen1Ngay,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] TUYENXE tUYENXE)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(kHAOSAT).State = EntityState.Modified;
+                db.Entry(tUYENXE).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(kHAOSAT);
+            return View(tUYENXE);
         }
 
-        // GET: KHAOSATs1/Delete/5
+        // GET: TUYENXEs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
-            if (kHAOSAT == null)
+            TUYENXE tUYENXE = db.TUYENXEs.Find(id);
+            if (tUYENXE == null)
             {
                 return HttpNotFound();
             }
-            return View(kHAOSAT);
+            return View(tUYENXE);
         }
 
-        // POST: KHAOSATs1/Delete/5
+        // POST: TUYENXEs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
-            db.KHAOSATs.Remove(kHAOSAT);
+            TUYENXE tUYENXE = db.TUYENXEs.Find(id);
+            db.TUYENXEs.Remove(tUYENXE);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
