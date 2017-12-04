@@ -120,6 +120,23 @@ namespace C43QLXeKhach.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if(temp==null)
+            {
+                return RedirectToAction("Index");
+            }
+            string []listDelete = temp.Split(',');
+            for(int i=0;i< listDelete.Length;i++)
+            {
+                NHANVIEN nHANVIEN = service.Detail(int.Parse(listDelete[i]));
+                service.Delete(nHANVIEN);
+            }
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -8,62 +8,83 @@
 <h2>Danh Sách Nhân Viên</h2>
 
 <p>
-    @Html.ActionLink("Thêm Nhân Viên", "Create")
+    
+    <a href="/NHANVIENs/Create" class="btn btn-primary" title="add">
+        <span class="glyphicon glyphicon-plus"></span>
+    </a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-           Tên Nhân Viên
-        </th>
-        <th>
-           CMND
-        </th>
-        <th>
-           Ngày Sinh
-        </th>
-        <th>
-            Địa Chỉ
-        </th>
-        <th>
-            SDT
-        </th>
-        <th>
-            Email
-        </th>
-        <th>
-           Trạng Thái Tài Khoản
-        </th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenNV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CMND)
-        </td>
-        <td>
-          @item.NgaySinh.Value.ToString("dd/MM/yyyy")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrangThaiTaiKhoan)
-        </td>
-        <td>
-            @Html.ActionLink("Sửa", "Edit", new { id=item.MaNV }) |
-            @Html.ActionLink("Chi Tiết", "Details", new { id=item.MaNV }) |
-            @Html.ActionLink("Xóa", "Delete", new { id=item.MaNV })
-        </td>
-    </tr>
+@using (Html.BeginForm())
+
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>
+                <button type="submit" class="btn btn-xs btn-danger" title="delete"><span class="glyphicon glyphicon-remove"></span></button>
+            </th>
+            <th>
+                Tên Nhân Viên
+            </th>
+            <th>
+                CMND
+            </th>
+            <th>
+                Ngày Sinh
+            </th>
+            <th>
+                Địa Chỉ
+            </th>
+            <th>
+                SDT
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Trạng Thái Tài Khoản
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input class="text-center" type="checkbox" name="deletecheckbox" value=@item.MaNV>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CMND)
+                </td>
+                <td>
+                    @item.NgaySinh.Value.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DiaChi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TrangThaiTaiKhoan)
+                </td>
+                <td>
+                    <a href="/NHANVIENs/Edit/@item.MaNV" class="btn btn-xs btn-primary" title="edit">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
+                        <span class="glyphicon glyphicon-book"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+
 }
-
-</table>
