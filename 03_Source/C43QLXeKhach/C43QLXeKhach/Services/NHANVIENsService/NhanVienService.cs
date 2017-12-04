@@ -13,7 +13,7 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.NHANVIENs.ToList();
+                return context.NHANVIENs.Where(x=>x.isDeleted!=1).ToList();
             }
         }
         public int Add(NHANVIEN nv)
@@ -37,8 +37,8 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-
-                context.NHANVIENs.Remove(nv);
+                nv.isDeleted = 1;
+                context.Entry(nv).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }

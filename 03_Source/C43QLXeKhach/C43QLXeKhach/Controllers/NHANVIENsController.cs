@@ -89,8 +89,8 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-               
-                return RedirectToAction("Index");
+                service.Update(nHANVIEN);
+               return RedirectToAction("Index");
             }
             return View(nHANVIEN);
         }
@@ -116,6 +116,7 @@ namespace C43QLXeKhach.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             NHANVIEN nHANVIEN = service.Detail(id);
+            service.Delete(nHANVIEN);
             return RedirectToAction("Index");
         }
 
