@@ -12,49 +12,36 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.TenNV)
+           Mã NV
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CMND)
+           Tên Nhân Viên
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NgaySinh)
+           CMND
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
+           Ngày Sinh
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.SDT)
+            Địa Chỉ
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            SDT
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Password)
+            Email
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TrangThaiTaiKhoan)
+           Trạng Thái Tài Khoản
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaNV)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.TenNV)
         </td>
@@ -74,25 +61,7 @@
             @Html.DisplayFor(modelItem => item.Email)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TrangThaiTaiKhoan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDeleted)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MaNV }) |

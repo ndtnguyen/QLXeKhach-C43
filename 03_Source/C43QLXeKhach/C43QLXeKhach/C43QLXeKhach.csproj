@@ -283,6 +283,9 @@
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\C_SESSIONsService\Temp.cs" />
+    <Compile Include="Services\NHANVIENsService\INhanVienService.cs" />
+    <Compile Include="Services\NHANVIENsService\NhanVienService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

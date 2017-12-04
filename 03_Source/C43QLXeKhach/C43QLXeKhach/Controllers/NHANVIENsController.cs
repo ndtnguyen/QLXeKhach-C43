@@ -7,17 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
-
+using NLog;
+using C43QLXeKhach.Services.NHANVIENsService;
 namespace C43QLXeKhach.Controllers
 {
     public class NHANVIENsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        INhanVienService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public NHANVIENsController(INhanVienService service)
+        {
+            this.service = service;
+        }
+
 
         // GET: NHANVIENs
         public ActionResult Index()
         {
-            return View(db.NHANVIENs.ToList());
+            return View(service.GetAll());
         }
 
         // GET: NHANVIENs/Details/5
@@ -27,7 +35,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
+            NHANVIEN nHANVIEN = service.Detail(id);
             if (nHANVIEN == null)
             {
                 return HttpNotFound();
@@ -50,8 +58,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.NHANVIENs.Add(nHANVIEN);
-                db.SaveChanges();
+                service.Add(nHANVIEN);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +72,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
+            NHANVIEN nHANVIEN = service.Detail(id);
             if (nHANVIEN == null)
             {
                 return HttpNotFound();
@@ -82,8 +89,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(nHANVIEN).State = EntityState.Modified;
-                db.SaveChanges();
+               
                 return RedirectToAction("Index");
             }
             return View(nHANVIEN);
@@ -96,7 +102,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
+            NHANVIEN nHANVIEN = service.Detail(id);
             if (nHANVIEN == null)
             {
                 return HttpNotFound();
@@ -109,9 +115,7 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            NHANVIEN nHANVIEN = db.NHANVIENs.Find(id);
-            db.NHANVIENs.Remove(nHANVIEN);
-            db.SaveChanges();
+            NHANVIEN nHANVIEN = service.Detail(id);
             return RedirectToAction("Index");
         }
 
@@ -119,7 +123,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                service.Dispose();
             }
             base.Dispose(disposing);
         }
