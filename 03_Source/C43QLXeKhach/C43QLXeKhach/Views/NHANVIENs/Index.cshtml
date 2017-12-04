@@ -1,4 +1,5 @@
-﻿@model IEnumerable<C43QLXeKhach.Models.NHANVIEN>
+﻿
+@model IEnumerable<C43QLXeKhach.Models.NHANVIEN>
 
 @{
     ViewBag.Title = "Danh Sách Nhân Viên";
@@ -11,9 +12,6 @@
 </p>
 <table class="table">
     <tr>
-        <th>
-           Mã NV
-        </th>
         <th>
            Tên Nhân Viên
         </th>
@@ -40,16 +38,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.MaNV)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.TenNV)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CMND)
         </td>
         <td>
-           @Html.DisplayFor(modelItem => item.NgaySinh)
+          @item.NgaySinh.Value.ToString("dd/MM/yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.DiaChi)
