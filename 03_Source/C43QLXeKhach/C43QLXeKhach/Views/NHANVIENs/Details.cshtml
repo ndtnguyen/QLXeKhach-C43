@@ -1,17 +1,15 @@
 ﻿@model C43QLXeKhach.Models.NHANVIEN
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Nhân Viên";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Nhân Viên</h2>
 
 <div>
-    <h4>NHANVIEN</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenNV)
+            TênNV
         </dt>
 
         <dd>
@@ -19,7 +17,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.CMND)
+            CMND
         </dt>
 
         <dd>
@@ -27,15 +25,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
+            Ngày Sinh
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
+            @Model.NgaySinh.Value.ToString("dd/MM/yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
+           Địa Chỉ
         </dt>
 
         <dd>
@@ -43,7 +41,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SDT)
+            SĐT
         </dt>
 
         <dd>
@@ -51,7 +49,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+           Email
         </dt>
 
         <dd>
@@ -59,15 +57,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TrangThaiTaiKhoan)
+            Trạng Thái Tài Khoản
         </dt>
 
         <dd>
@@ -75,7 +65,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createUser)
+            Người Tạo
         </dt>
 
         <dd>
@@ -83,7 +73,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
+           Người Cập Nhật
         </dt>
 
         <dd>
@@ -91,7 +81,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createDate)
+            Ngày Tạo
         </dt>
 
         <dd>
@@ -99,24 +89,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
+            Ngày Cập Nhật
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.lastupdateDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaNV }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaNV }) |
+    @Html.ActionLink("Quay Về", "Index")
 </p>

@@ -10,12 +10,12 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             <div class="col-md-2">
-               <label>Tên NV</label>
+                <label>Tên NV</label>
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
@@ -34,12 +34,17 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-2">
-                <label>Ngày Sinh</label>
-            </div>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+           
+                <div class="col-md-2">
+                    <label>Ngày Sinh</label>
+                </div>
+
+                <div class="col-md-10">
+                    
+                <div class='date' id='datetimepicker'>
+                    @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control date" } })
+                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                </div>                  
             </div>
         </div>
 
@@ -92,10 +97,11 @@
                 @Html.ValidationMessageFor(model => model.TrangThaiTaiKhoan, "", new { @class = "text-danger" })
             </div>
         </div>
+       
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Lưu" class="btn btn-default" />
+                <input type="submit" value="Thêm" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -107,4 +113,53 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/datepicker")
+<script type="text/javascript">
+    $(function () {
+        var bindDatePicker = function () {
+            $(".date").datetimepicker({
+                format: 'YYYY-MM-DD',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            }).find('input:first').on("blur", function () {
+                // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                // update the format if it's yyyy-mm-dd
+                var date = parseDate($(this).val());
+
+                if (!isValidDate(date)) {
+                    //create date based on momentjs (we have that)
+                    date = moment().format('YYYY-MM-DD');
+                }
+
+                $(this).val(date);
+            });
+        }
+
+        var isValidDate = function (value, format) {
+            format = format || false;
+            // lets parse the date to the best of our knowledge
+            if (format) {
+                value = parseDate(value);
+            }
+
+            var timestamp = Date.parse(value);
+
+            return isNaN(timestamp) == false;
+        }
+
+        var parseDate = function (value) {
+            var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+            if (m)
+                value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+            return value;
+        }
+
+        bindDatePicker();
+    });
+</script>
 }

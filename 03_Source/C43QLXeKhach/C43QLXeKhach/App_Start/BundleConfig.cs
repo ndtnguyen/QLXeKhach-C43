@@ -26,6 +26,12 @@ namespace C43QLXeKhach
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/datePicker").Include(
+           "~/Scripts/moment.min.js",
+           "~/Scripts/bootstrap-datetimepicker.min.js"));
+
+            bundles.Add(new StyleBundle("~/Content/datepicker").Include(
+                     "~/Content/bootstrap-datetimepicker.min.css"));
         }
     }
 }
