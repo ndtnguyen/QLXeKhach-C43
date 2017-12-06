@@ -14,8 +14,9 @@ namespace C43QLXeKhach.Models
     
     public partial class C_SESSION
     {
-        public int MaNV { get; set; }
-        public System.DateTime LoginTime { get; set; }
+        public int MaSession { get; set; }
+        public Nullable<int> MaNV { get; set; }
+        public Nullable<System.DateTime> LoginTime { get; set; }
         public Nullable<System.DateTime> LogoutTime { get; set; }
         public Nullable<int> C_Status { get; set; }
     }

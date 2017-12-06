@@ -21,7 +21,7 @@ namespace C43QLXeKhach.Models
         public string DiaChi { get; set; }
         public string SDT { get; set; }
         public string Email { get; set; }
-        public byte[] Password { get; set; }
+        public string Password { get; set; }
         public Nullable<int> TrangThaiTaiKhoan { get; set; }
         public Nullable<int> createUser { get; set; }
         public Nullable<int> lastupdateUser { get; set; }
