@@ -13,5 +13,7 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         void Delete(NHANVIEN nv);
         NHANVIEN Detail(int ?id);
         void Dispose();
+        NHANVIEN Login(string email, string password);
+        void LogOut();
     }
 }
