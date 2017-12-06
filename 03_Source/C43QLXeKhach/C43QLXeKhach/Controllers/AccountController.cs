@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using C43QLXeKhach.Models;
 using System.Text;
 using System.Collections.Generic;
+using C43QLXeKhach.Services.NHANVIENsService;
+using NLog;
 
 namespace C43QLXeKhach.Controllers
 {
@@ -22,8 +24,14 @@ namespace C43QLXeKhach.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private QLXeKhachEntities db = new QLXeKhachEntities();
-      
 
+        INhanVienService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public AccountController(INhanVienService service)
+        {
+            this.service = service;
+        }
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -38,23 +46,20 @@ namespace C43QLXeKhach.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(NHANVIEN model, string returnUrl)
+        public ActionResult Login(NHANVIEN model,string returnUrl)
         {
-            System.Diagnostics.Debug.WriteLine("ok");
-            System.Diagnostics.Debug.WriteLine(model.Password);
-
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
-            string sqlString = "SELECT * FROM NHANVIEN WHERE Email='" + model.Email + "' AND CMND='" + model.CMND+"'";
-            System.Diagnostics.Debug.WriteLine(sqlString);
-            List<NHANVIEN> result  = db.NHANVIENs.SqlQuery(sqlString).ToList<NHANVIEN>();
-
-            System.Diagnostics.Debug.WriteLine("result"+result);
-            foreach (var r in result)
+            var email = Request["loginEmail"];
+            var password = Request["loginPW"];
+            NHANVIEN user = this.service.Login(email, password);
+            if (user != null)
             {
-                System.Diagnostics.Debug.WriteLine(r.CMND + r.Email + r.TenNV + r.DiaChi);
+                return RedirectToAction("Index", "NHANVIENs");
+            } else
+            {
+                ViewBag.Message = "Đăng nhập không thành công. Xin vui lòng kiểm tra lại email/mật khẩu";
+                return View();
             }
-            return View();
+            
         }
 
        
@@ -70,11 +75,13 @@ namespace C43QLXeKhach.Controllers
         //
         // POST: /Account/LogOff
         [HttpPost]
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            System.Diagnostics.Debug.WriteLine("log out");
+            this.service.LogOut();
+            return RedirectToAction("Login", "Account");
         }
 
         //
