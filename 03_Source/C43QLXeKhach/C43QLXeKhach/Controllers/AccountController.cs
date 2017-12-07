@@ -13,6 +13,7 @@ using System.Text;
 using System.Collections.Generic;
 using C43QLXeKhach.Services.NHANVIENsService;
 using NLog;
+using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Controllers
 {
@@ -49,8 +50,9 @@ namespace C43QLXeKhach.Controllers
         public ActionResult Login(NHANVIEN model,string returnUrl)
         {
             var email = Request["loginEmail"];
-            var password = Request["loginPW"];
-            NHANVIEN user = this.service.Login(email, password);
+            var password =  Request["loginPW"];
+            password = EncryptionUtil.instant(password);
+            NHANVIEN user = this.service.Login(email,password);
             if (user != null)
             {
                 return RedirectToAction("Index", "NHANVIENs");
