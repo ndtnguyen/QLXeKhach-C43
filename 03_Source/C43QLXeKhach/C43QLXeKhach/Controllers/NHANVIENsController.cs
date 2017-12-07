@@ -28,7 +28,10 @@ namespace C43QLXeKhach.Controllers
         // GET: NHANVIENs
         public ActionResult Index()
         {
-            return View(service.GetAll());
+            if (Request.Params["input"] == null)
+                return View(service.GetAll());
+            else
+                return View(service.Search(Request.Params["input"]));
         }
 
         // GET: NHANVIENs/Details/5
@@ -59,13 +62,13 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaNV,TenNV,CMND,NgaySinh,DiaChi,SDT,Email,Password,TrangThaiTaiKhoan,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] NHANVIEN nHANVIEN)
         {
-            DateTime current = DateTime.Now;
             if (ModelState.IsValid)
             {
                 using (MD5 md5Hash = MD5.Create())
                 {
                     nHANVIEN.Password= GetMd5Hash(md5Hash, nHANVIEN.CMND);
                 }
+                DateTime current = DateTime.Now;
                 nHANVIEN.isDeleted = 0;
                 nHANVIEN.createDate = current;
                 nHANVIEN.lastupdateDate = current;
@@ -120,12 +123,21 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
+                DateTime current = DateTime.Now;
+                nHANVIEN.lastupdateDate = current;
                 service.Update(nHANVIEN);
                return RedirectToAction("Index");
             }
             return View(nHANVIEN);
         }
+        [HttpGet]
+        public IList<NHANVIEN> Search()
+        {
+            string input = Request.Params["input"];
+            IList<NHANVIEN> kq = service.Search(input);
+            return kq;
 
+        }
         // GET: NHANVIENs/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -147,6 +159,9 @@ namespace C43QLXeKhach.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             NHANVIEN nHANVIEN = service.Detail(id);
+            DateTime current = DateTime.Now;
+            nHANVIEN.lastupdateDate = current;
+            nHANVIEN.isDeleted = 1;
             service.Delete(nHANVIEN);
             return RedirectToAction("Index");
         }

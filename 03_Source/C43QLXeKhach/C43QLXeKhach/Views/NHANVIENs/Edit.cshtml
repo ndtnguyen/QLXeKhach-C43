@@ -44,8 +44,16 @@
             <div class="col-md-10">
 
                 <div class='date' id='datetimepicker'>
-                   <input class = "form-control date" value="@Model.NgaySinh.Value.ToString("yyyy-MM-dd")"/>
-                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    @if (Model.NgaySinh != null)
+                    {
+                        <input class="form-control date" value="@Model.NgaySinh.Value.ToString("yyyy-MM-dd")" />
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    }
+                    else
+                    {
+                        <input class="form-control date" value="@Model.NgaySinh" />
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    }
                 </div>
             </div>
         </div>

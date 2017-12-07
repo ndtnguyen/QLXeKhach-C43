@@ -39,7 +39,6 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                nv.isDeleted = 1;
                 context.Entry(nv).State = EntityState.Modified;
                 context.SaveChanges();
             }
@@ -92,7 +91,13 @@ namespace C43QLXeKhach.Services.NHANVIENsService
                 
             }
         }
-
+        public IList<NHANVIEN> Search(string input)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.NHANVIENs.Where(x => x.isDeleted!=1 &&(x.TenNV.Contains(input) || input == "")).ToList();
+            }
+        }
         public void LogOut()
         {
             var session = HttpContext.Current.Session[GlobalConstant.SESSION_ID];
