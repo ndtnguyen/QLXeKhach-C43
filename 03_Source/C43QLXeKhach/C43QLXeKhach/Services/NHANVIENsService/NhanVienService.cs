@@ -23,6 +23,16 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
+                var user = HttpContext.Current.Session[GlobalConstant.USER];
+                if (user != null)
+                {
+                    NHANVIEN currentUser = (NHANVIEN)user;
+                    nv.createUser= currentUser.MaNV;
+                    nv.lastupdateUser = currentUser.MaNV;
+                }
+                DateTime current = DateTime.Now;
+                nv.createDate = current;
+                nv.lastupdateDate = current;
                 context.NHANVIENs.Add(nv);
                 context.SaveChanges();
                 return 1;
@@ -30,6 +40,14 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         }
         public void Update(NHANVIEN nv)
         {
+            var user = HttpContext.Current.Session[GlobalConstant.USER];
+            if (user != null)
+            {
+                NHANVIEN currentUser = (NHANVIEN)user;
+                nv.lastupdateUser = currentUser.MaNV;
+            }
+            DateTime current = DateTime.Now;
+            nv.lastupdateDate = current;
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
                 context.Entry(nv).State = EntityState.Modified;
@@ -38,6 +56,14 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         }
         public void Delete(NHANVIEN nv)
         {
+            var user = HttpContext.Current.Session[GlobalConstant.USER];
+            if (user != null)
+            {
+                NHANVIEN currentUser = (NHANVIEN)user;
+                nv.lastupdateUser = currentUser.MaNV;
+            }
+            DateTime current = DateTime.Now;
+            nv.lastupdateDate = current;
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
                 context.Entry(nv).State = EntityState.Modified;

@@ -65,12 +65,9 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                DateTime current = DateTime.Now;
                 nHANVIEN.Password = EncryptionUtil.instant(nHANVIEN.CMND);
                 nHANVIEN.TrangThaiTaiKhoan = 0;
                 nHANVIEN.isDeleted = 0;
-                nHANVIEN.createDate = current;
-                nHANVIEN.lastupdateDate = current;
                 service.Add(nHANVIEN);
                 return RedirectToAction("Index");
             }
@@ -122,9 +119,13 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                DateTime current = DateTime.Now;
-                nHANVIEN.lastupdateDate = current;
-                service.Update(nHANVIEN);
+                NHANVIEN nv = service.Detail(nHANVIEN.MaNV);
+                nv.TenNV = nHANVIEN.TenNV;
+                nv.CMND = nHANVIEN.CMND;
+                nv.NgaySinh = nHANVIEN.NgaySinh;
+                nv.DiaChi = nHANVIEN.DiaChi;
+                nv.SDT = nv.SDT;
+                service.Update(nv);
                return RedirectToAction("Index");
             }
             return View(nHANVIEN);
@@ -150,8 +151,6 @@ namespace C43QLXeKhach.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             NHANVIEN nHANVIEN = service.Detail(id);
-            DateTime current = DateTime.Now;
-            nHANVIEN.lastupdateDate = current;
             nHANVIEN.isDeleted = 1;
             service.Delete(nHANVIEN);
             return RedirectToAction("Index");
