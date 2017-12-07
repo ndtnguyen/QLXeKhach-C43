@@ -11,6 +11,7 @@ using NLog;
 using C43QLXeKhach.Services.NHANVIENsService;
 using System.Security.Cryptography;
 using System.Text;
+using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Controllers
 {
@@ -64,11 +65,9 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                using (MD5 md5Hash = MD5.Create())
-                {
-                    nHANVIEN.Password= GetMd5Hash(md5Hash, nHANVIEN.CMND);
-                }
                 DateTime current = DateTime.Now;
+                nHANVIEN.Password = EncryptionUtil.instant(nHANVIEN.CMND);
+                nHANVIEN.TrangThaiTaiKhoan = 0;
                 nHANVIEN.isDeleted = 0;
                 nHANVIEN.createDate = current;
                 nHANVIEN.lastupdateDate = current;
@@ -130,14 +129,6 @@ namespace C43QLXeKhach.Controllers
             }
             return View(nHANVIEN);
         }
-        [HttpGet]
-        public IList<NHANVIEN> Search()
-        {
-            string input = Request.Params["input"];
-            IList<NHANVIEN> kq = service.Search(input);
-            return kq;
-
-        }
         // GET: NHANVIENs/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -179,6 +170,7 @@ namespace C43QLXeKhach.Controllers
             for(int i=0;i< listDelete.Length;i++)
             {
                 NHANVIEN nHANVIEN = service.Detail(int.Parse(listDelete[i]));
+                nHANVIEN.isDeleted = 1;
                 service.Delete(nHANVIEN);
             }
             return RedirectToAction("Index");
