@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using C43QLXeKhach.Models;
 using NLog;
 using C43QLXeKhach.Services.NHANVIENsService;
+using System.Security.Cryptography;
+using System.Text;
+
 namespace C43QLXeKhach.Controllers
 {
     public class NHANVIENsController : Controller
@@ -56,13 +59,41 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaNV,TenNV,CMND,NgaySinh,DiaChi,SDT,Email,Password,TrangThaiTaiKhoan,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] NHANVIEN nHANVIEN)
         {
+            DateTime current = DateTime.Now;
             if (ModelState.IsValid)
             {
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    nHANVIEN.Password= GetMd5Hash(md5Hash, nHANVIEN.CMND);
+                }
+                nHANVIEN.isDeleted = 0;
+                nHANVIEN.createDate = current;
+                nHANVIEN.lastupdateDate = current;
                 service.Add(nHANVIEN);
                 return RedirectToAction("Index");
             }
 
             return View(nHANVIEN);
+        }
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+
+            // Convert the input string to a byte array and compute the hash.
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+
+            // Create a new Stringbuilder to collect the bytes
+            // and create a string.
+            StringBuilder sBuilder = new StringBuilder();
+
+            // Loop through each byte of the hashed data 
+            // and format each one as a hexadecimal string.
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+
+            // Return the hexadecimal string.
+            return sBuilder.ToString();
         }
 
         // GET: NHANVIENs/Edit/5
