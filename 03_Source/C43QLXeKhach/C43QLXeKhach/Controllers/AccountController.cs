@@ -55,6 +55,10 @@ namespace C43QLXeKhach.Controllers
             NHANVIEN user = this.service.Login(email,password);
             if (user != null)
             {
+                if (user.TrangThaiTaiKhoan == 0)
+                {
+                    return RedirectToAction("ResetPassword", "Account");
+                }
                 return RedirectToAction("Index", "NHANVIENs");
             } else
             {
@@ -64,14 +68,34 @@ namespace C43QLXeKhach.Controllers
             
         }
 
-       
-        // GET: /Account/Register
+
+        // GET: /Account/ResetPassword
         [AllowAnonymous]
-        public ActionResult Register()
+        public ActionResult ResetPassword(string returnUrl)
         {
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
+        //POST: /Account/ResetPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult ResetPassword(ResetPasswordViewModel model)
+        {
+            try
+            {
+                this.service.ResetPassword(model.Password, model.ConfirmPassword);
+                ViewBag.Message = "Đổi mật khẩu thành công";
+                return View();
+            }
+            catch (Exception e)
+            {
+                ViewBag.Message = e.Message;
+                return View();
+            }
+            
+        }
 
 
         //
@@ -86,13 +110,7 @@ namespace C43QLXeKhach.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        //
-        // GET: /Account/ExternalLoginFailure
-        [AllowAnonymous]
-        public ActionResult ExternalLoginFailure()
-        {
-            return View();
-        }
+      
 
         protected override void Dispose(bool disposing)
         {

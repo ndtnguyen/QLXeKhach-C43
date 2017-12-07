@@ -6,6 +6,7 @@ using C43QLXeKhach.Models;
 using System.Data.Entity;
 using System.Text;
 using C43QLXeKhach.Constant;
+using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Services.NHANVIENsService
 {
@@ -127,6 +128,43 @@ namespace C43QLXeKhach.Services.NHANVIENsService
             {
                 return;
             }
+        }
+
+        public void ResetPassword(string password, string confirmPassword)
+        {
+            if (password == confirmPassword)
+            {
+                var user = HttpContext.Current.Session[GlobalConstant.USER];
+                if (user != null)
+                {
+                    NHANVIEN currentUser = (NHANVIEN)user;
+                    currentUser.Password = EncryptionUtil.instant(password);
+                    currentUser.TrangThaiTaiKhoan = 1;
+                    //change password
+                    using (QLXeKhachEntities context = new QLXeKhachEntities())
+                    {
+                        try
+                        {
+                            var entity = context.NHANVIENs.Find(currentUser.MaNV);
+                            if (entity == null)
+                            {
+                                return;
+                            }
+
+                            context.Entry(entity).CurrentValues.SetValues(currentUser);
+                            context.SaveChanges();
+                        }
+                        catch (Exception e)
+                        {
+                            System.Diagnostics.Debug.WriteLine(e);
+                        }
+                    }
+                }
+            } else
+            {
+                throw new ArgumentException("Mật khẩu xác nhận không chính xác");
+            }
+            
         }
     }
 }
