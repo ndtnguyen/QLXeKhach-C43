@@ -10,18 +10,22 @@
 <p>
     
     <a href="/NHANVIENs/Create" class="btn btn-primary" title="add">
-        <span class="glyphicon glyphicon-plus"></span>
+        Thêm Nhân Viên
+        @*<span class="glyphicon glyphicon-plus"></span>*@
     </a>
+    <button class="btn btn-danger" id="btnDelete" title="delete">
+        Xóa Nhân Viên
+    @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
 </p>
 
-@using (Html.BeginForm())
 
-{
+<form action="/NHANVIENs/Index" method="POST" id="frmnhanvien">
     @Html.AntiForgeryToken()
     <table class="table table-hover">
         <tr>
             <th>
-                <button type="submit" class="btn btn-xs btn-danger" title="delete"><span class="glyphicon glyphicon-remove"></span></button>
+
             </th>
             <th>
                 Tên Nhân Viên
@@ -50,7 +54,7 @@
         {
             <tr>
                 <td>
-                    <input class="text-center" type="checkbox" name="deletecheckbox" value=@item.MaNV>
+                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaNV>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.TenNV)
@@ -77,9 +81,9 @@
                     <a href="/NHANVIENs/Edit/@item.MaNV" class="btn btn-xs btn-primary" title="edit">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
-                    <a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
-                        <span class="glyphicon glyphicon-book"></span>
-                    </a>
+                    @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
+                            <span class="glyphicon glyphicon-book"></span>
+                        </a>*@
                 </td>
             </tr>
         }
@@ -87,4 +91,35 @@
     </table>
 
 
+</form>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop( "disabled", true );
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+       
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những nhân viên này?");
+            if (returnVal)
+                $('#frmnhanvien').submit();
+            else
+                return;
+        });
+    </script>
 }
