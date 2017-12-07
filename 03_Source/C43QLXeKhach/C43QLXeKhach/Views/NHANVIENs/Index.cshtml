@@ -5,7 +5,7 @@
     ViewBag.Title = "Danh Sách Nhân Viên";
 }
 
-<h2>Danh Sách Nhân Viên</h2>
+<h2 id="nhanVienTitle" style="cursor:pointer">Danh Sách Nhân Viên</h2>
 <div class="row">
    <div class="col-md-8">
         <p>
@@ -79,7 +79,7 @@
                 <td>
                     @if (item.NgaySinh != null)
                     {
-                        @item.NgaySinh.Value.ToString("yyyy/MM/dd")
+                        @item.NgaySinh.Value.ToString("yyyy-MM-dd")
                     }
                     else
                     {
@@ -96,10 +96,18 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TrangThaiTaiKhoan)
+                    
+                    @if (@item.TrangThaiTaiKhoan == 1)
+                        {
+                            @Html.Raw("Đã kích hoạt")
+                        }
+                        else
+                        {
+                           @Html.Raw("Chưa kích hoạt")
+                        }
                 </td>
                 <td>
-                    <a href="/NHANVIENs/Edit/@item.MaNV" class="btn btn-xs btn-primary" title="edit">
+                    <a href = "/NHANVIENs/Edit/@item.MaNV" class="btn btn-xs btn-primary" title="edit">
                         <span class="glyphicon glyphicon-pencil"></span>
                     </a>
                     @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
@@ -153,6 +161,9 @@
                 input = $("#txtSearch").val();
             var url="/NHANVIENs/Index?input="+input;
             window.location=url;
+        });
+        $('#nhanVienTitle').on('click', function () {
+            window.location="/NHANVIENs/Index";
         });
     </script>
 }
