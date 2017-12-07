@@ -124,7 +124,7 @@ namespace C43QLXeKhach.Controllers
                 nv.CMND = nHANVIEN.CMND;
                 nv.NgaySinh = nHANVIEN.NgaySinh;
                 nv.DiaChi = nHANVIEN.DiaChi;
-                nv.SDT = nv.SDT;
+                nv.SDT = nHANVIEN.SDT;
                 service.Update(nv);
                return RedirectToAction("Index");
             }
