@@ -4,6 +4,7 @@
     <EntitySetMapping Name="C_SESSION">
       <EntityTypeMapping TypeName="QLXeKhachModel.C_SESSION">
         <MappingFragment StoreEntitySet="_SESSION">
+          <ScalarProperty Name="MaSession" ColumnName="MaSession" />
           <ScalarProperty Name="MaNV" ColumnName="MaNV" />
           <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
           <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />

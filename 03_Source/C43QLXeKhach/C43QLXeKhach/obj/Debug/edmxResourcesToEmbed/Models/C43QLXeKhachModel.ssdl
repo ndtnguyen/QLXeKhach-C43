@@ -2,11 +2,11 @@
 <Schema Namespace="QLXeKhachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="_SESSION">
     <Key>
-      <PropertyRef Name="MaNV" />
-      <PropertyRef Name="LoginTime" />
+      <PropertyRef Name="MaSession" />
     </Key>
-    <Property Name="MaNV" Type="int" Nullable="false" />
-    <Property Name="LoginTime" Type="datetime" Nullable="false" />
+    <Property Name="MaSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNV" Type="int" />
+    <Property Name="LoginTime" Type="datetime" />
     <Property Name="LogoutTime" Type="datetime" />
     <Property Name="_Status" Type="int" />
   </EntityType>
@@ -161,7 +161,7 @@
     <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
     <Property Name="SDT" Type="varchar" MaxLength="12" />
     <Property Name="Email" Type="varchar" MaxLength="50" />
-    <Property Name="Password" Type="varbinary(max)" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
     <Property Name="TrangThaiTaiKhoan" Type="int" />
     <Property Name="createUser" Type="int" />
     <Property Name="lastupdateUser" Type="int" />

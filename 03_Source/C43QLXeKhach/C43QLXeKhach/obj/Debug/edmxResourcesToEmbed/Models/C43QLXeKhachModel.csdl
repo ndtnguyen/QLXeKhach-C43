@@ -2,11 +2,11 @@
 <Schema Namespace="QLXeKhachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityType Name="C_SESSION">
     <Key>
-      <PropertyRef Name="MaNV" />
-      <PropertyRef Name="LoginTime" />
+      <PropertyRef Name="MaSession" />
     </Key>
-    <Property Name="MaNV" Type="Int32" Nullable="false" />
-    <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaSession" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MaNV" Type="Int32" />
+    <Property Name="LoginTime" Type="DateTime" Precision="3" />
     <Property Name="LogoutTime" Type="DateTime" Precision="3" />
     <Property Name="C_Status" Type="Int32" />
   </EntityType>
@@ -161,7 +161,7 @@
     <Property Name="DiaChi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
     <Property Name="SDT" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="TrangThaiTaiKhoan" Type="Int32" />
     <Property Name="createUser" Type="Int32" />
     <Property Name="lastupdateUser" Type="Int32" />
