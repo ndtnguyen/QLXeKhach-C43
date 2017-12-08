@@ -1,10 +1,11 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/datatables")
     @Scripts.Render("~/bundles/modernizr")
     @RenderSection("Styles", false)
 </head>
@@ -40,6 +41,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/datepicker")
+    @Scripts.Render("~/bundles/datatables")
     @RenderSection("scripts", required: false)
 </body>
 </html>

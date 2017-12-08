@@ -21,7 +21,7 @@
             </button>
         </p>
     </div>
-    <div class="col-md-3">
+    @*<div class="col-md-3">
         <div class="input-group col-md-12">
             <input id="txtSearch" class="form-control" />
             <span class="input-group-btn">
@@ -30,7 +30,7 @@
                 </button>
             </span>
         </div>
-</div>
+</div>*@
     @*<div class="col-md-1">
             <button class="btn btn-default" id="btnSearch" title="search">
                 <span class="glyphicon glyphicon-search"></span>
@@ -40,94 +40,99 @@
 
 <form action="/NHANVIENs/Index" method="POST" id="frmnhanvien">
     @Html.AntiForgeryToken()
-    <table class="table table-hover">
-        <tr>
-            <th>
+            <div class="table-responsive">
+                <table class="table table-hover" id="dataTable"  cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
 
-            </th>
-            <th>
-                Tên Nhân Viên
-            </th>
-            <th>
-                CMND
-            </th>
-            <th>
-                Ngày Sinh
-            </th>
-            <th>
-                Địa Chỉ
-            </th>
-            <th>
-                SDT
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Trạng Thái Tài Khoản
-            </th>
-            <th>
+                            </th>
+                            <th>
+                                Tên Nhân Viên
+                            </th>
+                            <th>
+                                CMND
+                            </th>
+                            <th>
+                                Ngày Sinh
+                            </th>
+                            <th>
+                                Địa Chỉ
+                            </th>
+                            <th>
+                                SDT
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Trạng Thái Tài Khoản
+                            </th>
+                            <th>
 
-            </th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaNV>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenNV)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CMND)
-                </td>
-                <td>
-                    @if (item.NgaySinh != null)
-                    {
-                        @item.NgaySinh.Value.ToString("yyyy-MM-dd")
-                    }
-                    else
-                    {
-                        @item.NgaySinh
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiaChi)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SDT)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    
-                    @if (@item.TrangThaiTaiKhoan == 1)
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
                         {
-                            @Html.Raw("Đã kích hoạt")
-                        }
-                        else
-                        {
-                           @Html.Raw("Chưa kích hoạt")
-                        }
-                </td>
-                <td>
-                    <a href = "/NHANVIENs/Edit/@item.MaNV" class="btn btn-xs btn-primary" title="edit">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                    </a>
-                    @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
-                            <span class="glyphicon glyphicon-book"></span>
-                        </a>*@
-                </td>
-            </tr>
-        }
+                            <tr>
+                                <td>
+                                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaNV>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TenNV)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CMND)
+                                </td>
+                                <td>
+                                    @if (item.NgaySinh != null)
+                                    {
+                                        @item.NgaySinh.Value.ToString("yyyy-MM-dd")
+                                    }
+                                    else
+                                    {
+                                        @item.NgaySinh
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DiaChi)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.SDT)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
 
-    </table>
+                                    @if (@item.TrangThaiTaiKhoan == 1)
+                                    {
+                                        @Html.Raw("Đã kích hoạt")
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("Chưa kích hoạt")
+                                    }
+                                </td>
+                                <td>
+                                    <a href="/NHANVIENs/Edit/@item.MaNV" class="btn btn-xs btn-primary" title="edit">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
+                                            <span class="glyphicon glyphicon-book"></span>
+                                        </a>*@
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
 
+                </table>
+            </div>
 
 </form>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">

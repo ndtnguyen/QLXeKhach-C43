@@ -32,6 +32,14 @@ namespace C43QLXeKhach
 
             bundles.Add(new StyleBundle("~/Content/datepicker").Include(
                      "~/Content/bootstrap-datetimepicker.min.css"));
+            //datatable
+            bundles.Add(new StyleBundle("~/Content/datatables").Include(
+                     "~/Content/datatables/dataTables.bootstrap4.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+           "~/Scripts/datatables/jquery.dataTables.js",
+           "~/Scripts/datatables/dataTables.bootstrap4.js",
+           "~/Scripts/datatables/sb-admin-datatables.min.js"));
         }
     }
 }

@@ -292,6 +292,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\datatables\dataTables.bootstrap4.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="favicon.ico" />
@@ -396,6 +397,10 @@
     <Content Include="Models\C43QLXeKhachModel.edmx.diagram">
       <DependentUpon>C43QLXeKhachModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\datatables\dataTables.bootstrap4.js" />
+    <Content Include="Scripts\datatables\jquery.dataTables.js" />
+    <Content Include="Scripts\datatables\sb-admin-datatables.js" />
+    <Content Include="Scripts\datatables\sb-admin-datatables.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
