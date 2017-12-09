@@ -990,8 +990,6 @@
 				"bPaginate",
 				"bLengthChange",
 				"bFilter",
-				"bSort",
-				"bSortMulti",
 				"bInfo",
 				"bProcessing",
 				"bAutoWidth",

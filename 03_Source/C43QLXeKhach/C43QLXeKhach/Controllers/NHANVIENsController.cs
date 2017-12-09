@@ -29,10 +29,10 @@ namespace C43QLXeKhach.Controllers
         // GET: NHANVIENs
         public ActionResult Index()
         {
-            if (Request.Params["input"] == null)
+            //if (Request.Params["input"] == null)
                 return View(service.GetAll());
-            else
-                return View(service.Search(Request.Params["input"]));
+            /*else
+                return View(service.Search(Request.Params["input"]));*/
         }
 
         // GET: NHANVIENs/Details/5

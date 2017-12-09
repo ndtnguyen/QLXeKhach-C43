@@ -15,7 +15,7 @@ namespace C43QLXeKhach.Services.NHANVIENsService
         void Dispose();
         NHANVIEN Login(string email, string password);
         void LogOut();
-        IList<NHANVIEN> Search(string input);
+        //IList<NHANVIEN> Search(string input);
 
         void ResetPassword(string password, string confirmPassword);
     }
