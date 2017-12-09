@@ -36,6 +36,7 @@ namespace C43QLXeKhach.Controllers
         //
         // GET: /Account/Login
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
