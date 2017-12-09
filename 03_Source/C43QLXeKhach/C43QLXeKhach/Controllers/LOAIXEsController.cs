@@ -7,17 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using C43QLXeKhach.Services.LOAIXEsService;
 
 namespace C43QLXeKhach.Controllers
 {
     public class LOAIXEsController : Controller
     {
         private QLXeKhachEntities db = new QLXeKhachEntities();
-
+        ILoaiXeService service;
         // GET: LOAIXEs
         public ActionResult Index()
         {
-            return View(db.LOAIXEs.ToList());
+            return View(service.GetAll());
+            
         }
 
         // GET: LOAIXEs/Details/5
