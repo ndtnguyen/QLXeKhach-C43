@@ -7,13 +7,13 @@ namespace C43QLXeKhach.Services.TINHTHANHsService
 {
     public interface ITinhThanhService
     {
-        IList<TINHTHANH> GetAll();
-        int Add(TINHTHANH tt);
-        void Update(TINHTHANH tt);
-        void Delete(TINHTHANH tt);
-        TINHTHANH Detail(int ?id);
-        void Dispose();
-        IList<TINHTHANH> Search(string input);
+        //IList<TINHTHANH> GetAll();
+        //int Add(TINHTHANH tt);
+        //void Update(TINHTHANH tt);
+        //void Delete(TINHTHANH tt);
+        //TINHTHANH Detail(int ?id);
+        //void Dispose();
+        //IList<TINHTHANH> Search(string input);
         
     }
 }
