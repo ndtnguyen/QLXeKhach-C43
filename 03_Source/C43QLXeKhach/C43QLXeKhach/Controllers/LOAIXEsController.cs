@@ -1,40 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+
 using C43QLXeKhach.Services.LOAIXEsService;
+using NLog;
 
 namespace C43QLXeKhach.Controllers
 {
     public class LOAIXEsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
         ILoaiXeService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+        public LOAIXEsController(ILoaiXeService service)
+        {
+            this.service = service;
+        }
+
         // GET: LOAIXEs
         public ActionResult Index()
         {
             return View(service.GetAll());
-            
-        }
-
-        // GET: LOAIXEs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            LOAIXE lOAIXE = db.LOAIXEs.Find(id);
-            if (lOAIXE == null)
-            {
-                return HttpNotFound();
-            }
-            return View(lOAIXE);
         }
 
         // GET: LOAIXEs/Create
@@ -52,11 +38,24 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.LOAIXEs.Add(lOAIXE);
-                db.SaveChanges();
+                lOAIXE.isDeleted = 0;
+                service.Add(lOAIXE);
                 return RedirectToAction("Index");
             }
+            return View(lOAIXE);
+        }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LOAIXE lOAIXE = service.Detail(id);
+            if (lOAIXE == null)
+            {
+                return HttpNotFound();
+            }
             return View(lOAIXE);
         }
 
@@ -67,7 +66,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LOAIXE lOAIXE = db.LOAIXEs.Find(id);
+            LOAIXE lOAIXE = service.Detail(id);
             if (lOAIXE == null)
             {
                 return HttpNotFound();
@@ -84,8 +83,10 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(lOAIXE).State = EntityState.Modified;
-                db.SaveChanges();
+                LOAIXE lx = service.Detail(lOAIXE.MaLoai);
+                lx.TenLoai = lOAIXE.TenLoai;
+                lx.SLGhe = lOAIXE.SLGhe;
+                service.Update(lx);
                 return RedirectToAction("Index");
             }
             return View(lOAIXE);
@@ -98,7 +99,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            LOAIXE lOAIXE = db.LOAIXEs.Find(id);
+            LOAIXE lOAIXE = service.Detail(id);
             if (lOAIXE == null)
             {
                 return HttpNotFound();
@@ -111,19 +112,19 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            LOAIXE lOAIXE = db.LOAIXEs.Find(id);
-            db.LOAIXEs.Remove(lOAIXE);
-            db.SaveChanges();
+            LOAIXE lOAIXE = service.Detail(id);
+            lOAIXE.isDeleted = 1;
+            service.Delete(lOAIXE);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
     }
 }
