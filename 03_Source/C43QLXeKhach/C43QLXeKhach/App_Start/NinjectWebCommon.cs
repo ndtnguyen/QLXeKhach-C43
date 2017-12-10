@@ -11,6 +11,8 @@ namespace C43QLXeKhach.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using Services.NHANVIENsService;
+    using Services.LOAIXEsService;
+    
 
     public static class NinjectWebCommon 
     {
@@ -63,6 +65,7 @@ namespace C43QLXeKhach.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<INhanVienService>().To<NhanVienService>();
+            kernel.Bind<ILoaiXeService>().To<LoaiXeService>();
         }        
     }
 }
