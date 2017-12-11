@@ -8,9 +8,10 @@ namespace C43QLXeKhach.Services.LOAIXEsService
     public interface ILoaiXeService
     {
         IList<LOAIXE> GetAll();
-        int Add(LOAIXE nv);
+        int Add(LOAIXE lx);
         void Update(LOAIXE lx);
         void Delete(LOAIXE lx);
-        NHANVIEN Detail(int? id);
+        LOAIXE Detail(int? id);
+        void Dispose();
     }
 }

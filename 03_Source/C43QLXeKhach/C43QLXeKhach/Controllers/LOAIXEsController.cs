@@ -118,13 +118,23 @@ namespace C43QLXeKhach.Controllers
             return RedirectToAction("Index");
         }
 
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
-        //}
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                LOAIXE lOAIXE = service.Detail(int.Parse(listDelete[i]));
+                lOAIXE.isDeleted = 1;
+                service.Delete(lOAIXE);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

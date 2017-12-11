@@ -7,17 +7,32 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.KHAOSATsService;
+using C43QLXeKhach.Services.NHANVIENsService;
+using System.Collections;
 
 namespace C43QLXeKhach.Controllers
 {
     public class KHAOSATsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
-
+        
+        IKhaoSatService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+        public KHAOSATsController(IKhaoSatService service)
+        {
+            this.service = service;
+        }
+       
         // GET: KHAOSATs
         public ActionResult Index()
         {
-            return View(db.KHAOSATs.ToList());
+            //INhanVienService nhanVienService = new NhanVienService();
+            //IList<NHANVIEN> nhanVienList = nhanVienService.GetAll();
+            //ViewBag.nhanVienList = nhanVienList;
+            //IList<dynamic> list =  service.GetAll();
+            //ViewBag.list = list;
+            return View(service.GetAll());
         }
 
         // GET: KHAOSATs/Details/5
@@ -27,7 +42,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
+            KHAOSAT kHAOSAT = service.Detail(id);
             if (kHAOSAT == null)
             {
                 return HttpNotFound();
@@ -38,6 +53,18 @@ namespace C43QLXeKhach.Controllers
         // GET: KHAOSATs/Create
         public ActionResult Create()
         {
+            INhanVienService nhanVienService = new NhanVienService();
+            IList<NHANVIEN> nhanVienList = nhanVienService.GetAll();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < nhanVienList.Count; i++)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = nhanVienList[i].TenNV,
+                    Value = nhanVienList[i].MaNV.ToString()
+                });
+            }
+            ViewBag.listItems = listItems;
             return View();
         }
 
@@ -48,13 +75,13 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaKS,NgayKS,NguoiKS,DiaChiKS,TiLeDonKhach,GiaKS,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] KHAOSAT kHAOSAT)
         {
+            
             if (ModelState.IsValid)
             {
-                db.KHAOSATs.Add(kHAOSAT);
-                db.SaveChanges();
+                kHAOSAT.isDeleted = 0;
+                service.Add(kHAOSAT);
                 return RedirectToAction("Index");
             }
-
             return View(kHAOSAT);
         }
 
@@ -65,7 +92,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
+            KHAOSAT kHAOSAT = service.Detail(id);
             if (kHAOSAT == null)
             {
                 return HttpNotFound();
@@ -82,8 +109,10 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(kHAOSAT).State = EntityState.Modified;
-                db.SaveChanges();
+                KHAOSAT ks = service.Detail(kHAOSAT.MaKS);
+                //ks.TenLoai = lOAIXE.TenLoai;
+                //ks.SLGhe = lOAIXE.SLGhe;
+                service.Update(ks);
                 return RedirectToAction("Index");
             }
             return View(kHAOSAT);
@@ -96,7 +125,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
+            KHAOSAT kHAOSAT = service.Detail(id);
             if (kHAOSAT == null)
             {
                 return HttpNotFound();
@@ -109,19 +138,10 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KHAOSAT kHAOSAT = db.KHAOSATs.Find(id);
-            db.KHAOSATs.Remove(kHAOSAT);
-            db.SaveChanges();
+            KHAOSAT kHAOSAT = service.Detail(id);
+            kHAOSAT.isDeleted = 1;
+            service.Delete(kHAOSAT);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿@model IEnumerable<C43QLXeKhach.Models.KHAOSAT>
-
+﻿
 @{
     ViewBag.Title = "Index";
 }
@@ -12,34 +11,20 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NgayKS)
+            Ten nhan vien
+            @*@Html.DisplayNameFor(model => model.NgayKS)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.NguoiKS)
+            @*@Html.DisplayNameFor(model => model.NguoiKS)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.DiaChiKS)
+            @*@Html.DisplayNameFor(model => model.DiaChiKS)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TiLeDonKhach)
+            @*@Html.DisplayNameFor(model => model.TiLeDonKhach)*@
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.GiaKS)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDeleted)
+            @*@Html.DisplayNameFor(model => model.GiaKS)*@
         </th>
         <th></th>
     </tr>
@@ -47,39 +32,25 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.NgayKS)
+            <p>@item</p>
+            @*@Html.DisplayFor(modelItem => item.NgayKS)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.NguoiKS)
+            @*@Html.DisplayFor(modelItem => item.NguoiKS)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DiaChiKS)
+            @*@Html.DisplayFor(modelItem => item.DiaChiKS)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.TiLeDonKhach)
+            @*@Html.DisplayFor(modelItem => item.TiLeDonKhach)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.GiaKS)
+            @*@Html.DisplayFor(modelItem => item.GiaKS)*@
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.createUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaKS }) |
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.MaKS }) |
             @Html.ActionLink("Details", "Details", new { id=item.MaKS }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaKS })
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaKS })*@
         </td>
     </tr>
 }

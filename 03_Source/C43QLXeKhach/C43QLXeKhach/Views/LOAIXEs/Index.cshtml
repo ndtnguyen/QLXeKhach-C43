@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<C43QLXeKhach.Models.LOAIXE>
-@Html.AntiForgeryToken()
+
 @{
     ViewBag.Title = "Index";
 }
@@ -9,31 +9,91 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenLoai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SLGhe)
-        </th>
-        <th></th>
-    </tr>
+<button class="btn btn-danger" id="btnDelete" title="delete">
+    Xóa LoaiXe
+    @*<span class="glyphicon glyphicon-remove"></span>*@
+</button>
+<form action="/LOAIXEs/Index" method="POST" id="frm">
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenLoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SLGhe)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenLoai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SLGhe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaLoai }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaLoai }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaLoai })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaLoai>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenLoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SLGhe)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaLoai }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MaLoai }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaLoai })
+                </td>
+            </tr>
+        }
+
+    </table>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop("disabled", true);
+            var url = decodeURIComponent(window.location.search.substring(1));
+            if (url != "") {
+                var searchinput = url.split("=")[1];
+                $("#txtSearch").val(searchinput);
+            }
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những loại xe này?");
+            if (returnVal)
+                $('#frm').submit();
+            else
+                return;
+        });
+        //$('#btnSearch').on('click', function () {
+        //    var input = "";
+        //    if ($("#txtSearch").val())
+        //        input = $("#txtSearch").val();
+        //    var url="/NHANVIENs/Index?input="+input;
+        //    window.location=url;
+        //});
+        $('#nhanVienTitle').on('click', function () {
+            window.location="/NHANVIENs/Index";
+        });
+    </script>
 }
-
-</table>

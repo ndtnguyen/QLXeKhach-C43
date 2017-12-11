@@ -1,234 +1,78 @@
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\csc.exe
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Collections.Immutable.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Reflection.Metadata.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\vbc.exe
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe.config
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll.config
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.pdb
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Web.Infrastructure.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Ninject.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Owin.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\WebActivatorEx.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\WebGrease.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Ninject.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.pdb
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.csprojResolveAssemblyReference.cache
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.pdb
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\NLog.dll
-D:\New Tech In Software Developement\C43QLXeKhach\C43QLXeKhach\bin\NLog.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\csc.exe
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CSharp.Core.targets
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.VisualBasic.Core.targets
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Collections.Immutable.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Reflection.Metadata.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\vbc.exe
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe.config
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll.config
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.pdb
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Web.Infrastructure.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\NLog.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Owin.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\WebActivatorEx.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\WebGrease.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\NLog.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.pdb
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.csprojResolveAssemblyReference.cache
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.dll
-D:\PTUD HTTT HD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.pdb
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\csc.exe
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CSharp.Core.targets
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.VisualBasic.Core.targets
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Collections.Immutable.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Reflection.Metadata.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\vbc.exe
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe.config
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll.config
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.pdb
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Web.Infrastructure.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\NLog.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Owin.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\WebActivatorEx.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\WebGrease.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\NLog.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.pdb
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.csprojResolveAssemblyReference.cache
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.dll
-E:\Nam4\HKI\PTUD\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.pdb
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\csc.exe
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Collections.Immutable.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\System.Reflection.Metadata.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\vbc.exe
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\roslyn\VBCSCompiler.exe.config
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll.config
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\C43QLXeKhach.pdb
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Web.Infrastructure.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\NLog.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Owin.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\WebActivatorEx.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\WebGrease.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Common.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Ninject.Web.Mvc.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\NLog.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Helpers.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Mvc.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Optimization.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.Razor.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Deployment.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\System.Web.WebPages.Razor.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Antlr3.Runtime.pdb
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Newtonsoft.Json.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\EntityFramework.SqlServer.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Core.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Facebook.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Cookies.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.OAuth.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Google.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.Twitter.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.dll
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.pdb
+D:\KH1-NAM4\PhatTrienUngDungHTTTHienDai\DoAn\QLXeKhach-C43\03_Source\C43QLXeKhach\C43QLXeKhach\obj\Debug\C43QLXeKhach.csprojResolveAssemblyReference.cache
