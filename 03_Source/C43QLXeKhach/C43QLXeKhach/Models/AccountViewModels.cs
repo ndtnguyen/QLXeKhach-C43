@@ -83,8 +83,6 @@ namespace C43QLXeKhach.Models
 
     public class ResetPasswordViewModel
     {
-        
-
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Mật khẩu")]

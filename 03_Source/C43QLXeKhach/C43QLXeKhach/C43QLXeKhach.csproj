@@ -284,6 +284,11 @@
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\KHAOSATsService\IKhaoSatService.cs" />
+    <Compile Include="Services\KHAOSATsService\KhaoSatService.cs" />
+    <Compile Include="Services\KHAOSATsService\KhaoSat_LoaiXe.cs" />
+    <Compile Include="Services\LOAIXEsService\ILoaiXeService.cs" />
+    <Compile Include="Services\LOAIXEsService\LoaiXeService.cs" />
     <Compile Include="Services\NHANVIENsService\INhanVienService.cs" />
     <Compile Include="Services\NHANVIENsService\NhanVienService.cs" />
     <Compile Include="Startup.cs" />

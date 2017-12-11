@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="QLXeKhachModel.GIACOBAN" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="false" />
         <EntityTypeShape EntityType="QLXeKhachModel.HOPDONG" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="false" />
         <EntityTypeShape EntityType="QLXeKhachModel.KHACHHANG" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="false" />
-        <EntityTypeShape EntityType="QLXeKhachModel.KHAOSAT" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="false" />
+        <EntityTypeShape EntityType="QLXeKhachModel.KHAOSAT" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLXeKhachModel.LOAIXE" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="false" />
         <EntityTypeShape EntityType="QLXeKhachModel.LOTRINH" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="false" />
         <EntityTypeShape EntityType="QLXeKhachModel.NHANVIEN" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="false" />
