@@ -25,5 +25,7 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        public virtual NHANVIEN NHANVIEN { get; set; }
     }
 }

@@ -23,7 +23,11 @@ namespace C43QLXeKhach.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
+
+        public DbSet<KHAOSAT> KHAOSAT { get; set; }
+
 
         public static ApplicationDbContext Create()
         {

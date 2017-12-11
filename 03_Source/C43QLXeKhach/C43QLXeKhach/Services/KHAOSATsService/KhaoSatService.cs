@@ -48,11 +48,12 @@ namespace C43QLXeKhach.Services.KHAOSATsService
             }
         }
 
-        public KHAOSAT Detail(int? id)
+        public IList<KHAOSAT> Detail(int? id)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.KHAOSATs.Find(id);
+                return context.KHAOSATs.Where(x => x.MaKS == id).Include(x => x.NHANVIEN).ToList();
+
             }
         }
 
@@ -64,24 +65,16 @@ namespace C43QLXeKhach.Services.KHAOSATsService
             }
         }
 
-        public IEnumerable GetAll()
+        public IList<KHAOSAT> GetAll()
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                IEnumerable td =from s in context.KHAOSATs
-                        join r in context.NHANVIENs 
-                        on s.NguoiKS equals r.MaNV
-                        where s.isDeleted == 0
-                        select new {
-                            s.NgayKS,s.NguoiKS,s.DiaChiKS,s.TiLeDonKhach,s.GiaKS,
-                            r.TenNV
-                        };
-                return td;
-                //return td.Cast<dynamic>().ToList(); 
+                return context.KHAOSATs.Where(x => x.isDeleted == 0).Include(x => x.NHANVIEN).ToList();
             }
         }
 
         public void Update(KHAOSAT ks)
+
         {
             var user = HttpContext.Current.Session[GlobalConstant.USER];
             if (user != null)

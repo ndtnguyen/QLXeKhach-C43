@@ -14,6 +14,12 @@ namespace C43QLXeKhach.Models
     
     public partial class NHANVIEN
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NHANVIEN()
+        {
+            this.KHAOSATs = new HashSet<KHAOSAT>();
+        }
+    
         public int MaNV { get; set; }
         public string TenNV { get; set; }
         public string CMND { get; set; }
@@ -28,5 +34,8 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KHAOSAT> KHAOSATs { get; set; }
     }
 }

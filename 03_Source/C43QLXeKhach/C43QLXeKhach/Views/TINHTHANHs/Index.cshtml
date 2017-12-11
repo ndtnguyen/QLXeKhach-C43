@@ -18,7 +18,6 @@
                 Thêm Tỉnh Thành
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
-           @* @Html.ActionLink("Them tinh thanh", "Create")*@
             <button class="btn btn-danger" id="btnDelete" title="delete">
                 Xóa Tỉnh Thành
                 @*<span class="glyphicon glyphicon-remove"></span>*@
@@ -55,13 +54,10 @@
                             <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaTT>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaTT)
-                        </td>
-                        <td>
                             @Html.DisplayFor(modelItem => item.TenTT)
                         </td> 
                         <td>
-                            <a href="/TINHTHANHs/Edit/@item.MaTT" class="btn btn-xs btn-primary" title="edit">
+                            <a href="/NHANVIENs/Edit/@item.MaTT" class="btn btn-xs btn-primary" title="edit">
                                 <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                             @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">

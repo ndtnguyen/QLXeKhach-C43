@@ -6,11 +6,10 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>KHAOSAT</h4>
         <hr />
@@ -20,16 +19,21 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NgayKS, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayKS, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgayKS, "", new { @class = "text-danger" })
+                <div class='date' id='datetimepicker'>
+                    <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgayKS" name="NgayKS" type="datetime" value="@Model.NgayKS.Value.ToString("yyyy-MM-dd")" />
+                    @*@Html.EditorFor(model => model.NgayKS, new { htmlAttributes = new { @class = "form-control date" } })*@
+                    @Html.ValidationMessageFor(model => model.NgayKS, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.NguoiKS, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NguoiKS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownList("nhanVienDropList", (List<SelectListItem>)ViewBag.listItems, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.NguoiKS, "", new { @class = "text-danger" })
+                @*@Html.EditorFor(model => model.NguoiKS, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NguoiKS, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -67,7 +71,54 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(function () {
+        var bindDatePicker = function () {
+            $(".date").datetimepicker({
+                format: 'YYYY-MM-DD',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            }).find('input:first').on("blur", function () {
+                // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                // update the format if it's yyyy-mm-dd
+                var date = parseDate($(this).val());
+
+                if (!isValidDate(date)) {
+                    //create date based on momentjs (we have that)
+                    date = moment().format('YYYY-MM-DD');
+                }
+
+                $(this).val(date);
+            });
+        }
+
+        var isValidDate = function (value, format) {
+            format = format || false;
+            // lets parse the date to the best of our knowledge
+            if (format) {
+                value = parseDate(value);
+            }
+
+            var timestamp = Date.parse(value);
+
+            return isNaN(timestamp) == false;
+        }
+
+        var parseDate = function (value) {
+            var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+            if (m)
+                value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+            return value;
+        }
+
+        bindDatePicker();
+    });
+</script>
 }

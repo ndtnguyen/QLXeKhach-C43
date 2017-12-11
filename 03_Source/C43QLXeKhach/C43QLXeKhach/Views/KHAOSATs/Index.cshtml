@@ -8,51 +8,112 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            Ten nhan vien
-            @*@Html.DisplayNameFor(model => model.NgayKS)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.NguoiKS)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.DiaChiKS)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.TiLeDonKhach)*@
-        </th>
-        <th>
-            @*@Html.DisplayNameFor(model => model.GiaKS)*@
-        </th>
-        <th></th>
-    </tr>
+<button class="btn btn-danger" id="btnDelete" title="delete">
+    Xóa KhaoSat
+    @*<span class="glyphicon glyphicon-remove"></span>*@
+</button>
+<form action="/KHAOSATs/Index" method="POST" id="frm">
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>
+                Ngày khảo sát
+                @*@Html.DisplayNameFor(model => model.NgayKS)*@
+            </th>
+            <th>
+                Người khảo sát
+                @*@Html.DisplayNameFor(model => model.NguoiKS)*@
+            </th>
+            <th>
+                Địa chỉ khảo sát
+                @*            @Html.DisplayNameFor(model => model.DiaChiKS)*@
+            </th>
+            <th>
+                Tỉ lệ đón khách
+                @*          @Html.DisplayNameFor(model => model.TiLeDonKhach)*@
+            </th>
+            <th>
+                Giá khảo sát
+                @*        @Html.DisplayNameFor(model => model.GiaKS)*@
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <p>@item</p>
-            @*@Html.DisplayFor(modelItem => item.NgayKS)*@
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.NguoiKS)*@
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.DiaChiKS)*@
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.TiLeDonKhach)*@
-        </td>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.GiaKS)*@
-        </td>
-        <td>
-            @*@Html.ActionLink("Edit", "Edit", new { id=item.MaKS }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaKS }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaKS })*@
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaKS>
+                </td>
+                <td>
+                    @if(item.NgayKS != null) { 
+                    @item.NgayKS.ToString("dd-MM-yyyy")
+                    }
+                    @*@Html.DisplayFor(modelItem => item.NgayKS)*@
+                </td>
+                <td>
+                    @item.NHANVIEN.TenNV
+                    @*@Html.DisplayFor(modelItem => item.NguoiKS)*@
+                </td>
+                <td>
+                    @item.DiaChiKS
+                    @*@Html.DisplayFor(modelItem => item.DiaChiKS)*@
+                </td>
+                <td>
+                    @item.TiLeDonKhach
+                    @*@Html.DisplayFor(modelItem => item.TiLeDonKhach)*@
+                </td>
+                <td>
+                    @item.GiaKS
+                    @*@Html.DisplayFor(modelItem => item.GiaKS)*@
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaKS }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MaKS }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaKS })
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+</form>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#btnDelete').prop("disabled", true);
+                var url = decodeURIComponent(window.location.search.substring(1));
+                if (url != "") {
+                    var searchinput = url.split("=")[1];
+                    $("#txtSearch").val(searchinput);
+                }
+            });
+            var listDelete = [];
+            $('.deleteCheckbox').on('change', function () {
+                listDelete = [];
+                $('.deleteCheckbox').map(function () {
+                    if ($(this).is(":checked")) {
+                        listDelete.push($(this).val());
+                    }
+                });
+                if (listDelete.length > 0) {
+                    $('#btnDelete').prop("disabled", false);
+                }
+                else {
+                    $('#btnDelete').prop("disabled", true);
+                }
+            });
+
+            $('#btnDelete').on('click', function () {
+                var returnVal = confirm("Bạn có muốn xóa những loại xe này?");
+                if (returnVal)
+                    $('#frm').submit();
+                else
+                    return;
+            });
+            $('#nhanVienTitle').on('click', function () {
+                window.location = "/KHAOSATs/Index";
+            });
+        </script>
+    }

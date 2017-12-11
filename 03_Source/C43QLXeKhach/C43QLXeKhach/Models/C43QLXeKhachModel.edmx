@@ -270,6 +270,18 @@
           <Property Name="lastupdateDate" Type="datetime" />
           <Property Name="isDeleted" Type="int" />
         </EntityType>
+        <Association Name="FK__KHAOSAT__NguoiKS__5EBF139D">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="KHAOSAT" Type="Self.KHAOSAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="KHAOSAT">
+              <PropertyRef Name="NguoiKS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLXeKhachModelStoreContainer">
           <EntitySet Name="_SESSION" EntityType="Self._SESSION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUYENXE" EntityType="Self.CHUYENXE" Schema="dbo" store:Type="Tables" />
@@ -288,6 +300,10 @@
           <EntitySet Name="TUYENXE" EntityType="Self.TUYENXE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="XE" EntityType="Self.XE" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__KHAOSAT__NguoiKS__5EBF139D" Association="Self.FK__KHAOSAT__NguoiKS__5EBF139D">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="KHAOSAT" EntitySet="KHAOSAT" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -415,6 +431,7 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__KHAOSAT__NguoiKS__5EBF139D" FromRole="KHAOSAT" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="LOAIXE">
           <Key>
@@ -462,6 +479,7 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="KHAOSATs" Relationship="Self.FK__KHAOSAT__NguoiKS__5EBF139D" FromRole="NHANVIEN" ToRole="KHAOSAT" />
         </EntityType>
         <EntityType Name="TAIXE">
           <Key>
@@ -559,6 +577,18 @@
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
         </EntityType>
+        <Association Name="FK__KHAOSAT__NguoiKS__5EBF139D">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="KHAOSAT" Type="Self.KHAOSAT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="KHAOSAT">
+              <PropertyRef Name="NguoiKS" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLXeKhachEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C_SESSION" EntityType="Self.C_SESSION" />
           <EntitySet Name="CHUYENXEs" EntityType="Self.CHUYENXE" />
@@ -577,6 +607,10 @@
           <EntitySet Name="TUYENXEs" EntityType="Self.TUYENXE" />
           <EntitySet Name="VEs" EntityType="Self.VE" />
           <EntitySet Name="XEs" EntityType="Self.XE" />
+          <AssociationSet Name="FK__KHAOSAT__NguoiKS__5EBF139D" Association="Self.FK__KHAOSAT__NguoiKS__5EBF139D">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="KHAOSAT" EntitySet="KHAOSATs" />
+          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>

@@ -27,11 +27,6 @@ namespace C43QLXeKhach.Controllers
         // GET: KHAOSATs
         public ActionResult Index()
         {
-            //INhanVienService nhanVienService = new NhanVienService();
-            //IList<NHANVIEN> nhanVienList = nhanVienService.GetAll();
-            //ViewBag.nhanVienList = nhanVienList;
-            //IList<dynamic> list =  service.GetAll();
-            //ViewBag.list = list;
             return View(service.GetAll());
         }
 
@@ -42,7 +37,8 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = service.Detail(id);
+            IList<KHAOSAT> kHAOSAT = service.Detail(id);
+            ViewBag.nguoiKS = kHAOSAT[0].NHANVIEN.TenNV;
             if (kHAOSAT == null)
             {
                 return HttpNotFound();
@@ -75,10 +71,12 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaKS,NgayKS,NguoiKS,DiaChiKS,TiLeDonKhach,GiaKS,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] KHAOSAT kHAOSAT)
         {
-            
+
+            string nguoiKhaoSat = Request.Form["nhanVienDropList"].ToString();
             if (ModelState.IsValid)
             {
                 kHAOSAT.isDeleted = 0;
+                kHAOSAT.NguoiKS = Int32.Parse(nguoiKhaoSat);
                 service.Add(kHAOSAT);
                 return RedirectToAction("Index");
             }
@@ -92,12 +90,40 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = service.Detail(id);
+
+            IList<KHAOSAT> kHAOSAT = service.Detail(id);
             if (kHAOSAT == null)
             {
                 return HttpNotFound();
             }
-            return View(kHAOSAT);
+
+            INhanVienService nhanVienService = new NhanVienService();
+            IList<NHANVIEN> nhanVienList = nhanVienService.GetAll();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < nhanVienList.Count; i++)
+            {
+                if (kHAOSAT[0].NguoiKS == nhanVienList[i].MaNV)
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = nhanVienList[i].TenNV,
+                        Value = nhanVienList[i].MaNV.ToString(),
+                        Selected = true
+
+                    });
+                }
+                else
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = nhanVienList[i].TenNV,
+                        Value = nhanVienList[i].MaNV.ToString()
+
+                    });
+                }
+            }
+            ViewBag.listItems = listItems;
+            return View(kHAOSAT[0]);
         }
 
         // POST: KHAOSATs/Edit/5
@@ -107,12 +133,20 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaKS,NgayKS,NguoiKS,DiaChiKS,TiLeDonKhach,GiaKS,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] KHAOSAT kHAOSAT)
         {
+
+            string nguoiKhaoSat = Request.Form["nhanVienDropList"].ToString();
             if (ModelState.IsValid)
             {
-                KHAOSAT ks = service.Detail(kHAOSAT.MaKS);
-                //ks.TenLoai = lOAIXE.TenLoai;
-                //ks.SLGhe = lOAIXE.SLGhe;
-                service.Update(ks);
+                INhanVienService nhanVienService = new NhanVienService();
+                NHANVIEN nv = nhanVienService.Detail(Int32.Parse(nguoiKhaoSat));
+                IList<KHAOSAT> ks = service.Detail(kHAOSAT.MaKS);
+                ks[0].NguoiKS = Int32.Parse(nguoiKhaoSat);
+                ks[0].DiaChiKS = kHAOSAT.DiaChiKS;
+                ks[0].TiLeDonKhach = kHAOSAT.TiLeDonKhach;
+                ks[0].GiaKS = kHAOSAT.GiaKS;
+                ks[0].NgayKS = kHAOSAT.NgayKS;
+                ks[0].NHANVIEN = nv;
+                service.Update(ks[0]);
                 return RedirectToAction("Index");
             }
             return View(kHAOSAT);
@@ -125,7 +159,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHAOSAT kHAOSAT = service.Detail(id);
+            IList<KHAOSAT> kHAOSAT = service.Detail(id);
             if (kHAOSAT == null)
             {
                 return HttpNotFound();
@@ -138,9 +172,28 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KHAOSAT kHAOSAT = service.Detail(id);
-            kHAOSAT.isDeleted = 1;
-            service.Delete(kHAOSAT);
+            IList<KHAOSAT> kHAOSAT = service.Detail(id);
+            kHAOSAT[0].isDeleted = 1;
+            service.Delete(kHAOSAT[0]);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                IList<KHAOSAT> kHAOSAT = service.Detail(Int32.Parse(listDelete[i]));
+                kHAOSAT[0].isDeleted = 1;
+                service.Delete(kHAOSAT[0]);
+            }
             return RedirectToAction("Index");
         }
     }

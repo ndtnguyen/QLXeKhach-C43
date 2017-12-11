@@ -7,28 +7,17 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
-using NLog;
-using C43QLXeKhach.Services.TINHTHANHsService;
-using System.Security.Cryptography;
-using System.Text;
-using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Controllers
 {
     public class TINHTHANHsController : Controller
     {
-        ITinhThanhService service;
-        ILogger logger = LogManager.GetCurrentClassLogger();
-
-        public TINHTHANHsController(ITinhThanhService service)
-        {
-            this.service = service;
-        }
+        private QLXeKhachEntities db = new QLXeKhachEntities();
 
         // GET: TINHTHANHs
         public ActionResult Index()
         {
-            return View(service.GetAll());
+            return View(db.TINHTHANHs.ToList());
         }
 
         // GET: TINHTHANHs/Details/5
@@ -38,7 +27,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TINHTHANH tINHTHANH = service.Detail(id);
+            TINHTHANH tINHTHANH = db.TINHTHANHs.Find(id);
             if (tINHTHANH == null)
             {
                 return HttpNotFound();
@@ -61,8 +50,8 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                tINHTHANH.isDeleted = 0;
-                service.Add(tINHTHANH);
+                db.TINHTHANHs.Add(tINHTHANH);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -76,7 +65,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TINHTHANH tINHTHANH = service.Detail(id);
+            TINHTHANH tINHTHANH = db.TINHTHANHs.Find(id);
             if (tINHTHANH == null)
             {
                 return HttpNotFound();
@@ -93,9 +82,8 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                TINHTHANH tt = service.Detail(tINHTHANH.MaTT);
-                tt.TenTT = tINHTHANH.TenTT;
-                service.Update(tt);
+                db.Entry(tINHTHANH).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(tINHTHANH);
@@ -108,7 +96,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TINHTHANH tINHTHANH = service.Detail(id);
+            TINHTHANH tINHTHANH = db.TINHTHANHs.Find(id);
             if (tINHTHANH == null)
             {
                 return HttpNotFound();
@@ -121,28 +109,9 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            TINHTHANH tINHTHANH = service.Detail(id);
-            tINHTHANH.isDeleted = 1;
-            service.Delete(tINHTHANH);
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost, ActionName("Index")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteMany()
-        {
-            string temp = Request.Form["deletecheckbox"];
-            if (temp == null)
-            {
-                return RedirectToAction("Index");
-            }
-            string[] listDelete = temp.Split(',');
-            for (int i = 0; i < listDelete.Length; i++)
-            {
-                TINHTHANH tINHTHANH = service.Detail((listDelete[i]));
-                tINHTHANH.isDeleted = 1;
-                service.Delete(tINHTHANH);
-            }
+            TINHTHANH tINHTHANH = db.TINHTHANHs.Find(id);
+            db.TINHTHANHs.Remove(tINHTHANH);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -150,7 +119,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (disposing)
             {
-                service.Dispose();
+                db.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -9,11 +9,11 @@ namespace C43QLXeKhach.Services.KHAOSATsService
 {
     public interface IKhaoSatService
     {
-        IEnumerable GetAll();
+        IList<KHAOSAT> GetAll();
         int Add(KHAOSAT ks);
         void Update(KHAOSAT ks);
         void Delete(KHAOSAT ks);
-        KHAOSAT Detail(int? id);
+        IList<KHAOSAT> Detail(int? id);
         void Dispose();
     }
 }

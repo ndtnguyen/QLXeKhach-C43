@@ -1,57 +1,57 @@
-﻿@model C43QLXeKhach.Models.KHAOSAT
-
-@{
+﻿@{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
-
+@foreach (var item in Model) { 
 <div>
     <h4>KHAOSAT</h4>
     <hr />
+
     <dl class="dl-horizontal">
+
         <dt>
-            @Html.DisplayNameFor(model => model.NgayKS)
+            Ngày khảo sát: 
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayKS)
+            @item.NgayKS
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NguoiKS)
+            Người khảo sát: 
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NguoiKS)
+            @item.NHANVIEN.TenNV
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChiKS)
+            Địa chỉ khảo sát:
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DiaChiKS)
+            @item.DiaChiKS
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TiLeDonKhach)
+            Tỉ lệ đón khách: 
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TiLeDonKhach)
+            @item.TiLeDonKhach
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GiaKS)
+            Giá khảo sát: 
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GiaKS)
+            @item.GiaKS
         </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaKS }) |
+    @Html.ActionLink("Edit", "Edit", new { id = item.MaKS }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+}

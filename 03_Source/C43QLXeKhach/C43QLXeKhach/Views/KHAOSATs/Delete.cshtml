@@ -1,4 +1,4 @@
-﻿@model C43QLXeKhach.Models.KHAOSAT
+﻿@*@model C43QLXeKhach.Models.KHAOSAT*@
 
 @{
     ViewBag.Title = "Delete";
@@ -7,53 +7,66 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
+@foreach (var item in Model)
+{
 <div>
     <h4>KHAOSAT</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NgayKS)
+            Ngày khảo sát
+            @*@Html.DisplayNameFor(model => model.NgayKS)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayKS)
+            @item.NgayKS
+            @*@Html.DisplayFor(model => model.NgayKS)*@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NguoiKS)
+            Người khảo sát
+            @*@Html.DisplayNameFor(model => model.NguoiKS)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NguoiKS)
+            @item.NHANVIEN.TenNV
+            @*@Html.DisplayFor(model => model.NguoiKS)*@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChiKS)
+            Địa chỉ khảo sát
+            @*@Html.DisplayNameFor(model => model.DiaChiKS)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DiaChiKS)
+            @item.DiaChiKS
+            @*@Html.DisplayFor(model => model.DiaChiKS)*@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TiLeDonKhach)
+            Tỉ lệ đón khách
+            @*@Html.DisplayNameFor(model => model.TiLeDonKhach)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TiLeDonKhach)
+            @item.TiLeDonKhach
+            @*@Html.DisplayFor(model => model.TiLeDonKhach)*@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GiaKS)
+            Giá khảo sát
+            @*@Html.DisplayNameFor(model => model.GiaKS)*@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GiaKS)
+            @item.GiaKS
+            @*@Html.DisplayFor(model => model.GiaKS)*@
         </dd>
 
     </dl>
 
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
@@ -62,3 +75,4 @@
         </div>
     }
 </div>
+}
