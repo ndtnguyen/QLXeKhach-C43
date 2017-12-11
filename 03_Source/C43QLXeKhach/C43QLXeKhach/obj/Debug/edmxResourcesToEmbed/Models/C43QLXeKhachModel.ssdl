@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLXeKhachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="_SESSION">
+    <Key>
+      <PropertyRef Name="MaSession" />
+    </Key>
+    <Property Name="MaSession" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaNV" Type="int" />
+    <Property Name="LoginTime" Type="datetime" />
+    <Property Name="LogoutTime" Type="datetime" />
+    <Property Name="_Status" Type="int" />
+  </EntityType>
+  <EntityType Name="CHUYENXE">
+    <Key>
+      <PropertyRef Name="MaChuyen" />
+    </Key>
+    <Property Name="MaChuyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayKH" Type="datetime" />
+    <Property Name="NgayDen" Type="datetime" />
+    <Property Name="MaTuyen" Type="int" />
+    <Property Name="MaXe" Type="int" />
+    <Property Name="MaTX" Type="int" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="DOITAC">
+    <Key>
+      <PropertyRef Name="MaDT" />
+    </Key>
+    <Property Name="MaDT" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDT" Type="nvarchar" MaxLength="50" />
+    <Property Name="NguoiDaiDien" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="varchar" MaxLength="12" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="GHE">
+    <Key>
+      <PropertyRef Name="MaXe" />
+      <PropertyRef Name="MaGhe" />
+    </Key>
+    <Property Name="MaXe" Type="int" Nullable="false" />
+    <Property Name="MaGhe" Type="int" Nullable="false" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="GIACOBAN">
+    <Key>
+      <PropertyRef Name="MaTT1" />
+      <PropertyRef Name="MaTT2" />
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaTT1" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaTT2" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaLoai" Type="int" Nullable="false" />
+    <Property Name="GiaCoBan" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="HOPDONG">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayLap" Type="date" />
+    <Property Name="GiaThoaThuan" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="MaTram" Type="int" />
+    <Property Name="ThoiHanThue" Type="date" />
+    <Property Name="MaDT" Type="int" />
+    <Property Name="NguoiLap" Type="int" />
+    <Property Name="MoTa" Type="text" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="50" />
+    <Property Name="SDT" Type="varchar" MaxLength="12" />
+    <Property Name="CMND" Type="varchar" MaxLength="12" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="KHAOSAT">
+    <Key>
+      <PropertyRef Name="MaKS" />
+    </Key>
+    <Property Name="MaKS" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayKS" Type="date" />
+    <Property Name="NguoiKS" Type="int" />
+    <Property Name="DiaChiKS" Type="nvarchar" MaxLength="100" />
+    <Property Name="TiLeDonKhach" Type="float" />
+    <Property Name="GiaKS" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="LOAIXE">
+    <Key>
+      <PropertyRef Name="MaLoai" />
+    </Key>
+    <Property Name="MaLoai" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+    <Property Name="SLGhe" Type="int" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="LOTRINH">
+    <Key>
+      <PropertyRef Name="MaTuyen" />
+      <PropertyRef Name="MaTram" />
+    </Key>
+    <Property Name="MaTuyen" Type="int" Nullable="false" />
+    <Property Name="MaTram" Type="int" Nullable="false" />
+    <Property Name="ThuTu" Type="int" />
+    <Property Name="KhoangThoiGian" Type="int" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMND" Type="varchar" MaxLength="12" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="SDT" Type="varchar" MaxLength="12" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="100" />
+    <Property Name="TrangThaiTaiKhoan" Type="int" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="TAIXE">
+    <Key>
+      <PropertyRef Name="MaTX" />
+    </Key>
+    <Property Name="MaTX" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTX" Type="nvarchar" MaxLength="50" />
+    <Property Name="CMND" Type="varchar" MaxLength="12" />
+    <Property Name="SDT" Type="varchar" MaxLength="12" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="100" />
+    <Property Name="NgaySinh" Type="date" />
+    <Property Name="SoBangLai" Type="varchar" MaxLength="12" />
+    <Property Name="LoaiBangLai" Type="varchar" MaxLength="10" />
+    <Property Name="ThoiHanBangLai" Type="date" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="TINHTHANH">
+    <Key>
+      <PropertyRef Name="MaTT" />
+    </Key>
+    <Property Name="MaTT" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenTT" Type="nvarchar" MaxLength="50" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="TRAMXE">
+    <Key>
+      <PropertyRef Name="MaTram" />
+    </Key>
+    <Property Name="MaTram" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTram" Type="nvarchar" MaxLength="50" />
+    <Property Name="MaTT" Type="varchar" MaxLength="10" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="50" />
+    <Property Name="MoTa" Type="text" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="TUYENXE">
+    <Key>
+      <PropertyRef Name="MaTuyen" />
+    </Key>
+    <Property Name="MaTuyen" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DiemDi" Type="varchar" MaxLength="10" />
+    <Property Name="DiemDen" Type="varchar" MaxLength="10" />
+    <Property Name="QuangDuong" Type="int" />
+    <Property Name="ThoiGian" Type="float" />
+    <Property Name="SoChuyen1Ngay" Type="int" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="VE">
+    <Key>
+      <PropertyRef Name="MaVe" />
+    </Key>
+    <Property Name="MaVe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NgayMua" Type="datetime" />
+    <Property Name="GiaMua" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="MaGhe" Type="int" />
+    <Property Name="MaXe" Type="int" />
+    <Property Name="MaChuyen" Type="int" />
+    <Property Name="MaKH" Type="int" />
+    <Property Name="TramLen" Type="int" />
+    <Property Name="TramXuong" Type="int" />
+    <Property Name="GioDi" Type="datetime" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="XE">
+    <Key>
+      <PropertyRef Name="MaXe" />
+    </Key>
+    <Property Name="MaXe" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoaiXe" Type="int" />
+    <Property Name="BienSoXe" Type="varchar" MaxLength="12" />
+    <Property Name="HangXe" Type="nvarchar" MaxLength="20" />
+    <Property Name="createUser" Type="int" />
+    <Property Name="lastupdateUser" Type="int" />
+    <Property Name="createDate" Type="datetime" />
+    <Property Name="lastupdateDate" Type="datetime" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityContainer Name="QLXeKhachModelStoreContainer">
+    <EntitySet Name="_SESSION" EntityType="Self._SESSION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CHUYENXE" EntityType="Self.CHUYENXE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DOITAC" EntityType="Self.DOITAC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GHE" EntityType="Self.GHE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GIACOBAN" EntityType="Self.GIACOBAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOPDONG" EntityType="Self.HOPDONG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHAOSAT" EntityType="Self.KHAOSAT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOAIXE" EntityType="Self.LOAIXE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LOTRINH" EntityType="Self.LOTRINH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TAIXE" EntityType="Self.TAIXE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TINHTHANH" EntityType="Self.TINHTHANH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TRAMXE" EntityType="Self.TRAMXE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TUYENXE" EntityType="Self.TUYENXE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XE" EntityType="Self.XE" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

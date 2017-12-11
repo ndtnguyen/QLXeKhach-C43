@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLXeKhachModelStoreContainer" CdmEntityContainer="QLXeKhachEntities">
+    <EntitySetMapping Name="C_SESSION">
+      <EntityTypeMapping TypeName="QLXeKhachModel.C_SESSION">
+        <MappingFragment StoreEntitySet="_SESSION">
+          <ScalarProperty Name="MaSession" ColumnName="MaSession" />
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+          <ScalarProperty Name="LogoutTime" ColumnName="LogoutTime" />
+          <ScalarProperty Name="C_Status" ColumnName="_Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CHUYENXEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.CHUYENXE">
+        <MappingFragment StoreEntitySet="CHUYENXE">
+          <ScalarProperty Name="MaChuyen" ColumnName="MaChuyen" />
+          <ScalarProperty Name="NgayKH" ColumnName="NgayKH" />
+          <ScalarProperty Name="NgayDen" ColumnName="NgayDen" />
+          <ScalarProperty Name="MaTuyen" ColumnName="MaTuyen" />
+          <ScalarProperty Name="MaXe" ColumnName="MaXe" />
+          <ScalarProperty Name="MaTX" ColumnName="MaTX" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DOITACs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.DOITAC">
+        <MappingFragment StoreEntitySet="DOITAC">
+          <ScalarProperty Name="MaDT" ColumnName="MaDT" />
+          <ScalarProperty Name="TenDT" ColumnName="TenDT" />
+          <ScalarProperty Name="NguoiDaiDien" ColumnName="NguoiDaiDien" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GHEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.GHE">
+        <MappingFragment StoreEntitySet="GHE">
+          <ScalarProperty Name="MaXe" ColumnName="MaXe" />
+          <ScalarProperty Name="MaGhe" ColumnName="MaGhe" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GIACOBANs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.GIACOBAN">
+        <MappingFragment StoreEntitySet="GIACOBAN">
+          <ScalarProperty Name="MaTT1" ColumnName="MaTT1" />
+          <ScalarProperty Name="MaTT2" ColumnName="MaTT2" />
+          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+          <ScalarProperty Name="GiaCoBan1" ColumnName="GiaCoBan" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOPDONGs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.HOPDONG">
+        <MappingFragment StoreEntitySet="HOPDONG">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+          <ScalarProperty Name="GiaThoaThuan" ColumnName="GiaThoaThuan" />
+          <ScalarProperty Name="MaTram" ColumnName="MaTram" />
+          <ScalarProperty Name="ThoiHanThue" ColumnName="ThoiHanThue" />
+          <ScalarProperty Name="MaDT" ColumnName="MaDT" />
+          <ScalarProperty Name="NguoiLap" ColumnName="NguoiLap" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHACHHANGs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.KHACHHANG">
+        <MappingFragment StoreEntitySet="KHACHHANG">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KHAOSATs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.KHAOSAT">
+        <MappingFragment StoreEntitySet="KHAOSAT">
+          <ScalarProperty Name="MaKS" ColumnName="MaKS" />
+          <ScalarProperty Name="NgayKS" ColumnName="NgayKS" />
+          <ScalarProperty Name="NguoiKS" ColumnName="NguoiKS" />
+          <ScalarProperty Name="DiaChiKS" ColumnName="DiaChiKS" />
+          <ScalarProperty Name="TiLeDonKhach" ColumnName="TiLeDonKhach" />
+          <ScalarProperty Name="GiaKS" ColumnName="GiaKS" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOAIXEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.LOAIXE">
+        <MappingFragment StoreEntitySet="LOAIXE">
+          <ScalarProperty Name="MaLoai" ColumnName="MaLoai" />
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+          <ScalarProperty Name="SLGhe" ColumnName="SLGhe" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LOTRINHs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.LOTRINH">
+        <MappingFragment StoreEntitySet="LOTRINH">
+          <ScalarProperty Name="MaTuyen" ColumnName="MaTuyen" />
+          <ScalarProperty Name="MaTram" ColumnName="MaTram" />
+          <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
+          <ScalarProperty Name="KhoangThoiGian" ColumnName="KhoangThoiGian" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHANVIENs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.NHANVIEN">
+        <MappingFragment StoreEntitySet="NHANVIEN">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="TenNV" ColumnName="TenNV" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="TrangThaiTaiKhoan" ColumnName="TrangThaiTaiKhoan" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TAIXEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.TAIXE">
+        <MappingFragment StoreEntitySet="TAIXE">
+          <ScalarProperty Name="MaTX" ColumnName="MaTX" />
+          <ScalarProperty Name="TenTX" ColumnName="TenTX" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="SoBangLai" ColumnName="SoBangLai" />
+          <ScalarProperty Name="LoaiBangLai" ColumnName="LoaiBangLai" />
+          <ScalarProperty Name="ThoiHanBangLai" ColumnName="ThoiHanBangLai" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TINHTHANHs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.TINHTHANH">
+        <MappingFragment StoreEntitySet="TINHTHANH">
+          <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+          <ScalarProperty Name="TenTT" ColumnName="TenTT" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRAMXEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.TRAMXE">
+        <MappingFragment StoreEntitySet="TRAMXE">
+          <ScalarProperty Name="MaTram" ColumnName="MaTram" />
+          <ScalarProperty Name="TenTram" ColumnName="TenTram" />
+          <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TUYENXEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.TUYENXE">
+        <MappingFragment StoreEntitySet="TUYENXE">
+          <ScalarProperty Name="MaTuyen" ColumnName="MaTuyen" />
+          <ScalarProperty Name="DiemDi" ColumnName="DiemDi" />
+          <ScalarProperty Name="DiemDen" ColumnName="DiemDen" />
+          <ScalarProperty Name="QuangDuong" ColumnName="QuangDuong" />
+          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+          <ScalarProperty Name="SoChuyen1Ngay" ColumnName="SoChuyen1Ngay" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.VE">
+        <MappingFragment StoreEntitySet="VE">
+          <ScalarProperty Name="MaVe" ColumnName="MaVe" />
+          <ScalarProperty Name="NgayMua" ColumnName="NgayMua" />
+          <ScalarProperty Name="GiaMua" ColumnName="GiaMua" />
+          <ScalarProperty Name="MaGhe" ColumnName="MaGhe" />
+          <ScalarProperty Name="MaXe" ColumnName="MaXe" />
+          <ScalarProperty Name="MaChuyen" ColumnName="MaChuyen" />
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="TramLen" ColumnName="TramLen" />
+          <ScalarProperty Name="TramXuong" ColumnName="TramXuong" />
+          <ScalarProperty Name="GioDi" ColumnName="GioDi" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XEs">
+      <EntityTypeMapping TypeName="QLXeKhachModel.XE">
+        <MappingFragment StoreEntitySet="XE">
+          <ScalarProperty Name="MaXe" ColumnName="MaXe" />
+          <ScalarProperty Name="LoaiXe" ColumnName="LoaiXe" />
+          <ScalarProperty Name="BienSoXe" ColumnName="BienSoXe" />
+          <ScalarProperty Name="HangXe" ColumnName="HangXe" />
+          <ScalarProperty Name="createUser" ColumnName="createUser" />
+          <ScalarProperty Name="lastupdateUser" ColumnName="lastupdateUser" />
+          <ScalarProperty Name="createDate" ColumnName="createDate" />
+          <ScalarProperty Name="lastupdateDate" ColumnName="lastupdateDate" />
+          <ScalarProperty Name="isDeleted" ColumnName="isDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

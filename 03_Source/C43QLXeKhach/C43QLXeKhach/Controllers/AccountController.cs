@@ -24,7 +24,6 @@ namespace C43QLXeKhach.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private QLXeKhachEntities db = new QLXeKhachEntities();
 
         INhanVienService service;
         ILogger logger = LogManager.GetCurrentClassLogger();
