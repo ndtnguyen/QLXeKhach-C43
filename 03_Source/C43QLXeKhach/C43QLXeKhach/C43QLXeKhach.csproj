@@ -291,6 +291,8 @@
     <Compile Include="Services\LOAIXEsService\LoaiXeService.cs" />
     <Compile Include="Services\NHANVIENsService\INhanVienService.cs" />
     <Compile Include="Services\NHANVIENsService\NhanVienService.cs" />
+    <Compile Include="Services\TINHTHANHsService\ITinhThanhService.cs" />
+    <Compile Include="Services\TINHTHANHsService\TinhThanhService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\EncryptionUtil.cs" />
   </ItemGroup>
