@@ -7,17 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.TRAMXEsService;
+using C43QLXeKhach.Services.TINHTHANHsService;
 
 namespace C43QLXeKhach.Controllers
 {
     public class TRAMXEsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        ITramXeService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public TRAMXEsController(ITramXeService service)
+        {
+            this.service = service;
+        }
 
         // GET: TRAMXEs
         public ActionResult Index()
         {
-            return View(db.TRAMXEs.ToList());
+            return View(service.GetAll());
         }
 
         // GET: TRAMXEs/Details/5
@@ -27,7 +36,8 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            IList<TRAMXE> tRAMXE = service.Detail(id);
+            ViewBag.maTT = tRAMXE[0].TINHTHANH.TenTT;
             if (tRAMXE == null)
             {
                 return HttpNotFound();
@@ -38,6 +48,18 @@ namespace C43QLXeKhach.Controllers
         // GET: TRAMXEs/Create
         public ActionResult Create()
         {
+            ITinhThanhService tinhThanhService = new TinhThanhService();
+            IList<TINHTHANH> tinhThanhList = tinhThanhService.GetAll();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < tinhThanhList.Count; i++)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = tinhThanhList[i].TenTT,
+                    Value = tinhThanhList[i].MaTT.ToString()
+                });
+            }
+            ViewBag.listItems = listItems;
             return View();
         }
 
@@ -48,10 +70,12 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaTram,TenTram,MaTT,DiaChi,MoTa,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] TRAMXE tRAMXE)
         {
+            string thuocTinhThanh = Request.Form["tinhThanhDropList"].ToString();
             if (ModelState.IsValid)
             {
-                db.TRAMXEs.Add(tRAMXE);
-                db.SaveChanges();
+                tRAMXE.isDeleted = 0;
+                tRAMXE.MaTT = thuocTinhThanh;
+                service.Add(tRAMXE);
                 return RedirectToAction("Index");
             }
 
@@ -65,12 +89,40 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            //TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            IList<TRAMXE> tRAMXE = service.Detail(id);
             if (tRAMXE == null)
             {
                 return HttpNotFound();
             }
-            return View(tRAMXE);
+
+            ITinhThanhService tinhThanhService = new TinhThanhService();
+            IList<TINHTHANH> tinhThanhList = tinhThanhService.GetAll();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < tinhThanhList.Count; i++)
+            {
+                if (tRAMXE[0].MaTT == tinhThanhList[i].MaTT)
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = tinhThanhList[i].TenTT,
+                        Value = tinhThanhList[i].MaTT.ToString(),
+                        Selected = true
+
+                    });
+                }
+                else
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = tinhThanhList[i].TenTT,
+                        Value = tinhThanhList[i].MaTT.ToString()
+
+                    });
+                }
+            }
+            ViewBag.listItems = listItems;
+            return View(tRAMXE[0]);
         }
 
         // POST: TRAMXEs/Edit/5
@@ -80,10 +132,19 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaTram,TenTram,MaTT,DiaChi,MoTa,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] TRAMXE tRAMXE)
         {
+            string thuocTinhThanh = Request.Form["tinhThanhDropList"].ToString();
+
             if (ModelState.IsValid)
             {
-                db.Entry(tRAMXE).State = EntityState.Modified;
-                db.SaveChanges();
+                ITinhThanhService tinhThanhService = new TinhThanhService();
+                TINHTHANH tt = tinhThanhService.Detail(thuocTinhThanh);
+                IList<TRAMXE> tram = service.Detail(tRAMXE.MaTram);
+                tram[0].MaTT = thuocTinhThanh;
+                tram[0].TenTram = tRAMXE.TenTram;
+                tram[0].DiaChi = tRAMXE.DiaChi;
+                tram[0].MoTa = tRAMXE.MoTa;
+                tram[0].TINHTHANH = tt;
+                service.Update(tram[0]);
                 return RedirectToAction("Index");
             }
             return View(tRAMXE);
@@ -96,7 +157,8 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            //TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            IList<TRAMXE> tRAMXE = service.Detail(id);
             if (tRAMXE == null)
             {
                 return HttpNotFound();
@@ -109,19 +171,29 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TRAMXE tRAMXE = db.TRAMXEs.Find(id);
-            db.TRAMXEs.Remove(tRAMXE);
-            db.SaveChanges();
+            IList<TRAMXE> tRAMXE = service.Detail(id);
+            tRAMXE[0].isDeleted = 1;
+            service.Delete(tRAMXE[0]);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
         {
-            if (disposing)
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
             {
-                db.Dispose();
+                return RedirectToAction("Index");
             }
-            base.Dispose(disposing);
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                IList<TRAMXE> tRAMXE = service.Detail(Int32.Parse(listDelete[i]));
+                tRAMXE[0].isDeleted = 1;
+                service.Delete(tRAMXE[0]);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

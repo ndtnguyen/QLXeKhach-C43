@@ -91,7 +91,8 @@ CREATE TABLE TRAMXE (
 	lastupdateUser int,
 	createDate datetime,
 	lastupdateDate datetime,
-	isDeleted int
+	isDeleted int,
+	FOREIGN KEY (MaTT) REFERENCES TINHTHANH (MaTT)
 );
 GO
 CREATE TABLE HOPDONG (

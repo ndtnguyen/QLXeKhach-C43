@@ -4,9 +4,7 @@ using System.Linq;
 using System.Web;
 using C43QLXeKhach.Models;
 using System.Data.Entity;
-using System.Text;
 using C43QLXeKhach.Constant;
-using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Services.TRAMXEsService
 {
@@ -16,11 +14,11 @@ namespace C43QLXeKhach.Services.TRAMXEsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.TRAMXEs.Where(x => x.isDeleted != 1).ToList();
+                return context.TRAMXEs.Where(x => x.isDeleted != 1).Include(x => x.TINHTHANH).ToList();
             }
         }
 
-        public int Add(TRAMXE tt)
+        public int Add(TRAMXE tram)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
@@ -28,57 +26,59 @@ namespace C43QLXeKhach.Services.TRAMXEsService
                 if (user != null)
                 {
                     NHANVIEN currentUser = (NHANVIEN)user;
-                    tt.createUser = currentUser.MaNV;
-                    tt.lastupdateUser = currentUser.MaNV;
+                    tram.createUser = currentUser.MaNV;
+                    tram.lastupdateUser = currentUser.MaNV;
                 }
                 DateTime current = DateTime.Now;
-                tt.createDate = current;
-                tt.lastupdateDate = current;
-                context.TRAMXEs.Add(tt);
+                tram.createDate = current;
+                tram.lastupdateDate = current;
+                context.TRAMXEs.Add(tram);
                 context.SaveChanges();
                 return 1;
             }
         }
 
-        public void Update(TRAMXE tt)
+        public void Update(TRAMXE tram)
         {
             var user = HttpContext.Current.Session[GlobalConstant.USER];
             if (user != null)
             {
                 NHANVIEN currentUser = (NHANVIEN)user;
-                tt.lastupdateUser = currentUser.MaNV;
+                tram.lastupdateUser = currentUser.MaNV;
             }
             DateTime current = DateTime.Now;
-            tt.lastupdateDate = current;
+            tram.lastupdateDate = current;
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                context.Entry(tt).State = EntityState.Modified;
+                context.Entry(tram).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
 
-        public void Delete(TRAMXE tt)
+        public void Delete(TRAMXE tram)
         {
             var user = HttpContext.Current.Session[GlobalConstant.USER];
             if (user != null)
             {
                 NHANVIEN currentUser = (NHANVIEN)user;
-                tt.lastupdateUser = currentUser.MaNV;
+                tram.lastupdateUser = currentUser.MaNV;
             }
             DateTime current = DateTime.Now;
-            tt.lastupdateDate = current;
+            tram.lastupdateDate = current;
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                context.Entry(tt).State = EntityState.Modified;
+                context.Entry(tram).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
 
-        public TRAMXE Detail(string id)
+        public IList<TRAMXE> Detail(int? id)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.TRAMXEs.Find(id);
+                //return context.TRAMXEs.Find(id);
+                return context.TRAMXEs.Where(x => x.MaTram == id).Include(x => x.TINHTHANH).ToList();
+
             }
         }
 
