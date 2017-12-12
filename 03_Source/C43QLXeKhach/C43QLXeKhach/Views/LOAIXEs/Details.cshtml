@@ -3,31 +3,29 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
-
-<div>
-    <h4>LOAIXE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenLoai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenLoai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SLGhe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SLGhe)
-        </dd>
-    </dl>
+<h2 class="text-center">CHI TIẾT LOẠI XE</h2><br />
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr class="active">
+                        <td style="font-weight:bold; width:30%" class="text-left">Tên loại xe</td>
+                        <td class="text-left">@Html.DisplayFor(model => model.TenLoai)</td>
+                    </tr class="active">
+                    <tr class="active">
+                        <td style="font-weight:bold" class="text-left">Số lượng ghế</td>
+                        <td class="text-left">@Html.DisplayFor(model => model.SLGhe)</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    <div class="col-md-3"></div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaLoai }) |
-    @Html.ActionLink("Back to List", "Index")
+
+<p class="text-center">
+    <a href="/LOAIXEs/Edit/@Model.MaLoai" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Sửa thông tin</a>
+   
 </p>

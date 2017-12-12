@@ -14,6 +14,12 @@ namespace C43QLXeKhach.Models
     
     public partial class TINHTHANH
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TINHTHANH()
+        {
+            this.TRAMXEs = new HashSet<TRAMXE>();
+        }
+    
         public string MaTT { get; set; }
         public string TenTT { get; set; }
         public Nullable<int> createUser { get; set; }
@@ -21,5 +27,8 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TRAMXE> TRAMXEs { get; set; }
     }
 }

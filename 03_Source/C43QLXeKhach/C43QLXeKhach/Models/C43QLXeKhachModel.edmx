@@ -282,6 +282,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TRAMXE__MaTT__03F0984C">
+          <End Role="TINHTHANH" Type="Self.TINHTHANH" Multiplicity="0..1" />
+          <End Role="TRAMXE" Type="Self.TRAMXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TINHTHANH">
+              <PropertyRef Name="MaTT" />
+            </Principal>
+            <Dependent Role="TRAMXE">
+              <PropertyRef Name="MaTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLXeKhachModelStoreContainer">
           <EntitySet Name="_SESSION" EntityType="Self._SESSION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CHUYENXE" EntityType="Self.CHUYENXE" Schema="dbo" store:Type="Tables" />
@@ -303,6 +315,10 @@
           <AssociationSet Name="FK__KHAOSAT__NguoiKS__5EBF139D" Association="Self.FK__KHAOSAT__NguoiKS__5EBF139D">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="KHAOSAT" EntitySet="KHAOSAT" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRAMXE__MaTT__03F0984C" Association="Self.FK__TRAMXE__MaTT__03F0984C">
+            <End Role="TINHTHANH" EntitySet="TINHTHANH" />
+            <End Role="TRAMXE" EntitySet="TRAMXE" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -511,6 +527,7 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="TRAMXEs" Relationship="Self.FK__TRAMXE__MaTT__03F0984C" FromRole="TINHTHANH" ToRole="TRAMXE" />
         </EntityType>
         <EntityType Name="TRAMXE">
           <Key>
@@ -526,6 +543,7 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="TINHTHANH" Relationship="Self.FK__TRAMXE__MaTT__03F0984C" FromRole="TRAMXE" ToRole="TINHTHANH" />
         </EntityType>
         <EntityType Name="TUYENXE">
           <Key>
@@ -589,6 +607,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__TRAMXE__MaTT__03F0984C">
+          <End Role="TINHTHANH" Type="Self.TINHTHANH" Multiplicity="0..1" />
+          <End Role="TRAMXE" Type="Self.TRAMXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TINHTHANH">
+              <PropertyRef Name="MaTT" />
+            </Principal>
+            <Dependent Role="TRAMXE">
+              <PropertyRef Name="MaTT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLXeKhachEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="C_SESSION" EntityType="Self.C_SESSION" />
           <EntitySet Name="CHUYENXEs" EntityType="Self.CHUYENXE" />
@@ -610,6 +640,10 @@
           <AssociationSet Name="FK__KHAOSAT__NguoiKS__5EBF139D" Association="Self.FK__KHAOSAT__NguoiKS__5EBF139D">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="KHAOSAT" EntitySet="KHAOSATs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRAMXE__MaTT__03F0984C" Association="Self.FK__TRAMXE__MaTT__03F0984C">
+            <End Role="TINHTHANH" EntitySet="TINHTHANHs" />
+            <End Role="TRAMXE" EntitySet="TRAMXEs" />
           </AssociationSet>
         </EntityContainer>
       </Schema>

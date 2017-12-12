@@ -11497,7 +11497,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoFiltered": "(filtered from _MAX_ total entries)",
+			"sInfoFiltered": "(lọc từ _MAX_ dòng)",
 	
 	
 			/**

@@ -1,9 +1,9 @@
 ﻿@{
     ViewBag.Title = "Details";
 }
-<h2>Details</h2>
+<h2 class="text-center">CHI TIẾT KHẢO SÁT</h2><br />
 @foreach (var item in Model) { 
-<div>
+@*<div>
     <h4>KHAOSAT</h4>
     <hr />
 
@@ -49,9 +49,45 @@
             @item.GiaKS
         </dd>
     </dl>
-</div>
-<p>
+</div>*@
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr class="active">
+                            <td style="font-weight:bold; width:30%" class="text-left">Ngày khảo sát</td>
+                            <td class="text-left">@item.NgayKS.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Người khảo sát</td>
+                            <td class="text-left">@item.NHANVIEN.TenNV</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Địa chỉ khảo sát</td>
+                            <td class="text-left">@item.DiaChiKS</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold;"  class="text-left">Tỉ lệ đón khách</td>
+                            <td class="text-left">@item.TiLeDonKhach</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Giá khảo sát</td>
+                            <td class="text-left">@item.GiaKS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = item.MaKS }) |
     @Html.ActionLink("Back to List", "Index")
-</p>
+</p>*@
+    <p class="text-center">
+        <a href="/KHAOSATs/Edit/@item.MaKS" class="btn btn-info"><span class="glyphicon glyphicon-pencil"></span> Sửa thông tin</a>
+
+    </p>
 }

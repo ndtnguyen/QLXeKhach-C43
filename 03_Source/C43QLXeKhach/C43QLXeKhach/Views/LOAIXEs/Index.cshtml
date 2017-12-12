@@ -4,52 +4,70 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<button class="btn btn-danger" id="btnDelete" title="delete">
-    Xóa LoaiXe
-    @*<span class="glyphicon glyphicon-remove"></span>*@
-</button>
+<h2>
+    DANH SÁCH LOẠI XE
+    <p style="float: right">
+        <a href="/LOAIXEs/Create" class="btn btn-primary">
+            Thêm loại xe
+        </a>
+        <button class="btn btn-danger text-right" id="btnDelete" title="delete">
+            Xóa loại xe
+        </button>
+    </p>
+</h2><br />
 <form action="/LOAIXEs/Index" method="POST" id="frm">
     @Html.AntiForgeryToken()
-    <table class="table">
-        <tr>
-            <th>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TenLoai)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SLGhe)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaLoai>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TenLoai)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.SLGhe)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MaLoai }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MaLoai }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MaLoai })
-                </td>
-            </tr>
-        }
-
-    </table>
+    <div class="table-responsive">
+        <table  class="table table-hover" id="dataTable" cellspacing="0">
+           
+            <thead style="background-color: #cccccc; color: #333333" >
+                <tr>
+                    <th>
+                        Chọn
+                    </th>
+                    <th>
+                        Tên loại xe
+                    </th>
+                    <th class="text-center">
+                        Số lượng ghế
+                    </th>
+                    <th class="text-right">
+                        Hành động
+                    </th>
+                </tr>
+            </thead>
+                @foreach (var item in Model)
+                {
+                    <tbody  style="background-color: transparent;">
+                        <tr>
+                            <td>
+                                <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaLoai>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TenLoai)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.SLGhe)
+                            </td>
+                            <td class="text-right">
+                                <a href="/LOAIXEs/Edit/@item.MaLoai" class="btn btn-xs btn-success" title="Sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                                <a href="/LOAIXEs/Details/@item.MaLoai" class="btn btn-xs btn btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a href="/LOAIXEs/Delete/@item.MaLoai" class="btn btn-xs btn-danger" title="Xóa">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+</table><br><br>
+        </div>
 </form>
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -85,5 +103,8 @@
             else
                 return;
         });
-    </script>
+        $('#nhanVienTitle').on('click', function () {
+            window.location="/NHANVIENs/Index";
+        });
+</script>
 }

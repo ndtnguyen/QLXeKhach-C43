@@ -3,81 +3,102 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <button class="btn btn-danger" id="btnDelete" title="delete">
     Xóa KhaoSat
-    @*<span class="glyphicon glyphicon-remove"></span>*@
-</button>
+    <span class="glyphicon glyphicon-remove"></span>
+</button>*@
+
+<h2>
+    DANH SÁCH KHẢO SÁT
+    <p style="float: right">
+        <a href="/KHAOSATs/Create" class="btn btn-primary">
+            Thêm khảo sát
+        </a>
+        <button class="btn btn-danger text-right" id="btnDelete" title="delete">
+            Xóa khảo sát
+        </button>
+    </p>
+</h2><br />
+
 <form action="/KHAOSATs/Index" method="POST" id="frm">
     @Html.AntiForgeryToken()
-    <table class="table">
-        <tr>
-            <th></th>
-            <th>
-                Ngày khảo sát
-                @*@Html.DisplayNameFor(model => model.NgayKS)*@
-            </th>
-            <th>
-                Người khảo sát
-                @*@Html.DisplayNameFor(model => model.NguoiKS)*@
-            </th>
-            <th>
-                Địa chỉ khảo sát
-                @*            @Html.DisplayNameFor(model => model.DiaChiKS)*@
-            </th>
-            <th>
-                Tỉ lệ đón khách
-                @*          @Html.DisplayNameFor(model => model.TiLeDonKhach)*@
-            </th>
-            <th>
-                Giá khảo sát
-                @*        @Html.DisplayNameFor(model => model.GiaKS)*@
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaKS>
-                </td>
-                <td>
-                    @if(item.NgayKS != null) { 
-                    @item.NgayKS.ToString("dd-MM-yyyy")
-                    }
-                    @*@Html.DisplayFor(modelItem => item.NgayKS)*@
-                </td>
-                <td>
-                    @item.NHANVIEN.TenNV
-                    @*@Html.DisplayFor(modelItem => item.NguoiKS)*@
-                </td>
-                <td>
-                    @item.DiaChiKS
-                    @*@Html.DisplayFor(modelItem => item.DiaChiKS)*@
-                </td>
-                <td>
-                    @item.TiLeDonKhach
-                    @*@Html.DisplayFor(modelItem => item.TiLeDonKhach)*@
-                </td>
-                <td>
-                    @item.GiaKS
-                    @*@Html.DisplayFor(modelItem => item.GiaKS)*@
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.MaKS }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.MaKS }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.MaKS })
-                </td>
-            </tr>
-        }
-
-    </table>
-</form>
+    <div class="table-responsive">
+        <table class="table table-hover" id="dataTable" cellspacing="0">
+            <thead style="background-color: #cccccc; color: #333333">
+                <tr>
+                    <th></th>
+                    <th>
+                        Ngày khảo sát
+                        @*@Html.DisplayNameFor(model => model.NgayKS)*@
+                    </th>
+                    <th>
+                        Người khảo sát
+                        @*@Html.DisplayNameFor(model => model.NguoiKS)*@
+                    </th>
+                    <th style="width:30%;">
+                        Địa chỉ khảo sát
+                        @*            @Html.DisplayNameFor(model => model.DiaChiKS)*@
+                    </th>
+                    <th class="text-center">
+                        Tỉ lệ đón khách
+                        @*          @Html.DisplayNameFor(model => model.TiLeDonKhach)*@
+                    </th>
+                    <th>
+                        Giá khảo sát
+                        @*        @Html.DisplayNameFor(model => model.GiaKS)*@
+                    </th>
+                    <th style="width:15%;" class="text-right">Hành động</th>
+                </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaKS>
+                    </td>
+                    <td>
+                        @if (item.NgayKS != null)
+                        {
+                            @item.NgayKS.ToString("dd-MM-yyyy")
+                        }
+                        @*@Html.DisplayFor(modelItem => item.NgayKS)*@
+                    </td>
+                    <td>
+                        @item.NHANVIEN.TenNV
+                        @*@Html.DisplayFor(modelItem => item.NguoiKS)*@
+                    </td>
+                    <td>
+                        @item.DiaChiKS
+                        @*@Html.DisplayFor(modelItem => item.DiaChiKS)*@
+                    </td>
+                    <td  class="text-center">
+                        @item.TiLeDonKhach
+                        @*@Html.DisplayFor(modelItem => item.TiLeDonKhach)*@
+                    </td>
+                    <td>
+                        @item.GiaKS
+                        @*@Html.DisplayFor(modelItem => item.GiaKS)*@
+                    </td>
+                    <td class="text-right">
+                        <a href="/KHAOSATs/Edit/@item.MaKS" class="btn btn-xs btn-success" title="Sửa">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                        <a href="/KHAOSATs/Details/@item.MaKS" class="btn btn-xs btn btn-info" title="Xem chi tiết">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                        </a>
+                        <a href="/KHAOSATs/Delete/@item.MaKS" class="btn btn-xs btn-danger" title="Xóa">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </table>
+        </div>
+</form><br /><br />
     @section Scripts {
         @Scripts.Render("~/bundles/jqueryval")
         <script type="text/javascript">

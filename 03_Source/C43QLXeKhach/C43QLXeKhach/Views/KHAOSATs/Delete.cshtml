@@ -4,74 +4,52 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h2 class="text-center">XÓA KHẢO SÁT</h2>
+<h3 class="text-center">Bạn có chắc muốn xóa khảo sát này?</h3><br />
 
-<h3>Are you sure you want to delete this?</h3>
 @foreach (var item in Model)
 {
 <div>
-    <h4>KHAOSAT</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Ngày khảo sát
-            @*@Html.DisplayNameFor(model => model.NgayKS)*@
-        </dt>
-
-        <dd>
-            @item.NgayKS
-            @*@Html.DisplayFor(model => model.NgayKS)*@
-        </dd>
-
-        <dt>
-            Người khảo sát
-            @*@Html.DisplayNameFor(model => model.NguoiKS)*@
-        </dt>
-
-        <dd>
-            @item.NHANVIEN.TenNV
-            @*@Html.DisplayFor(model => model.NguoiKS)*@
-        </dd>
-
-        <dt>
-            Địa chỉ khảo sát
-            @*@Html.DisplayNameFor(model => model.DiaChiKS)*@
-        </dt>
-
-        <dd>
-            @item.DiaChiKS
-            @*@Html.DisplayFor(model => model.DiaChiKS)*@
-        </dd>
-
-        <dt>
-            Tỉ lệ đón khách
-            @*@Html.DisplayNameFor(model => model.TiLeDonKhach)*@
-        </dt>
-
-        <dd>
-            @item.TiLeDonKhach
-            @*@Html.DisplayFor(model => model.TiLeDonKhach)*@
-        </dd>
-
-        <dt>
-            Giá khảo sát
-            @*@Html.DisplayNameFor(model => model.GiaKS)*@
-        </dt>
-
-        <dd>
-            @item.GiaKS
-            @*@Html.DisplayFor(model => model.GiaKS)*@
-        </dd>
-
-    </dl>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="table-responsive">
+                <table class="table">
+                    <tbody>
+                        <tr class="active">
+                            <td style="font-weight:bold; width:30%" class="text-left">Ngày khảo sát</td>
+                            <td class="text-left">@item.NgayKS.ToString("dd-MM-yyyy")</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Người khảo sát</td>
+                            <td class="text-left">@item.NHANVIEN.TenNV</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Địa chỉ khảo sát</td>
+                            <td class="text-left">@item.DiaChiKS</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Tỉ lệ đón khách</td>
+                            <td class="text-left">@item.TiLeDonKhach</td>
+                        </tr>
+                        <tr class="active">
+                            <td style="font-weight:bold" class="text-left">Giá khảo sát</td>
+                            <td class="text-left">@item.GiaKS</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
 
     @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color text-center">
+            <input type="submit" value="Xóa khảo sát" class="btn btn-danger" />
+            @*@Html.ActionLink("Back to List", "Index")*@
         </div>
     }
 </div>
