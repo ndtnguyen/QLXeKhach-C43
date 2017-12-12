@@ -7,13 +7,13 @@ namespace C43QLXeKhach.Services.TRAMXEsService
 {
     public interface ITramXeService
     {
-        //IList<TINHTHANH> GetAll();
-        //int Add(TINHTHANH tt);
-        //void Update(TINHTHANH tt);
-        //void Delete(TINHTHANH tt);
-        //TINHTHANH Detail(string id);
-        //void Dispose();
-        //IList<TINHTHANH> Search(string input);
+        IList<TRAMXE> GetAll();
+        int Add(TRAMXE tt);
+        void Update(TRAMXE tt);
+        void Delete(TRAMXE tt);
+        TRAMXE Detail(string id);
+        void Dispose();
+        IList<TRAMXE> Search(string input);
 
     }
 }
