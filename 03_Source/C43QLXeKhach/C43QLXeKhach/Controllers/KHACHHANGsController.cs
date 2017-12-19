@@ -7,17 +7,28 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.KHACHHANGsService;
+using System.Text;
+using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Controllers
 {
     public class KHACHHANGsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        IKhachHangService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public KHACHHANGsController(IKhachHangService service)
+        {
+            this.service = service;
+        }
+
 
         // GET: KHACHHANGs
         public ActionResult Index()
         {
-            return View(db.KHACHHANGs.ToList());
+            return View(service.GetAll());
         }
 
         // GET: KHACHHANGs/Details/5
@@ -27,7 +38,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            KHACHHANG kHACHHANG = service.Detail(id);
             if (kHACHHANG == null)
             {
                 return HttpNotFound();
@@ -50,8 +61,9 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.KHACHHANGs.Add(kHACHHANG);
-                db.SaveChanges();
+          
+                kHACHHANG.isDeleted = 0;
+                service.Add(kHACHHANG);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +77,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            KHACHHANG kHACHHANG = service.Detail(id);
             if (kHACHHANG == null)
             {
                 return HttpNotFound();
@@ -82,8 +94,14 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(kHACHHANG).State = EntityState.Modified;
-                db.SaveChanges();
+                KHACHHANG kh = service.Detail(kHACHHANG.MaKH);
+                kh.TenKH = kHACHHANG.TenKH;
+                kh.SDT = kHACHHANG.SDT;
+                kh.CMND = kHACHHANG.CMND;
+                kh.DiaChi = kHACHHANG.DiaChi;
+                kh.NgaySinh = kHACHHANG.NgaySinh;
+                kh.Email = kHACHHANG.Email;
+                service.Update(kh);
                 return RedirectToAction("Index");
             }
             return View(kHACHHANG);
@@ -96,7 +114,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
+            KHACHHANG kHACHHANG = service.Detail(id);
             if (kHACHHANG == null)
             {
                 return HttpNotFound();
@@ -109,9 +127,28 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            db.KHACHHANGs.Remove(kHACHHANG);
-            db.SaveChanges();
+            KHACHHANG kHACHHANG = service.Detail(id);
+            kHACHHANG.isDeleted = 1;
+            service.Delete(kHACHHANG);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                KHACHHANG nKhachHang = service.Detail(int.Parse(listDelete[i]));
+                nKhachHang.isDeleted = 1;
+                service.Delete(nKhachHang);
+            }
             return RedirectToAction("Index");
         }
 
@@ -119,9 +156,10 @@ namespace C43QLXeKhach.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                service.Dispose();
             }
             base.Dispose(disposing);
         }
+
     }
 }

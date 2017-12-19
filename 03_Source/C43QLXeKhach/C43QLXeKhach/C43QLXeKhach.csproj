@@ -288,6 +288,8 @@
     <Compile Include="Services\KHAOSATsService\KhaoSatService.cs" />
     <Compile Include="Services\LOAIXEsService\ILoaiXeService.cs" />
     <Compile Include="Services\LOAIXEsService\LoaiXeService.cs" />
+    <Compile Include="Services\KHACHHANGsService\IKhachHangService.cs" />
+    <Compile Include="Services\KHACHHANGsService\KhachHangService.cs" />
     <Compile Include="Services\NHANVIENsService\INhanVienService.cs" />
     <Compile Include="Services\NHANVIENsService\NhanVienService.cs" />
     <Compile Include="Services\TINHTHANHsService\ITinhThanhService.cs" />
