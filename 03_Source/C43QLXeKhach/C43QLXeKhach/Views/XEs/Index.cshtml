@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<C43QLXeKhach.Models.XE>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Danh sách Xe";
 }
 
-<h2>Index</h2>
+<h2>Danh sách xe</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,28 +12,13 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.LoaiXe)
+            Loại xe
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.BienSoXe)
+            Biển số xe
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.HangXe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDeleted)
+            Hãng xe
         </th>
         <th></th>
     </tr>
@@ -48,21 +33,6 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.HangXe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDeleted)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.MaXe }) |
