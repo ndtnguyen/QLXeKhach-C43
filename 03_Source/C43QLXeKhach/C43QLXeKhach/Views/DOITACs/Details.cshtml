@@ -1,17 +1,17 @@
 ﻿@model C43QLXeKhach.Models.DOITAC
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Đối Tác";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Đối Tác</h2>
 
 <div>
     <h4>DOITAC</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenDT)
+            Tên ĐT
         </dt>
 
         <dd>
@@ -19,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NguoiDaiDien)
+            Người đại diện
         </dt>
 
         <dd>
@@ -27,7 +27,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SDT)
+            SĐT
         </dt>
 
         <dd>
@@ -35,7 +35,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
+            Địa chỉ
         </dt>
 
         <dd>
@@ -43,7 +43,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Email)
+            Email
         </dt>
 
         <dd>
@@ -51,7 +51,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createUser)
+            Người tạo
         </dt>
 
         <dd>
@@ -59,7 +59,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
+            Người cập nhật
         </dt>
 
         <dd>
@@ -67,7 +67,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createDate)
+            Ngày tạo
         </dt>
 
         <dd>
@@ -75,24 +75,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
+            Ngày cập nhật
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.lastupdateDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaDT }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaDT }) |
+    @Html.ActionLink("Quay về", "Index")
 </p>

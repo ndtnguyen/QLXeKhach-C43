@@ -7,17 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.DOITACsService;
 
 namespace C43QLXeKhach.Controllers
 {
     public class DOITACsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        IDoiTacService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public DOITACsController(IDoiTacService service)
+        {
+            this.service = service;
+        }
 
         // GET: DOITACs
         public ActionResult Index()
         {
-            return View(db.DOITACs.ToList());
+            return View(service.GetAll());
         }
 
         // GET: DOITACs/Details/5
@@ -27,7 +35,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DOITAC dOITAC = db.DOITACs.Find(id);
+            DOITAC dOITAC = service.Detail(id);
             if (dOITAC == null)
             {
                 return HttpNotFound();
@@ -50,8 +58,8 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.DOITACs.Add(dOITAC);
-                db.SaveChanges();
+                dOITAC.isDeleted = 0;
+                service.Add(dOITAC);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +73,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DOITAC dOITAC = db.DOITACs.Find(id);
+            DOITAC dOITAC = service.Detail(id);
             if (dOITAC == null)
             {
                 return HttpNotFound();
@@ -82,8 +90,13 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(dOITAC).State = EntityState.Modified;
-                db.SaveChanges();
+                DOITAC dtac = service.Detail(dOITAC.MaDT);
+                dtac.TenDT = dOITAC.TenDT;
+                dtac.NguoiDaiDien = dOITAC.NguoiDaiDien;
+                dtac.SDT = dOITAC.SDT;
+                dtac.DiaChi = dOITAC.DiaChi;
+                dtac.Email = dOITAC.Email;
+                service.Update(dtac);
                 return RedirectToAction("Index");
             }
             return View(dOITAC);
@@ -96,7 +109,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DOITAC dOITAC = db.DOITACs.Find(id);
+            DOITAC dOITAC = service.Detail(id);
             if (dOITAC == null)
             {
                 return HttpNotFound();
@@ -109,9 +122,28 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DOITAC dOITAC = db.DOITACs.Find(id);
-            db.DOITACs.Remove(dOITAC);
-            db.SaveChanges();
+            DOITAC dOITAC = service.Detail(id);
+            dOITAC.isDeleted = 1;
+            service.Delete(dOITAC);
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                DOITAC nDoiTac = service.Detail(int.Parse(listDelete[i]));
+                nDoiTac.isDeleted = 1;
+                service.Delete(nDoiTac);
+            }
             return RedirectToAction("Index");
         }
 
@@ -119,7 +151,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                service.Dispose();
             }
             base.Dispose(disposing);
         }
