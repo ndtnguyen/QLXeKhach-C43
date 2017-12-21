@@ -1,25 +1,32 @@
 ﻿@model C43QLXeKhach.Models.HOPDONG
 
-@{
-    ViewBag.Title = "Details";
+@{ 
+    ViewBag.Title = "Chi Tiết Hợp Đồng";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Hợp Đồng</h2>
 
 <div>
-    <h4>HOPDONG</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.NgayLap)
+            Mã HĐ
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NgayLap)
+           @Html.DisplayFor(model => model.MaHD)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GiaThoaThuan)
+            Ngày lập
+        </dt>
+
+        <dd>
+            @Model.NgayLap.Value.ToString("dd-MM-yyy")
+        </dd>
+
+        <dt>
+            Giá thỏa thuận
         </dt>
 
         <dd>
@@ -27,39 +34,39 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaTram)
+            Trạm thuê
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MaTram)
+            @Html.DisplayFor(model => model.TRAMXE.TenTram)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.ThoiHanThue)
+            Thời hạn thuê
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.ThoiHanThue)
+            @Model.ThoiHanThue.Value.ToString("dd-MM-yyyy")
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MaDT)
+            Đối tác
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MaDT)
+            @Html.DisplayFor(model => model.DOITAC.TenDT)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.NguoiLap)
+            Người lập
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.NguoiLap)
+            @Html.DisplayFor(model => model.NHANVIEN.TenNV)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.MoTa)
+            Mô tả
         </dt>
 
         <dd>
@@ -67,7 +74,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createUser)
+            Người tạo
         </dt>
 
         <dd>
@@ -75,7 +82,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
+            Người cập nhật
         </dt>
 
         <dd>
@@ -83,7 +90,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createDate)
+            Ngày tạo
         </dt>
 
         <dd>
@@ -91,24 +98,16 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
+            Ngày cập nhật
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.lastupdateDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHD }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHD }) |
+    @Html.ActionLink("Quay về", "Index")
 </p>

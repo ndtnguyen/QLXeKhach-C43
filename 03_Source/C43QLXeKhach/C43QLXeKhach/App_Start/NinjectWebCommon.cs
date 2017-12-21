@@ -17,6 +17,7 @@ namespace C43QLXeKhach.App_Start
     using Services.TRAMXEsService;
     using Services.KHACHHANGsService;
     using Services.DOITACsService;
+    using Services.HOPDONGsService;
 
     public static class NinjectWebCommon 
     {
@@ -75,6 +76,7 @@ namespace C43QLXeKhach.App_Start
             kernel.Bind<ITramXeService>().To<TramXeService>();
             kernel.Bind<IKhachHangService>().To<KhachHangService>();
             kernel.Bind<IDoiTacService>().To<DoiTacService>();
+            kernel.Bind<IHopDongService>().To<HopDongService>();
         }
     }
 }

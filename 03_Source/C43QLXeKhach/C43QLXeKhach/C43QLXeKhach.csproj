@@ -287,6 +287,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DOITACsService\DoiTacService.cs" />
     <Compile Include="Services\DOITACsService\IDoiTacService.cs" />
+    <Compile Include="Services\HOPDONGsService\HopDongService.cs" />
+    <Compile Include="Services\HOPDONGsService\IHopDongService.cs" />
     <Compile Include="Services\KHAOSATsService\IKhaoSatService.cs" />
     <Compile Include="Services\KHAOSATsService\KhaoSatService.cs" />
     <Compile Include="Services\LOAIXEsService\ILoaiXeService.cs" />
