@@ -1,5 +1,4 @@
 ﻿CREATE DATABASE QLXeKhach;
-use  QLXeKhach
 
 CREATE TABLE NHANVIEN (
 	MaNV int NOT NULL IDENTITY (10000, 1) PRIMARY KEY,
@@ -65,20 +64,9 @@ CREATE TABLE TUYENXE (
 	lastupdateUser int,
 	createDate datetime,
 	lastupdateDate datetime,
-	isDeleted int
-);
-GO
-CREATE TABLE LOTRINH (
-	MaTuyen int,
-	MaTram int,
-	ThuTu int,
-	KhoangThoiGian int,
-	createUser int,
-	lastupdateUser int,
-	createDate datetime,
-	lastupdateDate datetime,
 	isDeleted int,
-	PRIMARY KEY (MaTuyen, MaTram)
+	FOREIGN KEY (DiemDi) REFERENCES TINHTHANH (MaTT),
+	FOREIGN KEY (DiemDen) REFERENCES TINHTHANH (MaTT)
 );
 GO
 CREATE TABLE TRAMXE (
@@ -95,20 +83,19 @@ CREATE TABLE TRAMXE (
 	FOREIGN KEY (MaTT) REFERENCES TINHTHANH (MaTT)
 );
 GO
-CREATE TABLE HOPDONG (
-	MaHD int  NOT NULL IDENTITY (10000, 1) PRIMARY KEY,
-	NgayLap date,
-	GiaThoaThuan decimal,
+CREATE TABLE LOTRINH (
+	MaTuyen int,
 	MaTram int,
-	ThoiHanThue date,
-	MaDT int,
-	NguoiLap int,
-	MoTa text DEFAULT NULL,
+	ThuTu int,
+	KhoangThoiGian int,
 	createUser int,
 	lastupdateUser int,
 	createDate datetime,
 	lastupdateDate datetime,
-	isDeleted int
+	isDeleted int,
+	PRIMARY KEY (MaTuyen, MaTram),
+	FOREIGN KEY (MaTuyen) REFERENCES TUYENXE (MaTuyen),
+	FOREIGN KEY (MaTram) REFERENCES TRAMXE (MaTram),
 );
 GO
 CREATE TABLE DOITAC (
@@ -123,6 +110,25 @@ CREATE TABLE DOITAC (
 	createDate datetime,
 	lastupdateDate datetime,
 	isDeleted int
+);
+GO
+CREATE TABLE HOPDONG (
+	MaHD int  NOT NULL IDENTITY (10000, 1) PRIMARY KEY,
+	NgayLap date,
+	GiaThoaThuan decimal,
+	MaTram int,
+	ThoiHanThue date,
+	MaDT int,
+	NguoiLap int,
+	MoTa text DEFAULT NULL,
+	createUser int,
+	lastupdateUser int,
+	createDate datetime,
+	lastupdateDate datetime,
+	isDeleted int,
+	FOREIGN KEY (MaTram) REFERENCES TRAMXE (MaTram),
+	FOREIGN KEY (MaDT) REFERENCES DOITAC (MaDT),
+	FOREIGN KEY (NguoiLap) REFERENCES NHANVIEN (MaNV)
 );
 GO
 CREATE TABLE GIACOBAN (
