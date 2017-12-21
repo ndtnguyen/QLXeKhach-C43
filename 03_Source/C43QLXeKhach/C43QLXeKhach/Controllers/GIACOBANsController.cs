@@ -59,18 +59,28 @@ namespace C43QLXeKhach.Controllers
         }
 
         // GET: GIACOBANs/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(string id1, string id2, int id3)
         {
-            if (id == null)
+
+            if (id1 == null || id2 == null || id3 == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            GIACOBAN gIACOBAN = db.GIACOBANs.Find(id);
-            if (gIACOBAN == null)
+            try
             {
-                return HttpNotFound();
+                GIACOBAN gIACOBAN = db.GIACOBANs.Find(id1,id2,id3);
+                //GIACOBAN gIACOBAN = db.GIACOBANs.Where(x=> x.MaTT1 == id1 && x.MaTT2 == id2 && x.MaLoai == id3);
+                if (gIACOBAN == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(gIACOBAN);
             }
-            return View(gIACOBAN);
+            catch (Exception e)
+            {
+                return null;
+            }
+            
         }
 
         // POST: GIACOBANs/Edit/5
