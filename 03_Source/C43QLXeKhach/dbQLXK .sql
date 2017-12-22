@@ -165,7 +165,8 @@ CREATE TABLE XE (
 	lastupdateUser int,
 	createDate datetime,
 	lastupdateDate datetime,
-	isDeleted int
+	isDeleted int,
+	FOREIGN KEY (LoaiXe) REFERENCES LOAIXE(MaLoai)
 );
 GO
 CREATE TABLE GHE (

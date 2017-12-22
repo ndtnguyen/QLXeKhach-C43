@@ -14,6 +14,12 @@ namespace C43QLXeKhach.Models
     
     public partial class LOAIXE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public LOAIXE()
+        {
+            this.XEs = new HashSet<XE>();
+        }
+    
         public int MaLoai { get; set; }
         public string TenLoai { get; set; }
         public Nullable<int> SLGhe { get; set; }
@@ -22,5 +28,8 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<XE> XEs { get; set; }
     }
 }

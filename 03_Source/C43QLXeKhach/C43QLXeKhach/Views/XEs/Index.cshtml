@@ -1,45 +1,131 @@
 ﻿@model IEnumerable<C43QLXeKhach.Models.XE>
 
 @{
-    ViewBag.Title = "Danh sách Xe";
+    ViewBag.Title = "Danh Sách Xe";
 }
 
-<h2>Danh sách xe</h2>
+<div class="row">
+    <div class="col-md-4" id="tinhThanhTitle" style="cursor:pointer"><h2>Danh Sách Xe</h2></div>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Loại xe
-        </th>
-        <th>
-            Biển số xe
-        </th>
-        <th>
-            Hãng xe
-        </th>
-        <th></th>
-    </tr>
+<div class="row">
+    <div class="col-md-8">
+        <p>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiXe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BienSoXe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HangXe)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaXe }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaXe }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaXe })
-        </td>
-    </tr>
+            <a href="/XEs/Create" class="btn btn-primary" title="add">
+                Thêm Xe
+                @*<span class="glyphicon glyphicon-plus"></span>*@
+            </a>
+            @* @Html.ActionLink("Them tinh thanh", "Create")*@
+            <button class="btn btn-danger" id="btnDelete" title="delete">
+                Xóa Xe
+                @*<span class="glyphicon glyphicon-remove"></span>*@
+            </button>
+        </p>
+    </div>
+</div>
+
+<form action="/XEs/Index" method="POST" id="frmxe">
+    @Html.AntiForgeryToken()
+    <div class="table-responsive">
+        <table class="table table-hover" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        Loại Xe
+                    </th>
+                    <th>
+                        Biển Số Xe
+                    </th>
+                    <th>
+                        Hãng Xe
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaXe>
+                        </td>
+                         <td>
+                            @*@Html.DisplayFor(modelItem => item.MaLoai)*@
+                            @item.LOAIXE1.TenLoai
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BienSoXe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.HangXe)
+                        </td>
+                        <td>
+                            <a href="/XEs/Edit/@item.MaXe" class="btn btn-xs btn-primary" title="edit">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
+                            @*<a href="/xes/Details/@item.MaXe" class="btn btn-xs btn-info" title="details">
+                                    <span class="glyphicon glyphicon-book"></span>
+                                </a>*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</form>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop("disabled", true);
+            var url = decodeURIComponent(window.location.search.substring(1));
+            if (url != "") {
+                var searchinput = url.split("=")[1];
+                $("#txtSearch").val(searchinput);
+            }
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những xe này?");
+            if (returnVal)
+                $('#frmxe').submit();
+            else
+                return;
+        });
+        $('#btnSearch').on('click', function () {
+            var input = "";
+            if ($("#txtSearch").val())
+                input = $("#txtSearch").val();
+            var url="/XEs/Index?input="+input;
+            window.location=url;
+        });
+        $('#XeTitle').on('click', function () {
+            window.location="/XEs/Index";
+        });
+    </script>
 }
-
-</table>

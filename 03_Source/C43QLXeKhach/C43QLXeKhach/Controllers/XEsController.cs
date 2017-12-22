@@ -7,27 +7,37 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.XEsService;
+using C43QLXeKhach.Services.LOAIXEsService;
 
 namespace C43QLXeKhach.Controllers
 {
     public class XEsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        IXeService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
 
-        // GET: XEs
-        public ActionResult Index()
+        public XEsController(IXeService service)
         {
-            return View(db.XEs.ToList());
+            this.service = service;
         }
 
-        // GET: XEs/Details/5
+        // GET: TRAMXEs
+        public ActionResult Index()
+        {
+            return View(service.GetAll());
+        }
+
+        // GET: TRAMXEs/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            XE xE = db.XEs.Find(id);
+            IList<XE> xE = service.Detail(id);
+            ViewBag.loaixe = xE[0].LOAIXE1.MaLoai;
             if (xE == null)
             {
                 return HttpNotFound();
@@ -35,68 +45,119 @@ namespace C43QLXeKhach.Controllers
             return View(xE);
         }
 
-        // GET: XEs/Create
+        // GET: TRAMXEs/Create
         public ActionResult Create()
         {
+            ILoaiXeService loaiXeService = new LoaiXeService();
+            IList<LOAIXE> loaiXeList = loaiXeService.GetAll();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < loaiXeList.Count; i++)
+            {
+                listItems.Add(new SelectListItem
+                {
+                    Text = loaiXeList[i].TenLoai,
+                    Value = loaiXeList[i].MaLoai.ToString()
+                });
+            }
+            ViewBag.listItems = listItems;
             return View();
         }
 
-        // POST: XEs/Create
+        // POST: TRAMXEs/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "MaXe,LoaiXe,BienSoXe,HangXe,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] XE xE)
         {
+            string thuocXe = Request.Form["xeDropList"];
             if (ModelState.IsValid)
             {
-                db.XEs.Add(xE);
-                db.SaveChanges();
+                xE.isDeleted = 0;
+                xE.LoaiXe = Int32.Parse(thuocXe);
+                service.Add(xE);
                 return RedirectToAction("Index");
             }
 
             return View(xE);
         }
 
-        // GET: XEs/Edit/5
+        // GET: TRAMXEs/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            XE xE = db.XEs.Find(id);
+            //TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            IList<XE> xE = service.Detail(id);
             if (xE == null)
             {
                 return HttpNotFound();
             }
-            return View(xE);
+
+            ILoaiXeService loaiXeService = new LoaiXeService();
+            IList<LOAIXE> loaiXeList = loaiXeService.GetAll();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            for (int i = 0; i < loaiXeList.Count; i++)
+            {
+                if (xE[0].LoaiXe == loaiXeList[i].MaLoai)
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = loaiXeList[i].TenLoai,
+                        Value = loaiXeList[i].MaLoai.ToString(),
+                        Selected = true
+
+                    });
+                }
+                else
+                {
+                    listItems.Add(new SelectListItem
+                    {
+                        Text = loaiXeList[i].TenLoai,
+                        Value = loaiXeList[i].MaLoai.ToString()
+
+                    });
+                }
+            }
+            ViewBag.listItems = listItems;
+            return View(xE[0]);
         }
 
-        // POST: XEs/Edit/5
+        // POST: TRAMXEs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "MaXe,LoaiXe,BienSoXe,HangXe,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] XE xE)
         {
+            int thuocXe;
+            int.TryParse(Request.Form["xeDropList"], out thuocXe);
+
             if (ModelState.IsValid)
             {
-                db.Entry(xE).State = EntityState.Modified;
-                db.SaveChanges();
+                ILoaiXeService loaiXeService = new LoaiXeService();
+                LOAIXE lx = loaiXeService.Detail(thuocXe);
+                IList<XE> xe = service.Detail(xE.MaXe);
+                xe[0].LoaiXe = thuocXe;
+                xe[0].BienSoXe = xE.BienSoXe;
+                xe[0].HangXe = xE.HangXe;
+                service.Update(xe[0]);
                 return RedirectToAction("Index");
             }
             return View(xE);
         }
 
-        // GET: XEs/Delete/5
+        // GET: TRAMXEs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            XE xE = db.XEs.Find(id);
+            //TRAMXE tRAMXE = db.TRAMXEs.Find(id);
+            IList<XE> xE = service.Detail(id);
             if (xE == null)
             {
                 return HttpNotFound();
@@ -104,24 +165,34 @@ namespace C43QLXeKhach.Controllers
             return View(xE);
         }
 
-        // POST: XEs/Delete/5
+        // POST: TRAMXEs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            XE xE = db.XEs.Find(id);
-            db.XEs.Remove(xE);
-            db.SaveChanges();
+            IList<XE> xE = service.Detail(id);
+            xE[0].isDeleted = 1;
+            service.Delete(xE[0]);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
         {
-            if (disposing)
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
             {
-                db.Dispose();
+                return RedirectToAction("Index");
             }
-            base.Dispose(disposing);
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                IList<XE> xE = service.Detail(Int32.Parse(listDelete[i]));
+                xE[0].isDeleted = 1;
+                service.Delete(xE[0]);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

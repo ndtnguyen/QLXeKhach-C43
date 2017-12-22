@@ -265,6 +265,42 @@
     <Property Name="lastupdateDate" Type="datetime" />
     <Property Name="isDeleted" Type="int" />
   </EntityType>
+  <Association Name="FK__KHAOSAT__NguoiKS__25869641">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="KHAOSAT" Type="Self.KHAOSAT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="KHAOSAT">
+        <PropertyRef Name="NguoiKS" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TRAMXE__MaTT__31EC6D26">
+    <End Role="TINHTHANH" Type="Self.TINHTHANH" Multiplicity="0..1" />
+    <End Role="TRAMXE" Type="Self.TRAMXE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TINHTHANH">
+        <PropertyRef Name="MaTT" />
+      </Principal>
+      <Dependent Role="TRAMXE">
+        <PropertyRef Name="MaTT" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__XE__LoaiXe__4CA06362">
+    <End Role="LOAIXE" Type="Self.LOAIXE" Multiplicity="0..1" />
+    <End Role="XE" Type="Self.XE" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LOAIXE">
+        <PropertyRef Name="MaLoai" />
+      </Principal>
+      <Dependent Role="XE">
+        <PropertyRef Name="LoaiXe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QLXeKhachModelStoreContainer">
     <EntitySet Name="_SESSION" EntityType="Self._SESSION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="CHUYENXE" EntityType="Self.CHUYENXE" Schema="dbo" store:Type="Tables" />
@@ -283,5 +319,17 @@
     <EntitySet Name="TUYENXE" EntityType="Self.TUYENXE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="XE" EntityType="Self.XE" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__KHAOSAT__NguoiKS__25869641" Association="Self.FK__KHAOSAT__NguoiKS__25869641">
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+      <End Role="KHAOSAT" EntitySet="KHAOSAT" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TRAMXE__MaTT__31EC6D26" Association="Self.FK__TRAMXE__MaTT__31EC6D26">
+      <End Role="TINHTHANH" EntitySet="TINHTHANH" />
+      <End Role="TRAMXE" EntitySet="TRAMXE" />
+    </AssociationSet>
+    <AssociationSet Name="FK__XE__LoaiXe__4CA06362" Association="Self.FK__XE__LoaiXe__4CA06362">
+      <End Role="LOAIXE" EntitySet="LOAIXE" />
+      <End Role="XE" EntitySet="XE" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

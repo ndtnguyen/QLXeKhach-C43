@@ -4,26 +4,27 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6c2e84c82de6446b9b591d4543babe4f" Name="Diagram1">
-        <EntityTypeShape EntityType="QLXeKhachModel.C_SESSION" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.CHUYENXE" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.DOITAC" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.GHE" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.GIACOBAN" Width="1.5" PointX="8.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.HOPDONG" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.KHACHHANG" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+      <Diagram DiagramId="6b89a4a3190941008d56d79c10186e10" Name="Diagram1">
+        <EntityTypeShape EntityType="QLXeKhachModel.C_SESSION" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.CHUYENXE" Width="1.5" PointX="7.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.DOITAC" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.GHE" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.GIACOBAN" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.HOPDONG" Width="1.5" PointX="9.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.KHACHHANG" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLXeKhachModel.KHAOSAT" Width="1.5" PointX="8" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.LOAIXE" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.LOTRINH" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.LOAIXE" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.LOTRINH" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="QLXeKhachModel.NHANVIEN" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.TAIXE" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.TINHTHANH" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.TRAMXE" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.TUYENXE" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.VE" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLXeKhachModel.XE" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
-        <AssociationConnector Association="QLXeKhachModel.FK__KHAOSAT__NguoiKS__5EBF139D" ManuallyRouted="false" />
-        <AssociationConnector Association="QLXeKhachModel.FK__TRAMXE__MaTT__03F0984C" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLXeKhachModel.TAIXE" Width="1.5" PointX="8.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.TINHTHANH" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.TRAMXE" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.TUYENXE" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.VE" Width="1.5" PointX="11.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLXeKhachModel.XE" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="QLXeKhachModel.FK__KHAOSAT__NguoiKS__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="QLXeKhachModel.FK__XE__LoaiXe__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="QLXeKhachModel.FK__TRAMXE__MaTT__31EC6D26" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
