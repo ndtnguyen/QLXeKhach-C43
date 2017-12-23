@@ -18,6 +18,8 @@ namespace C43QLXeKhach.Models
         public TINHTHANH()
         {
             this.TRAMXEs = new HashSet<TRAMXE>();
+            this.TUYENXEs = new HashSet<TUYENXE>();
+            this.TUYENXEs1 = new HashSet<TUYENXE>();
         }
     
         public string MaTT { get; set; }
@@ -30,5 +32,9 @@ namespace C43QLXeKhach.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRAMXE> TRAMXEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TUYENXE> TUYENXEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TUYENXE> TUYENXEs1 { get; set; }
     }
 }

@@ -62,7 +62,7 @@ namespace C43QLXeKhach.Controllers
         public ActionResult Edit(string id1, string id2, int id3)
         {
 
-            if (id1 == null || id2 == null || id3 == null)
+            if (id1 == null || id2 == null || id3 < 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -78,6 +78,7 @@ namespace C43QLXeKhach.Controllers
             }
             catch (Exception e)
             {
+
                 return null;
             }
             

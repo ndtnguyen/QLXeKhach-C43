@@ -25,6 +25,13 @@
         <AssociationConnector Association="QLXeKhachModel.FK__KHAOSAT__NguoiKS__25869641" ManuallyRouted="false" />
         <AssociationConnector Association="QLXeKhachModel.FK__XE__LoaiXe__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="QLXeKhachModel.FK__TRAMXE__MaTT__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="QLXeKhachModel.FK__HOPDONG__MaDT__282DF8C2" />
+        <AssociationConnector Association="QLXeKhachModel.FK__HOPDONG__MaTram__2739D489" />
+        <AssociationConnector Association="QLXeKhachModel.FK__HOPDONG__NguoiLa__29221CFB" />
+        <AssociationConnector Association="QLXeKhachModel.FK__LOTRINH__MaTram__2B0A656D" />
+        <AssociationConnector Association="QLXeKhachModel.FK__LOTRINH__MaTuyen__2A164134" />
+        <AssociationConnector Association="QLXeKhachModel.FK__TUYENXE__DiemDen__2CF2ADDF" />
+        <AssociationConnector Association="QLXeKhachModel.FK__TUYENXE__DiemDi__2BFE89A6" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

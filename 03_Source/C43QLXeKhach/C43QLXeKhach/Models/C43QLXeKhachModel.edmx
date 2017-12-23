@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLXeKhachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLXeKhachModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="_SESSION">
           <Key>
             <PropertyRef Name="MaSession" />
@@ -270,19 +270,67 @@
           <Property Name="lastupdateDate" Type="datetime" />
           <Property Name="isDeleted" Type="int" />
         </EntityType>
-        <Association Name="FK__KHAOSAT__NguoiKS__25869641">
+        <Association Name="FK__HOPDONG__MaDT__282DF8C2">
+          <End Role="DOITAC" Type="Self.DOITAC" Multiplicity="0..1" />
+          <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOITAC">
+              <PropertyRef Name="MaDT" />
+            </Principal>
+            <Dependent Role="HOPDONG">
+              <PropertyRef Name="MaDT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOPDONG__MaTram__2739D489">
+          <End Role="TRAMXE" Type="Self.TRAMXE" Multiplicity="0..1" />
+          <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMXE">
+              <PropertyRef Name="MaTram" />
+            </Principal>
+            <Dependent Role="HOPDONG">
+              <PropertyRef Name="MaTram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOPDONG__NguoiLa__29221CFB">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
-          <End Role="KHAOSAT" Type="Self.KHAOSAT" Multiplicity="*" />
+          <End Role="HOPDONG" Type="Self.HOPDONG" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="NHANVIEN">
               <PropertyRef Name="MaNV" />
             </Principal>
-            <Dependent Role="KHAOSAT">
-              <PropertyRef Name="NguoiKS" />
+            <Dependent Role="HOPDONG">
+              <PropertyRef Name="NguoiLap" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__TRAMXE__MaTT__31EC6D26">
+        <Association Name="FK__LOTRINH__MaTram__2B0A656D">
+          <End Role="TRAMXE" Type="Self.TRAMXE" Multiplicity="1" />
+          <End Role="LOTRINH" Type="Self.LOTRINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMXE">
+              <PropertyRef Name="MaTram" />
+            </Principal>
+            <Dependent Role="LOTRINH">
+              <PropertyRef Name="MaTram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOTRINH__MaTuyen__2A164134">
+          <End Role="TUYENXE" Type="Self.TUYENXE" Multiplicity="1" />
+          <End Role="LOTRINH" Type="Self.LOTRINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUYENXE">
+              <PropertyRef Name="MaTuyen" />
+            </Principal>
+            <Dependent Role="LOTRINH">
+              <PropertyRef Name="MaTuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TRAMXE__MaTT__17036CC0">
           <End Role="TINHTHANH" Type="Self.TINHTHANH" Multiplicity="0..1" />
           <End Role="TRAMXE" Type="Self.TRAMXE" Multiplicity="*" />
           <ReferentialConstraint>
@@ -294,15 +342,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__XE__LoaiXe__4CA06362">
-          <End Role="LOAIXE" Type="Self.LOAIXE" Multiplicity="0..1" />
-          <End Role="XE" Type="Self.XE" Multiplicity="*" />
+        <Association Name="FK__TUYENXE__DiemDen__2CF2ADDF">
+          <End Role="TINHTHANH" Type="Self.TINHTHANH" Multiplicity="0..1" />
+          <End Role="TUYENXE" Type="Self.TUYENXE" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="LOAIXE">
-              <PropertyRef Name="MaLoai" />
+            <Principal Role="TINHTHANH">
+              <PropertyRef Name="MaTT" />
             </Principal>
-            <Dependent Role="XE">
-              <PropertyRef Name="LoaiXe" />
+            <Dependent Role="TUYENXE">
+              <PropertyRef Name="DiemDen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TUYENXE__DiemDi__2BFE89A6">
+          <End Role="TINHTHANH" Type="Self.TINHTHANH" Multiplicity="0..1" />
+          <End Role="TUYENXE" Type="Self.TUYENXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TINHTHANH">
+              <PropertyRef Name="MaTT" />
+            </Principal>
+            <Dependent Role="TUYENXE">
+              <PropertyRef Name="DiemDi" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -324,21 +384,40 @@
           <EntitySet Name="TUYENXE" EntityType="Self.TUYENXE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VE" EntityType="Self.VE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="XE" EntityType="Self.XE" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__KHAOSAT__NguoiKS__25869641" Association="Self.FK__KHAOSAT__NguoiKS__25869641">
-            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
-            <End Role="KHAOSAT" EntitySet="KHAOSAT" />
+          <AssociationSet Name="FK__HOPDONG__MaDT__282DF8C2" Association="Self.FK__HOPDONG__MaDT__282DF8C2">
+            <End Role="DOITAC" EntitySet="DOITAC" />
+            <End Role="HOPDONG" EntitySet="HOPDONG" />
           </AssociationSet>
-          <AssociationSet Name="FK__TRAMXE__MaTT__31EC6D26" Association="Self.FK__TRAMXE__MaTT__31EC6D26">
+          <AssociationSet Name="FK__HOPDONG__MaTram__2739D489" Association="Self.FK__HOPDONG__MaTram__2739D489">
+            <End Role="TRAMXE" EntitySet="TRAMXE" />
+            <End Role="HOPDONG" EntitySet="HOPDONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOPDONG__NguoiLa__29221CFB" Association="Self.FK__HOPDONG__NguoiLa__29221CFB">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="HOPDONG" EntitySet="HOPDONG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOTRINH__MaTram__2B0A656D" Association="Self.FK__LOTRINH__MaTram__2B0A656D">
+            <End Role="TRAMXE" EntitySet="TRAMXE" />
+            <End Role="LOTRINH" EntitySet="LOTRINH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOTRINH__MaTuyen__2A164134" Association="Self.FK__LOTRINH__MaTuyen__2A164134">
+            <End Role="TUYENXE" EntitySet="TUYENXE" />
+            <End Role="LOTRINH" EntitySet="LOTRINH" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TRAMXE__MaTT__17036CC0" Association="Self.FK__TRAMXE__MaTT__17036CC0">
             <End Role="TINHTHANH" EntitySet="TINHTHANH" />
             <End Role="TRAMXE" EntitySet="TRAMXE" />
           </AssociationSet>
-          <AssociationSet Name="FK__XE__LoaiXe__4CA06362" Association="Self.FK__XE__LoaiXe__4CA06362">
-            <End Role="LOAIXE" EntitySet="LOAIXE" />
-            <End Role="XE" EntitySet="XE" />
+          <AssociationSet Name="FK__TUYENXE__DiemDen__2CF2ADDF" Association="Self.FK__TUYENXE__DiemDen__2CF2ADDF">
+            <End Role="TINHTHANH" EntitySet="TINHTHANH" />
+            <End Role="TUYENXE" EntitySet="TUYENXE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TUYENXE__DiemDi__2BFE89A6" Association="Self.FK__TUYENXE__DiemDi__2BFE89A6">
+            <End Role="TINHTHANH" EntitySet="TINHTHANH" />
+            <End Role="TUYENXE" EntitySet="TUYENXE" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLXeKhachModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -383,6 +462,7 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="HOPDONGs" Relationship="QLXeKhachModel.FK__HOPDONG__MaDT__282DF8C2" FromRole="DOITAC" ToRole="HOPDONG" />
         </EntityType>
         <EntityType Name="GHE">
           <Key>
@@ -430,6 +510,9 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="DOITAC" Relationship="QLXeKhachModel.FK__HOPDONG__MaDT__282DF8C2" FromRole="HOPDONG" ToRole="DOITAC" />
+          <NavigationProperty Name="TRAMXE" Relationship="QLXeKhachModel.FK__HOPDONG__MaTram__2739D489" FromRole="HOPDONG" ToRole="TRAMXE" />
+          <NavigationProperty Name="NHANVIEN" Relationship="QLXeKhachModel.FK__HOPDONG__NguoiLa__29221CFB" FromRole="HOPDONG" ToRole="NHANVIEN" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -493,6 +576,8 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="TRAMXE" Relationship="QLXeKhachModel.FK__LOTRINH__MaTram__2B0A656D" FromRole="LOTRINH" ToRole="TRAMXE" />
+          <NavigationProperty Name="TUYENXE" Relationship="QLXeKhachModel.FK__LOTRINH__MaTuyen__2A164134" FromRole="LOTRINH" ToRole="TUYENXE" />
         </EntityType>
         <EntityType Name="NHANVIEN">
           <Key>
@@ -513,6 +598,7 @@
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
           <NavigationProperty Name="KHAOSATs" Relationship="Self.FK__KHAOSAT__NguoiKS__25869641" FromRole="NHANVIEN" ToRole="KHAOSAT" />
+          <NavigationProperty Name="HOPDONGs" Relationship="QLXeKhachModel.FK__HOPDONG__NguoiLa__29221CFB" FromRole="NHANVIEN" ToRole="HOPDONG" />
         </EntityType>
         <EntityType Name="TAIXE">
           <Key>
@@ -545,6 +631,8 @@
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
           <NavigationProperty Name="TRAMXEs" Relationship="Self.FK__TRAMXE__MaTT__31EC6D26" FromRole="TINHTHANH" ToRole="TRAMXE" />
+          <NavigationProperty Name="TUYENXEs" Relationship="QLXeKhachModel.FK__TUYENXE__DiemDen__2CF2ADDF" FromRole="TINHTHANH" ToRole="TUYENXE" />
+          <NavigationProperty Name="TUYENXEs1" Relationship="QLXeKhachModel.FK__TUYENXE__DiemDi__2BFE89A6" FromRole="TINHTHANH" ToRole="TUYENXE" />
         </EntityType>
         <EntityType Name="TRAMXE">
           <Key>
@@ -561,6 +649,8 @@
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
           <NavigationProperty Name="TINHTHANH" Relationship="Self.FK__TRAMXE__MaTT__31EC6D26" FromRole="TRAMXE" ToRole="TINHTHANH" />
+          <NavigationProperty Name="HOPDONGs" Relationship="QLXeKhachModel.FK__HOPDONG__MaTram__2739D489" FromRole="TRAMXE" ToRole="HOPDONG" />
+          <NavigationProperty Name="LOTRINHs" Relationship="QLXeKhachModel.FK__LOTRINH__MaTram__2B0A656D" FromRole="TRAMXE" ToRole="LOTRINH" />
         </EntityType>
         <EntityType Name="TUYENXE">
           <Key>
@@ -577,6 +667,9 @@
           <Property Name="createDate" Type="DateTime" Precision="3" />
           <Property Name="lastupdateDate" Type="DateTime" Precision="3" />
           <Property Name="isDeleted" Type="Int32" />
+          <NavigationProperty Name="LOTRINHs" Relationship="QLXeKhachModel.FK__LOTRINH__MaTuyen__2A164134" FromRole="TUYENXE" ToRole="LOTRINH" />
+          <NavigationProperty Name="TINHTHANH" Relationship="QLXeKhachModel.FK__TUYENXE__DiemDen__2CF2ADDF" FromRole="TUYENXE" ToRole="TINHTHANH" />
+          <NavigationProperty Name="TINHTHANH1" Relationship="QLXeKhachModel.FK__TUYENXE__DiemDi__2BFE89A6" FromRole="TUYENXE" ToRole="TINHTHANH" />
         </EntityType>
         <EntityType Name="VE">
           <Key>
@@ -679,7 +772,119 @@
             <End Role="TINHTHANH" EntitySet="TINHTHANHs" />
             <End Role="TRAMXE" EntitySet="TRAMXEs" />
           </AssociationSet>
+          <AssociationSet Name="FK__HOPDONG__MaDT__282DF8C2" Association="QLXeKhachModel.FK__HOPDONG__MaDT__282DF8C2">
+            <End Role="DOITAC" EntitySet="DOITACs" />
+            <End Role="HOPDONG" EntitySet="HOPDONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOPDONG__MaTram__2739D489" Association="QLXeKhachModel.FK__HOPDONG__MaTram__2739D489">
+            <End Role="TRAMXE" EntitySet="TRAMXEs" />
+            <End Role="HOPDONG" EntitySet="HOPDONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOPDONG__NguoiLa__29221CFB" Association="QLXeKhachModel.FK__HOPDONG__NguoiLa__29221CFB">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="HOPDONG" EntitySet="HOPDONGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOTRINH__MaTram__2B0A656D" Association="QLXeKhachModel.FK__LOTRINH__MaTram__2B0A656D">
+            <End Role="TRAMXE" EntitySet="TRAMXEs" />
+            <End Role="LOTRINH" EntitySet="LOTRINHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LOTRINH__MaTuyen__2A164134" Association="QLXeKhachModel.FK__LOTRINH__MaTuyen__2A164134">
+            <End Role="TUYENXE" EntitySet="TUYENXEs" />
+            <End Role="LOTRINH" EntitySet="LOTRINHs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TUYENXE__DiemDen__2CF2ADDF" Association="QLXeKhachModel.FK__TUYENXE__DiemDen__2CF2ADDF">
+            <End Role="TINHTHANH" EntitySet="TINHTHANHs" />
+            <End Role="TUYENXE" EntitySet="TUYENXEs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TUYENXE__DiemDi__2BFE89A6" Association="QLXeKhachModel.FK__TUYENXE__DiemDi__2BFE89A6">
+            <End Role="TINHTHANH" EntitySet="TINHTHANHs" />
+            <End Role="TUYENXE" EntitySet="TUYENXEs" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__HOPDONG__MaDT__282DF8C2">
+          <End Type="QLXeKhachModel.DOITAC" Role="DOITAC" Multiplicity="0..1" />
+          <End Type="QLXeKhachModel.HOPDONG" Role="HOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DOITAC">
+              <PropertyRef Name="MaDT" />
+            </Principal>
+            <Dependent Role="HOPDONG">
+              <PropertyRef Name="MaDT" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOPDONG__MaTram__2739D489">
+          <End Type="QLXeKhachModel.TRAMXE" Role="TRAMXE" Multiplicity="0..1" />
+          <End Type="QLXeKhachModel.HOPDONG" Role="HOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMXE">
+              <PropertyRef Name="MaTram" />
+            </Principal>
+            <Dependent Role="HOPDONG">
+              <PropertyRef Name="MaTram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOPDONG__NguoiLa__29221CFB">
+          <End Type="QLXeKhachModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="QLXeKhachModel.HOPDONG" Role="HOPDONG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="HOPDONG">
+              <PropertyRef Name="NguoiLap" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOTRINH__MaTram__2B0A656D">
+          <End Type="QLXeKhachModel.TRAMXE" Role="TRAMXE" Multiplicity="1" />
+          <End Type="QLXeKhachModel.LOTRINH" Role="LOTRINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRAMXE">
+              <PropertyRef Name="MaTram" />
+            </Principal>
+            <Dependent Role="LOTRINH">
+              <PropertyRef Name="MaTram" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LOTRINH__MaTuyen__2A164134">
+          <End Type="QLXeKhachModel.TUYENXE" Role="TUYENXE" Multiplicity="1" />
+          <End Type="QLXeKhachModel.LOTRINH" Role="LOTRINH" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TUYENXE">
+              <PropertyRef Name="MaTuyen" />
+            </Principal>
+            <Dependent Role="LOTRINH">
+              <PropertyRef Name="MaTuyen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TUYENXE__DiemDen__2CF2ADDF">
+          <End Type="QLXeKhachModel.TINHTHANH" Role="TINHTHANH" Multiplicity="0..1" />
+          <End Type="QLXeKhachModel.TUYENXE" Role="TUYENXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TINHTHANH">
+              <PropertyRef Name="MaTT" />
+            </Principal>
+            <Dependent Role="TUYENXE">
+              <PropertyRef Name="DiemDen" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TUYENXE__DiemDi__2BFE89A6">
+          <End Type="QLXeKhachModel.TINHTHANH" Role="TINHTHANH" Multiplicity="0..1" />
+          <End Type="QLXeKhachModel.TUYENXE" Role="TUYENXE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TINHTHANH">
+              <PropertyRef Name="MaTT" />
+            </Principal>
+            <Dependent Role="TUYENXE">
+              <PropertyRef Name="DiemDi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -14,6 +14,12 @@ namespace C43QLXeKhach.Models
     
     public partial class TUYENXE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TUYENXE()
+        {
+            this.LOTRINHs = new HashSet<LOTRINH>();
+        }
+    
         public int MaTuyen { get; set; }
         public string DiemDi { get; set; }
         public string DiemDen { get; set; }
@@ -25,5 +31,10 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LOTRINH> LOTRINHs { get; set; }
+        public virtual TINHTHANH TINHTHANH { get; set; }
+        public virtual TINHTHANH TINHTHANH1 { get; set; }
     }
 }

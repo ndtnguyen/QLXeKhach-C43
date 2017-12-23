@@ -23,5 +23,8 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        public virtual TRAMXE TRAMXE { get; set; }
+        public virtual TUYENXE TUYENXE { get; set; }
     }
 }

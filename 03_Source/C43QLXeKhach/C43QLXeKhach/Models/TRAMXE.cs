@@ -14,6 +14,13 @@ namespace C43QLXeKhach.Models
     
     public partial class TRAMXE
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TRAMXE()
+        {
+            this.HOPDONGs = new HashSet<HOPDONG>();
+            this.LOTRINHs = new HashSet<LOTRINH>();
+        }
+    
         public int MaTram { get; set; }
         public string TenTram { get; set; }
         public string MaTT { get; set; }
@@ -26,5 +33,9 @@ namespace C43QLXeKhach.Models
         public Nullable<int> isDeleted { get; set; }
     
         public virtual TINHTHANH TINHTHANH { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOPDONG> HOPDONGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LOTRINH> LOTRINHs { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace C43QLXeKhach.Models
         public NHANVIEN()
         {
             this.KHAOSATs = new HashSet<KHAOSAT>();
+            this.HOPDONGs = new HashSet<HOPDONG>();
         }
     
         public int MaNV { get; set; }
@@ -37,5 +38,7 @@ namespace C43QLXeKhach.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHAOSAT> KHAOSATs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOPDONG> HOPDONGs { get; set; }
     }
 }

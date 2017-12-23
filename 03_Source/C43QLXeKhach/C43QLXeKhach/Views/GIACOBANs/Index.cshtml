@@ -20,29 +20,30 @@
         <th>
             Tỉnh thành đến
         </th>
-        
+
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GiaCoBan1)
-        </td>
-        <td>
-           @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT1).ToString();
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GiaCoBan1)
+            </td>
+            <td>
+                @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT1).ToString();
 
-        </td>
-        <td>
-            @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT2).ToString();
-        </td>
+            </td>
+            <td>
+                @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT2).ToString();
+            </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id1= item.MaTT1, id2=item.MaTT2, id3=item.MaLoai }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id1 = item.MaTT1, id2 = item.MaTT2, id3 = item.MaLoai }) |
+                @Html.ActionLink("Details", "Details", new { id1 = item.MaTT1, id2 = item.MaTT2, id3 = item.MaLoai }) |
+                @Html.ActionLink("Delete", "Delete", new { id1 = item.MaTT1, id2 = item.MaTT2, id3 = item.MaLoai })
+            </td>
+        </tr>
+    }
 
 </table>

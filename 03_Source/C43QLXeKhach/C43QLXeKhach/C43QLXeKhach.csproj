@@ -295,12 +295,18 @@
     <Compile Include="Services\LOAIXEsService\LoaiXeService.cs" />
     <Compile Include="Services\KHACHHANGsService\IKhachHangService.cs" />
     <Compile Include="Services\KHACHHANGsService\KhachHangService.cs" />
+    <Compile Include="Services\LOTRINHsService\ILoTrinhService.cs" />
+    <Compile Include="Services\LOTRINHsService\LoTrinhService.cs" />
     <Compile Include="Services\NHANVIENsService\INhanVienService.cs" />
     <Compile Include="Services\NHANVIENsService\NhanVienService.cs" />
     <Compile Include="Services\TINHTHANHsService\ITinhThanhService.cs" />
     <Compile Include="Services\TINHTHANHsService\TinhThanhService.cs" />
     <Compile Include="Services\TRAMXEsService\ITramXeService.cs" />
     <Compile Include="Services\TRAMXEsService\TramXeService.cs" />
+    <Compile Include="Services\TUYENXEsService\ITuyenXeService.cs" />
+    <Compile Include="Services\TUYENXEsService\TuyenXeService.cs" />
+    <Compile Include="Services\XEsService\IXeService.cs" />
+    <Compile Include="Services\XEsService\XeService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\EncryptionUtil.cs" />
     <Compile Include="Utils\IdFormat.cs" />
@@ -417,6 +423,7 @@
     <Content Include="Models\C43QLXeKhachModel.edmx.diagram">
       <DependentUpon>C43QLXeKhachModel.edmx</DependentUpon>
     </Content>
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

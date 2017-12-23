@@ -14,6 +14,12 @@ namespace C43QLXeKhach.Models
     
     public partial class DOITAC
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DOITAC()
+        {
+            this.HOPDONGs = new HashSet<HOPDONG>();
+        }
+    
         public int MaDT { get; set; }
         public string TenDT { get; set; }
         public string NguoiDaiDien { get; set; }
@@ -25,5 +31,8 @@ namespace C43QLXeKhach.Models
         public Nullable<System.DateTime> createDate { get; set; }
         public Nullable<System.DateTime> lastupdateDate { get; set; }
         public Nullable<int> isDeleted { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOPDONG> HOPDONGs { get; set; }
     }
 }
