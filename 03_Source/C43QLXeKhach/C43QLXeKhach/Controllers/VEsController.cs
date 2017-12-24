@@ -7,17 +7,27 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.VEsService;
+using System.Security.Cryptography;
+using System.Text;
+using C43QLXeKhach.Utils;
 
 namespace C43QLXeKhach.Controllers
 {
     public class VEsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        IVeService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
 
+        public VEsController(IVeService service)
+        {
+            this.service = service;
+        }
         // GET: VEs
         public ActionResult Index()
         {
-            return View(db.VEs.ToList());
+            return View(service.GetAll());
         }
 
         // GET: VEs/Details/5
@@ -27,7 +37,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            VE vE = db.VEs.Find(id);
+            vw_ve vE = service.Detail(id);
             if (vE == null)
             {
                 return HttpNotFound();
@@ -50,8 +60,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.VEs.Add(vE);
-                db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
 
@@ -61,16 +70,8 @@ namespace C43QLXeKhach.Controllers
         // GET: VEs/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            VE vE = db.VEs.Find(id);
-            if (vE == null)
-            {
-                return HttpNotFound();
-            }
-            return View(vE);
+          
+            return View();
         }
 
         // POST: VEs/Edit/5
@@ -82,8 +83,7 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(vE).State = EntityState.Modified;
-                db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
             return View(vE);
@@ -92,16 +92,8 @@ namespace C43QLXeKhach.Controllers
         // GET: VEs/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            VE vE = db.VEs.Find(id);
-            if (vE == null)
-            {
-                return HttpNotFound();
-            }
-            return View(vE);
+           
+            return View();
         }
 
         // POST: VEs/Delete/5
@@ -109,17 +101,33 @@ namespace C43QLXeKhach.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            VE vE = db.VEs.Find(id);
-            db.VEs.Remove(vE);
-            db.SaveChanges();
+            
             return RedirectToAction("Index");
         }
 
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                VE vE = service.LoadVeWWithMaVe(int.Parse(listDelete[i]));
+                vE.isDeleted = 1;
+                service.Delete(vE);
+            }
+            return RedirectToAction("Index");
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                service.Dispose();
             }
             base.Dispose(disposing);
         }

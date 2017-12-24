@@ -281,6 +281,9 @@
     <Compile Include="Models\VE.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\vw_ve.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\XE.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
@@ -305,6 +308,8 @@
     <Compile Include="Services\TRAMXEsService\TramXeService.cs" />
     <Compile Include="Services\TUYENXEsService\ITuyenXeService.cs" />
     <Compile Include="Services\TUYENXEsService\TuyenXeService.cs" />
+    <Compile Include="Services\VEsService\IVeService.cs" />
+    <Compile Include="Services\VEsService\VeService.cs" />
     <Compile Include="Services\XEsService\IXeService.cs" />
     <Compile Include="Services\XEsService\XeService.cs" />
     <Compile Include="Startup.cs" />

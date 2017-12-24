@@ -32,6 +32,7 @@
         <AssociationConnector Association="QLXeKhachModel.FK__LOTRINH__MaTuyen__2A164134" />
         <AssociationConnector Association="QLXeKhachModel.FK__TUYENXE__DiemDen__2CF2ADDF" />
         <AssociationConnector Association="QLXeKhachModel.FK__TUYENXE__DiemDi__2BFE89A6" />
+        <EntityTypeShape EntityType="QLXeKhachModel.vw_ve" Width="1.5" PointX="13.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -42,5 +42,6 @@ namespace C43QLXeKhach.Models
         public virtual DbSet<TUYENXE> TUYENXEs { get; set; }
         public virtual DbSet<VE> VEs { get; set; }
         public virtual DbSet<XE> XEs { get; set; }
+        public virtual DbSet<vw_ve> vw_ve { get; set; }
     }
 }
