@@ -278,6 +278,9 @@
             getGioLenXe();
             getGiaVe();
         });
+        $('#selectTramXuong').on('change', function () {
+            getGiaVe();
+        });
         $('#selectGioKH').on('change', function () {
             getGioLenXe();
             getGiaVe();
@@ -343,7 +346,7 @@
                 async: false,
                 success: function (result) {
                     for (var i = 0; i < result.length; i++) {
-                        var html = "<option id=" + result[i].MaTram + " value=" + result[i].MaTram + " data-id=" + result[i].ThuTu + ">"
+                        var html = "<option value=" + result[i].MaTram + ">"
                             + result[i].TenTram
                             + "</option>"
                         $("#selectTramXuong").append(html)

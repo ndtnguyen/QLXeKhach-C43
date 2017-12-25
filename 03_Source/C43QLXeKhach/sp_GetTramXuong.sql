@@ -1,4 +1,5 @@
-
+drop procedure sp_GetTramXuong
+go
 create procedure sp_GetTramXuong(
 		@maDiemDi varchar(10),
 		@maDiemDen varchar(10),
@@ -6,8 +7,8 @@ create procedure sp_GetTramXuong(
 		)
 as
 begin
-	select t.MaTram
-		  ,t.TenTram
+	select t.MaTram 
+		  ,(t.TenTram + ': ' + t.DiaChi) as TenTram
 	from TUYENXE tx
 	left join LOTRINH lt
 	on tx.MaTuyen=lt.MaTuyen

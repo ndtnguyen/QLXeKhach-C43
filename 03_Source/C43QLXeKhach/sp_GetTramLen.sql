@@ -7,7 +7,7 @@ create procedure sp_GetTramLen(
 as
 begin
 	select t.MaTram
-		  ,t.TenTram
+		  ,(t.TenTram + ': ' + t.DiaChi) as TenTram
 		  ,lt.ThuTu
 	from TUYENXE tx
 	inner join LOTRINH lt
