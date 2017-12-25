@@ -266,6 +266,18 @@
     <Compile Include="Models\NHANVIEN.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetGioKH_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetTramLen_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_GetTramXuong_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Get_DiemDen_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TAIXE.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
@@ -315,6 +327,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\EncryptionUtil.cs" />
     <Compile Include="Utils\IdFormat.cs" />
+    <Compile Include="Utils\VeInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

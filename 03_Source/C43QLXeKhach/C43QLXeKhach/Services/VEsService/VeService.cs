@@ -84,6 +84,54 @@ namespace C43QLXeKhach.Services.VEsService
                 return context.VEs.Find(id);
             }
         }
+        public IList<sp_Get_DiemDen_Result> GetDiemDen(string maDiemDi)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                //return (from tx in context.TUYENXEs
+                //        join tt in context.TINHTHANHs
+                //        on tx.DiemDen equals tt.MaTT
+                //        where tx.DiemDi == maDiemDi
+                //        select tt).ToList();
+                return context.sp_Get_DiemDen(maDiemDi).ToList();
+            }
+        }
+
+        public IList<sp_GetTramLen_Result> GetTramLen(string maDiemDi, string maDiemDen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetTramLen(maDiemDi, maDiemDen).ToList();
+            }
+        }
+        public IList<sp_GetTramXuong_Result> GetTramXuong(string maDiemDi, string maDiemDen, int thuTuTramLen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetTramXuong(maDiemDi, maDiemDen, thuTuTramLen).ToList();
+            }
+        }
+        public IList<sp_GetGioKH_Result> GetGioKH(string maDiemDi, string maDiemDen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetGioKH(maDiemDi, maDiemDen).ToList();
+            }
+        }
+        public DateTime? GetGioLenXe(string maDiemDi, string maDiemDen, int maChuyen, int maTramLen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetGioLenXe(maDiemDi, maDiemDen, maChuyen, maTramLen).FirstOrDefault();
+            }
+        }
+        public decimal? GetGiaVe(int maTramLen, int maTramXuong, int machuyen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetGiaVe(maTramLen, maTramXuong, machuyen).FirstOrDefault();
+            }
+        }
         public void Dispose()
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())

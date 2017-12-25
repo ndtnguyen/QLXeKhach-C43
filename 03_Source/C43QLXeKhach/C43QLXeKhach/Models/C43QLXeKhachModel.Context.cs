@@ -12,6 +12,8 @@ namespace C43QLXeKhach.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class QLXeKhachEntities : DbContext
     {
@@ -43,5 +45,95 @@ namespace C43QLXeKhach.Models
         public virtual DbSet<VE> VEs { get; set; }
         public virtual DbSet<XE> XEs { get; set; }
         public virtual DbSet<vw_ve> vw_ve { get; set; }
+    
+        public virtual ObjectResult<sp_Get_DiemDen_Result> sp_Get_DiemDen(string maDiemDi)
+        {
+            var maDiemDiParameter = maDiemDi != null ?
+                new ObjectParameter("maDiemDi", maDiemDi) :
+                new ObjectParameter("maDiemDi", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Get_DiemDen_Result>("sp_Get_DiemDen", maDiemDiParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<decimal>> sp_GetGiaVe(Nullable<int> maTramLen, Nullable<int> maTramXuong, Nullable<int> machuyen)
+        {
+            var maTramLenParameter = maTramLen.HasValue ?
+                new ObjectParameter("maTramLen", maTramLen) :
+                new ObjectParameter("maTramLen", typeof(int));
+    
+            var maTramXuongParameter = maTramXuong.HasValue ?
+                new ObjectParameter("maTramXuong", maTramXuong) :
+                new ObjectParameter("maTramXuong", typeof(int));
+    
+            var machuyenParameter = machuyen.HasValue ?
+                new ObjectParameter("machuyen", machuyen) :
+                new ObjectParameter("machuyen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_GetGiaVe", maTramLenParameter, maTramXuongParameter, machuyenParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetGioKH_Result> sp_GetGioKH(string maDiemDi, string maDiemDen)
+        {
+            var maDiemDiParameter = maDiemDi != null ?
+                new ObjectParameter("maDiemDi", maDiemDi) :
+                new ObjectParameter("maDiemDi", typeof(string));
+    
+            var maDiemDenParameter = maDiemDen != null ?
+                new ObjectParameter("maDiemDen", maDiemDen) :
+                new ObjectParameter("maDiemDen", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetGioKH_Result>("sp_GetGioKH", maDiemDiParameter, maDiemDenParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetTramLen_Result> sp_GetTramLen(string maDiemDi, string maDiemDen)
+        {
+            var maDiemDiParameter = maDiemDi != null ?
+                new ObjectParameter("maDiemDi", maDiemDi) :
+                new ObjectParameter("maDiemDi", typeof(string));
+    
+            var maDiemDenParameter = maDiemDen != null ?
+                new ObjectParameter("maDiemDen", maDiemDen) :
+                new ObjectParameter("maDiemDen", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetTramLen_Result>("sp_GetTramLen", maDiemDiParameter, maDiemDenParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetTramXuong_Result> sp_GetTramXuong(string maDiemDi, string maDiemDen, Nullable<int> thuTuTramLen)
+        {
+            var maDiemDiParameter = maDiemDi != null ?
+                new ObjectParameter("maDiemDi", maDiemDi) :
+                new ObjectParameter("maDiemDi", typeof(string));
+    
+            var maDiemDenParameter = maDiemDen != null ?
+                new ObjectParameter("maDiemDen", maDiemDen) :
+                new ObjectParameter("maDiemDen", typeof(string));
+    
+            var thuTuTramLenParameter = thuTuTramLen.HasValue ?
+                new ObjectParameter("thuTuTramLen", thuTuTramLen) :
+                new ObjectParameter("thuTuTramLen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetTramXuong_Result>("sp_GetTramXuong", maDiemDiParameter, maDiemDenParameter, thuTuTramLenParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> sp_GetGioLenXe(string maDiemDi, string maDiemDen, Nullable<int> machuyen, Nullable<int> maTramLen)
+        {
+            var maDiemDiParameter = maDiemDi != null ?
+                new ObjectParameter("maDiemDi", maDiemDi) :
+                new ObjectParameter("maDiemDi", typeof(string));
+    
+            var maDiemDenParameter = maDiemDen != null ?
+                new ObjectParameter("maDiemDen", maDiemDen) :
+                new ObjectParameter("maDiemDen", typeof(string));
+    
+            var machuyenParameter = machuyen.HasValue ?
+                new ObjectParameter("machuyen", machuyen) :
+                new ObjectParameter("machuyen", typeof(int));
+    
+            var maTramLenParameter = maTramLen.HasValue ?
+                new ObjectParameter("maTramLen", maTramLen) :
+                new ObjectParameter("maTramLen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("sp_GetGioLenXe", maDiemDiParameter, maDiemDenParameter, machuyenParameter, maTramLenParameter);
+        }
     }
 }

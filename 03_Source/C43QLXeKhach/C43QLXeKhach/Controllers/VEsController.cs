@@ -29,7 +29,96 @@ namespace C43QLXeKhach.Controllers
         {
             return View(service.GetAll());
         }
+        //GetDiemDen
+        [HttpGet]
+        public ActionResult DiemDen()
+        {
+            var maDiemDi = Request.Params["maDiemDi"];
+            var kq = service.GetDiemDen(maDiemDi);
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
 
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
+
+        //GetTramLen
+        [HttpGet]
+        public ActionResult TramLen()
+        {
+            var maDiemDi = Request.Params["maDiemDi"];
+            var maDiemDen = Request.Params["maDiemDen"];
+            var kq = service.GetTramLen(maDiemDi, maDiemDen);
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
+
+        //GetTramXuong
+        [HttpGet]
+        public ActionResult TramXuong()
+        {
+            var maDiemDi = Request.Params["maDiemDi"];
+            var maDiemDen = Request.Params["maDiemDen"];
+            var thuTuTramLen = int.Parse(Request.Params["thuTuTramLen"]);
+            var kq = service.GetTramXuong(maDiemDi, maDiemDen,thuTuTramLen);
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
+        //GetGioKH
+        [HttpGet]
+        public ActionResult GioKH()
+        {
+            var maDiemDi = Request.Params["maDiemDi"];
+            var maDiemDen = Request.Params["maDiemDen"];
+            var kq = service.GetGioKH(maDiemDi, maDiemDen);
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
+
+        //GetGioLenXe
+        [HttpGet]
+        public ActionResult GioLenXe()
+        {
+            var maDiemDi = Request.Params["maDiemDi"];
+            var maDiemDen = Request.Params["maDiemDen"];
+            var maChuyen = int.Parse(Request.Params["maChuyen"]);
+            var maTramLen = int.Parse(Request.Params["maTramLen"]);
+            var kq = service.GetGioLenXe(maDiemDi, maDiemDen,maChuyen,maTramLen).ToString();
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
+        //GetGiaVe
+        [HttpGet]
+        public ActionResult GiaVe()
+        {
+            var maChuyen = int.Parse(Request.Params["maChuyen"]);
+            var maTramLen = int.Parse(Request.Params["maTramLen"]);
+            var maTramXuong = int.Parse(Request.Params["maTramXuong"]);
+            var kq = service.GetGiaVe(maTramLen, maTramXuong, maChuyen).ToString();
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
         // GET: VEs/Details/5
         public ActionResult Details(int? id)
         {
@@ -131,5 +220,6 @@ namespace C43QLXeKhach.Controllers
             }
             base.Dispose(disposing);
         }
+ 
     }
 }
