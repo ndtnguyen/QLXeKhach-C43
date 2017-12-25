@@ -9,7 +9,7 @@ create procedure sp_GetGioLenXe(
 as
 begin
 	select 
-		(select DATEADD(minute,lt.KhoangThoiGian,cx.NgayKH) as GioLenXe
+		(select DATEADD(minute,lt.KhoangThoiGian,cx.NgayKH)
 		from CHUYENXE cx
 		where cx.MaChuyen=@machuyen) as GioLenXe
 	from TUYENXE tx
@@ -18,5 +18,7 @@ begin
 	where  tx.DiemDi=@maDiemDi
 		and tx.DiemDen=@maDiemDen
 		and lt.MaTram=@maTramLen
+		and tx.isDeleted !=1
+		and lt.isDeleted!=1
 end
 go

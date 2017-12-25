@@ -16,5 +16,8 @@ begin
 	on lt.MaTram=t.MaTram
 	where  tx.DiemDi=@maDiemDi
 		and tx.DiemDen=@maDiemDen
+		and tx.isDeleted!=1
+		and t.isDeleted!=1
+		and lt.isDeleted !=1
 end
 go

@@ -23,5 +23,6 @@ begin
 						on cx.MaXe=x.MaXe
 						where cx.MaChuyen=@machuyen
 					)
+		  and g.isDeleted!=1
 end
 go

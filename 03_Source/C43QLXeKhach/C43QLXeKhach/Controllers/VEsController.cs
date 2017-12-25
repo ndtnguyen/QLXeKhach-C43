@@ -119,6 +119,19 @@ namespace C43QLXeKhach.Controllers
 
             return Json(kq, JsonRequestBehavior.AllowGet);
         }
+        //GetGheTrong
+        [HttpGet]
+        public ActionResult GheTrong()
+        {
+            var maChuyen = int.Parse(Request.Params["maChuyen"]);
+            var kq = service.GetGheTrong(maChuyen);
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
         // GET: VEs/Details/5
         public ActionResult Details(int? id)
         {
@@ -145,7 +158,7 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaVe,NgayMua,GiaMua,MaGhe,MaXe,MaChuyen,MaKH,TramLen,TramXuong,GioDi,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] VE vE)
+        public ActionResult Create([Bind(Include="TenKH,SDT,CMND,DiaChi,Email")] KHACHHANG KH, [Bind(Include = "GiaMua,MaGhe,MaChuyen,TramLen,TramXuong,GioDi,MaXe")] VE vE)
         {
             if (ModelState.IsValid)
             {

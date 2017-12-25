@@ -266,6 +266,9 @@
     <Compile Include="Models\NHANVIEN.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_getGheTrong_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_GetGioKH_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
@@ -335,6 +338,8 @@
     <Content Include="Content\datatables\dataTables.bootstrap4.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\jquery.datetimepicker.css" />
+    <Content Include="Content\select\bootstrap-select.css" />
+    <Content Include="Content\select\bootstrap-select.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -442,6 +447,7 @@
       <DependentUpon>C43QLXeKhachModel.edmx</DependentUpon>
     </Content>
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\select\bootstrap-select.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -458,6 +464,8 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\select\bootstrap-select.js" />
+    <Content Include="Scripts\select\bootstrap-select.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -570,6 +578,7 @@
     <Content Include="Views\XEs\Details.cshtml" />
     <Content Include="Views\XEs\Edit.cshtml" />
     <Content Include="Views\XEs\Index.cshtml" />
+    <Content Include="Scripts\select\bootstrap-select.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

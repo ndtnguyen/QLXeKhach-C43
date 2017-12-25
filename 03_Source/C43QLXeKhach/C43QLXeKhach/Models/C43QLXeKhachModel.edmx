@@ -399,6 +399,9 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
         <Function Name="sp_Get_DiemDen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="maDiemDi" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_getGheTrong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="machuyen" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GetGiaVe" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="maTramLen" Type="int" Mode="In" />
           <Parameter Name="maTramXuong" Type="int" Mode="In" />
@@ -904,6 +907,9 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
             <Parameter Name="machuyen" Mode="In" Type="Int32" />
             <Parameter Name="maTramLen" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_getGheTrong" ReturnType="Collection(QLXeKhachModel.sp_getGheTrong_Result)">
+            <Parameter Name="machuyen" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <Association Name="FK__HOPDONG__MaDT__282DF8C2">
           <End Type="QLXeKhachModel.DOITAC" Role="DOITAC" Multiplicity="0..1" />
@@ -1021,6 +1027,10 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
         <ComplexType Name="sp_GetTramXuong_Result">
           <Property Type="Int32" Name="MaTram" Nullable="true" />
           <Property Type="String" Name="TenTram" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_getGheTrong_Result">
+          <Property Type="Int32" Name="MaGhe" Nullable="false" />
+          <Property Type="Int32" Name="MaXe" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1358,6 +1368,14 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetGioLenXe" FunctionName="QLXeKhachModel.Store.sp_GetGioLenXe" />
+          <FunctionImportMapping FunctionImportName="sp_getGheTrong" FunctionName="QLXeKhachModel.Store.sp_getGheTrong">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_getGheTrong_Result">
+                <ScalarProperty Name="MaGhe" ColumnName="MaGhe" />
+                <ScalarProperty Name="MaXe" ColumnName="MaXe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

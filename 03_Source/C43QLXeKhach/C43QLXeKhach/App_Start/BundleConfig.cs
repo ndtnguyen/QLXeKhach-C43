@@ -40,6 +40,11 @@ namespace C43QLXeKhach
            "~/Scripts/datatables/jquery.dataTables.js",
            "~/Scripts/datatables/dataTables.bootstrap4.js",
            "~/Scripts/datatables/sb-admin-datatables.min.js"));
+            //select
+            bundles.Add(new StyleBundle("~/Content/select").Include(
+                     "~/Content/select/bootstrap-select.css"));
+            bundles.Add(new ScriptBundle("~/bundles/select").Include(
+           "~/Scripts/select/bootstrap-select.js"));
         }
     }
 }

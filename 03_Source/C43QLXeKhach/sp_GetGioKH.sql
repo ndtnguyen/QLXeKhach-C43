@@ -17,6 +17,10 @@ begin
 	on x.LoaiXe=lx.MaLoai
 	where  tx.DiemDi=@maDiemDi
 			and tx.DiemDen=@maDiemDen
+			and cx.isDeleted!=1
+			and tx.isDeleted!=1
+			and x.isDeleted!=1
+			and lx.isDeleted!=1
 end
 go
 

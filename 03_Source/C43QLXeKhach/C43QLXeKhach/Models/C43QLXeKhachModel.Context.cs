@@ -135,5 +135,14 @@ namespace C43QLXeKhach.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("sp_GetGioLenXe", maDiemDiParameter, maDiemDenParameter, machuyenParameter, maTramLenParameter);
         }
+    
+        public virtual ObjectResult<sp_getGheTrong_Result> sp_getGheTrong(Nullable<int> machuyen)
+        {
+            var machuyenParameter = machuyen.HasValue ?
+                new ObjectParameter("machuyen", machuyen) :
+                new ObjectParameter("machuyen", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_getGheTrong_Result>("sp_getGheTrong", machuyenParameter);
+        }
     }
 }

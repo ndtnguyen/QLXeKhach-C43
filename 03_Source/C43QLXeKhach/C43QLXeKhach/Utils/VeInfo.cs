@@ -12,20 +12,7 @@ namespace C43QLXeKhach.Utils
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.TINHTHANHs.ToList();
-            }
-        }
-        public static IList<TINHTHANH> GetDiemDen(string maDiemDi)
-        {
-            using (QLXeKhachEntities context = new QLXeKhachEntities())
-            {
-                //IList< = context.TUYENXEs.Where(x => x.DiemDi == maDiemDi).ToList();
-                var listTT = (from tx in context.TUYENXEs
-                              join tt in context.TINHTHANHs
-                              on tx.DiemDen equals tt.MaTT
-                              where tx.DiemDi == maDiemDi
-                              select tt).ToList();
-                return listTT;
+                return context.TINHTHANHs.Where(x=>x.isDeleted!=1).ToList();
             }
         }
     }

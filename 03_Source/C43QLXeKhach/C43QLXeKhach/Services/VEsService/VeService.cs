@@ -125,11 +125,18 @@ namespace C43QLXeKhach.Services.VEsService
                 return context.sp_GetGioLenXe(maDiemDi, maDiemDen, maChuyen, maTramLen).FirstOrDefault();
             }
         }
-        public decimal? GetGiaVe(int maTramLen, int maTramXuong, int machuyen)
+        public decimal? GetGiaVe(int maTramLen, int maTramXuong, int maChuyen)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.sp_GetGiaVe(maTramLen, maTramXuong, machuyen).FirstOrDefault();
+                return context.sp_GetGiaVe(maTramLen, maTramXuong, maChuyen).FirstOrDefault();
+            }
+        }
+        public IList<sp_getGheTrong_Result> GetGheTrong(int maChuyen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_getGheTrong(maChuyen).ToList();
             }
         }
         public void Dispose()

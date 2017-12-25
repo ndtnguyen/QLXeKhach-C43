@@ -61,51 +61,55 @@
         <div class="row">
             <div class="form-group">
                 <div class="col-md-2">
-
+                    <label>CMND</label>
                 </div>
                 <div class="col-md-4">
-
+                    @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
                     <label>Trạm Lên</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectTramLen"></select>
+                    <select class="form-control" id="selectTramLen" name="TramLen"></select>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group">
                 <div class="col-md-2">
-
+                    <label>Địa Chỉ</label>
                 </div>
                 <div class="col-md-4">
-
+                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
                     <label>Trạm Xuống</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectTramXuong"></select>
+                    <select class="form-control" id="selectTramXuong" name="TramXuong"></select>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group">
                 <div class="col-md-2">
-
+                    <label>Email</label>
                 </div>
                 <div class="col-md-4">
-
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
                     <label>Giờ Khởi Hành</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectGioKH"></select>
+                    <select class="form-control" id="selectGioKH" name="MaChuyen"></select>
                 </div>
             </div>
         </div>
+        
         <div class="row">
             <div class="form-group">
                 <div class="col-md-2">
@@ -118,7 +122,7 @@
                     <label>Giờ Lên Xe</label>
                 </div>
                 <div class="col-md-4">
-                    <label id="gioLenXe"></label>
+                    <input class="form-control" id="gioLenXe" readonly name="GioDi"/>
                 </div>
             </div>
         </div>
@@ -134,7 +138,25 @@
                     <label>Giá Vé</label>
                 </div>
                 <div class="col-md-4">
-                    <label id="giaVe"></label>
+                    <input class="form-control" id="giaVe" readonly name="GiaMua"/>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Chọn Ghế</label>
+                </div>
+                <div class="col-md-4" id="groupGhe">
+                    <select class="selectpicker" id="selectGhe" name="MaGhe" multiple title="Chọn ghế ..." data-live-search="true">
+                    </select>
+                    <input id="maXe" readonly name="MaXe" hidden/>
                 </div>
             </div>
         </div>
@@ -257,6 +279,7 @@
             getGioKH();
             getGioLenXe();
             getGiaVe();
+            getGheTrong();
         });
         $('#selectDiemDi').on('change', function () {
             getDiemDen();
@@ -284,6 +307,15 @@
         $('#selectGioKH').on('change', function () {
             getGioLenXe();
             getGiaVe();
+            //$("#groupGhe").empty();
+            //var html = '<select id="selectGhe" title="Chọn ghế ..."></select>';
+            //$("#groupGhe").append(html)
+            //$("#selectGhe").addClass("selectpicker")
+            //$("#selectGhe").multiple();
+            getGheTrong();
+        });
+        $('#selectGhe').on('change', function () {
+            
         });
         function getDiemDen() {
             var maDiemDi = $("#selectDiemDi").val();
@@ -386,17 +418,17 @@
             var maChuyen = $("#selectGioKH").val();
             var maTramLen = $("#selectTramLen").val();
             if (maChuyen == null || maTramLen == null) {
-                $("#gioLenXe").text("");
+                $("#gioLenXe").val("");
                 return
             }
-            $("#gioLenXe").text("");
+            $("#gioLenXe").val("");
             $.ajax({
                 url: '/VEs/GioLenXe?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&maChuyen=' + maChuyen +'&maTramLen='+ maTramLen,
                 type: 'GET',
                 dataType: 'json',
                 async: false,
                 success: function (result) {
-                    $("#gioLenXe").text(result);
+                    $("#gioLenXe").val(result);
                 },
                 error: function (err) {
                     console.log(err)
@@ -409,22 +441,50 @@
             var maTramLen = $("#selectTramLen").val();
             var maTramXuong = $("#selectTramXuong").val();
             if (maChuyen == null || maTramLen == null || maTramXuong==null) {
-                $("#giaVe").text("");
+                $("#giaVe").val("");
                 return
             }
-            $("#giaVe").text("");
+            $("#giaVe").val("");
             $.ajax({
                 url: '/VEs/GiaVe?maChuyen=' + maChuyen + '&maTramLen=' + maTramLen + '&maTramXuong=' +maTramXuong,
                 type: 'GET',
                 dataType: 'json',
                 async: false,
                 success: function (result) {
-                    $("#giaVe").text(result);
+                    $("#giaVe").val(result);
                 },
                 error: function (err) {
                     console.log(err)
                 }
             });
         }
+        function getGheTrong() {
+            var maChuyen = $("#selectGioKH").val();
+            if (maChuyen == null) {
+                //$("#selectGhe").empty();
+                return;
+            }
+            
+            //$("#selectGhe").empty();
+            $.ajax({
+                url: '/VEs/GheTrong?maChuyen=' + maChuyen,
+                type: 'GET',
+                dataType: 'json',
+                async: false,
+                success: function (result) {
+                    for (var i = 0; i < result.length; i++) {
+                        var html = "<option value=" + result[i].MaGhe + ">"
+                            + "G" + result[i].MaGhe
+                            + "</option>"
+                        $("#selectGhe").append(html)
+                    }
+                    $("#maXe").val(result[0].MaXe);
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            });
+        }
+
     </script>
 }
