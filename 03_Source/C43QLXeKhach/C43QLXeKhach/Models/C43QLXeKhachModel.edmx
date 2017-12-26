@@ -396,8 +396,14 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="sp_Get_DiemDen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="sp_Get_DiemDen_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="maDiemDi" Type="varchar" Mode="In" />
+          <Parameter Name="maTramLen" Type="int" Mode="In" />
+          <Parameter Name="maTramXuong" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetDiemDi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maTramLen" Type="int" Mode="In" />
+          <Parameter Name="maTramXuong" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_getGheTrong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="machuyen" Type="int" Mode="In" />
@@ -417,14 +423,9 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
           <Parameter Name="machuyen" Type="int" Mode="In" />
           <Parameter Name="maTramLen" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_GetTramLen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="maDiemDi" Type="varchar" Mode="In" />
-          <Parameter Name="maDiemDen" Type="varchar" Mode="In" />
-        </Function>
-        <Function Name="sp_GetTramXuong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="maDiemDi" Type="varchar" Mode="In" />
-          <Parameter Name="maDiemDen" Type="varchar" Mode="In" />
-          <Parameter Name="thuTuTramLen" Type="int" Mode="In" />
+        <Function Name="sp_GetTramLen_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="sp_GetTramXuong_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="maTramLen" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="QLXeKhachModelStoreContainer">
           <EntitySet Name="_SESSION" EntityType="Self._SESSION" Schema="dbo" store:Type="Tables" />
@@ -880,9 +881,6 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
             <End Role="TUYENXE" EntitySet="TUYENXEs" />
           </AssociationSet>
           <EntitySet Name="vw_ve" EntityType="QLXeKhachModel.vw_ve" />
-          <FunctionImport Name="sp_Get_DiemDen" ReturnType="Collection(QLXeKhachModel.sp_Get_DiemDen_Result)">
-          <Parameter Name="maDiemDi" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_GetGiaVe" ReturnType="Collection(Decimal)">
             <Parameter Name="maTramLen" Mode="In" Type="Int32" />
             <Parameter Name="maTramXuong" Mode="In" Type="Int32" />
@@ -892,15 +890,6 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
             <Parameter Name="maDiemDi" Mode="In" Type="String" />
             <Parameter Name="maDiemDen" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_GetTramLen" ReturnType="Collection(QLXeKhachModel.sp_GetTramLen_Result)">
-            <Parameter Name="maDiemDi" Mode="In" Type="String" />
-            <Parameter Name="maDiemDen" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_GetTramXuong" ReturnType="Collection(QLXeKhachModel.sp_GetTramXuong_Result)">
-            <Parameter Name="maDiemDi" Mode="In" Type="String" />
-            <Parameter Name="maDiemDen" Mode="In" Type="String" />
-            <Parameter Name="thuTuTramLen" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_GetGioLenXe" ReturnType="Collection(DateTime)">
             <Parameter Name="maDiemDi" Mode="In" Type="String" />
             <Parameter Name="maDiemDen" Mode="In" Type="String" />
@@ -908,7 +897,20 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
             <Parameter Name="maTramLen" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_getGheTrong" ReturnType="Collection(QLXeKhachModel.sp_getGheTrong_Result)">
-            <Parameter Name="machuyen" Mode="In" Type="Int32" />
+          <Parameter Name="machuyen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetDiemDi" ReturnType="Collection(QLXeKhachModel.sp_GetDiemDi_Result)">
+            <Parameter Name="maTramLen" Mode="In" Type="Int32" />
+            <Parameter Name="maTramXuong" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetTramLen_v2" ReturnType="Collection(QLXeKhachModel.sp_GetTramLen_v2_Result)" />
+          <FunctionImport Name="sp_GetTramXuong_v2" ReturnType="Collection(QLXeKhachModel.sp_GetTramXuong_v2_Result)">
+          <Parameter Name="maTramLen" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Get_DiemDen_v2" ReturnType="Collection(QLXeKhachModel.sp_Get_DiemDen_v2_Result)">
+            <Parameter Name="maDiemDi" Mode="In" Type="String" />
+            <Parameter Name="maTramLen" Mode="In" Type="Int32" />
+            <Parameter Name="maTramXuong" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <Association Name="FK__HOPDONG__MaDT__282DF8C2">
@@ -1011,26 +1013,29 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
           <Property Name="BienSoXe" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="sp_Get_DiemDen_Result">
-          <Property Type="String" Name="MaTT" Nullable="true" MaxLength="10" />
-          <Property Type="String" Name="TenTT" Nullable="true" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="sp_GetGioKH_Result">
           <Property Type="Int32" Name="MaChuyen" Nullable="true" />
           <Property Type="String" Name="GioKH" Nullable="true" MaxLength="82" />
         </ComplexType>
-        <ComplexType Name="sp_GetTramLen_Result">
-          <Property Type="Int32" Name="MaTram" Nullable="true" />
-          <Property Type="String" Name="TenTram" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="ThuTu" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_GetTramXuong_Result">
-          <Property Type="Int32" Name="MaTram" Nullable="true" />
-          <Property Type="String" Name="TenTram" Nullable="true" MaxLength="50" />
-        </ComplexType>
         <ComplexType Name="sp_getGheTrong_Result">
           <Property Type="Int32" Name="MaGhe" Nullable="false" />
           <Property Type="Int32" Name="MaXe" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GetDiemDi_Result">
+          <Property Type="String" Name="MaTT" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenTT" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_GetTramLen_v2_Result">
+          <Property Type="Int32" Name="MaTram" Nullable="false" />
+          <Property Type="String" Name="TenTram" Nullable="true" MaxLength="102" />
+        </ComplexType>
+        <ComplexType Name="sp_GetTramXuong_v2_Result">
+          <Property Type="Int32" Name="MaTram" Nullable="false" />
+          <Property Type="String" Name="TenTram" Nullable="true" MaxLength="102" />
+        </ComplexType>
+        <ComplexType Name="sp_Get_DiemDen_v2_Result">
+          <Property Type="String" Name="MaTT" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="TenTT" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1333,14 +1338,6 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_Get_DiemDen" FunctionName="QLXeKhachModel.Store.sp_Get_DiemDen">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_Get_DiemDen_Result">
-                <ScalarProperty Name="MaTT" ColumnName="MaTT" />
-                <ScalarProperty Name="TenTT" ColumnName="TenTT" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetGiaVe" FunctionName="QLXeKhachModel.Store.sp_GetGiaVe" />
           <FunctionImportMapping FunctionImportName="sp_GetGioKH" FunctionName="QLXeKhachModel.Store.sp_GetGioKH">
             <ResultMapping>
@@ -1350,29 +1347,44 @@ warning 6002: The table/view 'QLXeKhach.dbo.vw_ve' does not have a primary key d
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetTramLen" FunctionName="QLXeKhachModel.Store.sp_GetTramLen">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_GetTramLen_Result">
-                <ScalarProperty Name="MaTram" ColumnName="MaTram" />
-                <ScalarProperty Name="TenTram" ColumnName="TenTram" />
-                <ScalarProperty Name="ThuTu" ColumnName="ThuTu" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetTramXuong" FunctionName="QLXeKhachModel.Store.sp_GetTramXuong">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_GetTramXuong_Result">
-                <ScalarProperty Name="MaTram" ColumnName="MaTram" />
-                <ScalarProperty Name="TenTram" ColumnName="TenTram" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GetGioLenXe" FunctionName="QLXeKhachModel.Store.sp_GetGioLenXe" />
           <FunctionImportMapping FunctionImportName="sp_getGheTrong" FunctionName="QLXeKhachModel.Store.sp_getGheTrong">
             <ResultMapping>
               <ComplexTypeMapping TypeName="QLXeKhachModel.sp_getGheTrong_Result">
                 <ScalarProperty Name="MaGhe" ColumnName="MaGhe" />
                 <ScalarProperty Name="MaXe" ColumnName="MaXe" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetDiemDi" FunctionName="QLXeKhachModel.Store.sp_GetDiemDi">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_GetDiemDi_Result">
+                <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+                <ScalarProperty Name="TenTT" ColumnName="TenTT" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetTramLen_v2" FunctionName="QLXeKhachModel.Store.sp_GetTramLen_v2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_GetTramLen_v2_Result">
+                <ScalarProperty Name="MaTram" ColumnName="MaTram" />
+                <ScalarProperty Name="TenTram" ColumnName="TenTram" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetTramXuong_v2" FunctionName="QLXeKhachModel.Store.sp_GetTramXuong_v2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_GetTramXuong_v2_Result">
+                <ScalarProperty Name="MaTram" ColumnName="MaTram" />
+                <ScalarProperty Name="TenTram" ColumnName="TenTram" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Get_DiemDen_v2" FunctionName="QLXeKhachModel.Store.sp_Get_DiemDen_v2">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="QLXeKhachModel.sp_Get_DiemDen_v2_Result">
+                <ScalarProperty Name="MaTT" ColumnName="MaTT" />
+                <ScalarProperty Name="TenTT" ColumnName="TenTT" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

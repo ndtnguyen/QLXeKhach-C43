@@ -15,32 +15,6 @@
         <div class="row">
             <div class="form-group">
                 <div class="col-md-2">
-                    <label>Tên Khách Hàng</label>
-                </div>
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-md-2">
-                    <label>Điểm Đi</label>
-                </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="selectDiemDi">
-                        @foreach (var item in @C43QLXeKhach.Utils.VeInfo.GetDiemDi())
-                        {
-                            <option value=@item.MaTT>
-                                @item.TenTT
-                            </option>
-                        }
-
-                    </select>
-
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-2">
                     <label>Số Điện Thoại</label>
                 </div>
                 <div class="col-md-4">
@@ -48,10 +22,30 @@
                     @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
-                    <label>Điểm Đến</label>
+                    <label>Trạm Lên</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectDiemDen"></select>
+                    <select class="form-control" id="selectTramLen" name="TramLen">
+                       
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Tên Khách Hàng</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                </div>
+                
+                <div class="col-md-2">
+                    <label>Trạm Xuống</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="selectTramXuong" name="TramXuong"></select>
                 </div>
             </div>
         </div>
@@ -65,10 +59,14 @@
                     @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
-                    <label>Trạm Lên</label>
+                    <label>Điểm Đi</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectTramLen" name="TramLen"></select>
+                    <select class="form-control" id="selectDiemDi">
+                     
+
+                    </select>
+
                 </div>
             </div>
         </div>
@@ -82,10 +80,10 @@
                     @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-md-2">
-                    <label>Trạm Xuống</label>
+                    <label>Điểm Đến</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectTramXuong" name="TramXuong"></select>
+                    <select class="form-control" id="selectDiemDen"></select>
                 </div>
             </div>
         </div>
@@ -271,37 +269,44 @@
         @Scripts.Render("~/bundles/jqueryval")
         <script type="text/javascript">
             $(document).ready(function () {
-                getDiemDen();
                 getTramLen();
                 getTramXuong();
+                getDiemDi();
+                getDiemDen();
                 getGioKH();
                 getGioLenXe();
                 getGiaVe();
                 getGheTrong();
             });
-           
-            $('#selectDiemDi').on('change', function () {
-                getDiemDen();
-                getTramLen();
-                getTramXuong();
-                getGioKH();
-                getGioLenXe();
-                getGiaVe();
-            });
-            $('#selectDiemDen').on('change', function () {
-                getTramLen();
-                getTramXuong();
-                getGioKH();
-                getGioLenXe();
-                getGiaVe();
-            });
             $('#selectTramLen').on('change', function () {
                 getTramXuong();
+                getDiemDi();
+                getDiemDen();
+                getGioKH();
                 getGioLenXe();
                 getGiaVe();
+                getGheTrong();
             });
             $('#selectTramXuong').on('change', function () {
+                getDiemDi();
+                getDiemDen();
+                getGioKH();
+                getGioLenXe();
                 getGiaVe();
+                getGheTrong();
+            });
+            $('#selectDiemDi').on('change', function () {
+                getDiemDen();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $('#selectDiemDen').on('change', function () {
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
             });
             $('#selectGioKH').on('change', function () {
                 getGioLenXe();
@@ -319,11 +324,45 @@
                 $("#dsGhe").val(temp);
                 $("#frmCreate").submit();
             });
+
+            function getDiemDi() {
+                var maTramLen = $("#selectTramLen").val();
+                var maTramXuong = $("#selectTramXuong").val();
+                if (maTramLen == null||maTramXuong==null) {
+                    $("#selectDiemDi").empty();
+                    return
+                }
+                $("#selectDiemDi").empty();
+                $.ajax({
+                    url: '/VEs/DiemDi?maTramLen=' + maTramLen + '&maTramXuong=' + maTramXuong,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTT + ">"
+                                + result[i].TenTT
+                                + "</option>"
+                            $("#selectDiemDi").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
             function getDiemDen() {
                 var maDiemDi = $("#selectDiemDi").val();
+                var maTramLen = $("#selectTramLen").val();
+                var maTramXuong = $("#selectTramXuong").val();
+                if (maTramLen == null || maTramXuong == null) {
+                    $("#selectDiemDen").empty();
+                    return
+                }
                 $("#selectDiemDen").empty();
                 $.ajax({
-                    url: '/VEs/DiemDen?maDiemDi=' + maDiemDi,
+                    url: '/VEs/DiemDen?maDiemDi=' + maDiemDi + '&maTramLen=' + maTramLen + '&maTramXuong=' + maTramXuong,
                     type: 'GET',
                     dataType: 'json',
                     async: false,
@@ -342,17 +381,15 @@
             }
 
             function getTramLen() {
-                var maDiemDi = $("#selectDiemDi").val();
-                var maDiemDen = $("#selectDiemDen").val();
                 $("#selectTramLen").empty();
                 $.ajax({
-                    url: '/VEs/TramLen?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen,
+                    url: '/VEs/TramLen',
                     type: 'GET',
                     dataType: 'json',
                     async: false,
                     success: function (result) {
                         for (var i = 0; i < result.length; i++) {
-                            var html = "<option id=" + result[i].MaTram + " value=" + result[i].MaTram + " data-id=" + result[i].ThuTu + ">"
+                            var html = "<option value=" + result[i].MaTram +">"
                                 + result[i].TenTram
                                 + "</option>"
                             $("#selectTramLen").append(html)
@@ -364,17 +401,14 @@
                 });
             }
             function getTramXuong() {
-                var maDiemDi = $("#selectDiemDi").val();
-                var maDiemDen = $("#selectDiemDen").val();
                 var maTramLen = $("#selectTramLen").val();
                 if (maTramLen == null) {
                     $("#selectTramXuong").empty();
                     return
                 }
-                var thuTuTramLen = $("#" + maTramLen).data("id");
                 $("#selectTramXuong").empty();
                 $.ajax({
-                    url: '/VEs/TramXuong?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&thuTuTramLen=' + thuTuTramLen,
+                    url: '/VEs/TramXuong?maTramLen=' + maTramLen,
                     type: 'GET',
                     dataType: 'json',
                     async: false,

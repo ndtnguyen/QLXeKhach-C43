@@ -11,9 +11,9 @@ namespace C43QLXeKhach.Models
 {
     using System;
     
-    public partial class sp_GetTramXuong_Result
+    public partial class sp_GetDiemDi_Result
     {
-        public Nullable<int> MaTram { get; set; }
-        public string TenTram { get; set; }
+        public string MaTT { get; set; }
+        public string TenTT { get; set; }
     }
 }

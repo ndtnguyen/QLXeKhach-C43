@@ -266,19 +266,25 @@
     <Compile Include="Models\NHANVIEN.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetDiemDi_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\sp_getGheTrong_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_GetGioKH_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_GetTramLen_Result.cs">
+    <Compile Include="Models\sp_GetTramLen_v2_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_GetTramXuong_Result.cs">
+    <Compile Include="Models\sp_GetTramXuong_v2_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\sp_Get_DiemDen_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_Get_DiemDen_v2_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAIXE.cs">

@@ -32,12 +32,28 @@ namespace C43QLXeKhach.Controllers
         {
             return View(service.GetAll());
         }
+        //GetDiemDi
+        [HttpGet]
+        public ActionResult DiemDi()
+        {
+            var maTramLen = int.Parse(Request.Params["maTramLen"]);
+            var maTramXuong = int.Parse(Request.Params["maTramXuong"]);
+            var kq = service.GetDiemDi(maTramLen,maTramXuong);
+            if (kq == null)
+            {
+                return HttpNotFound();
+            }
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
         //GetDiemDen
         [HttpGet]
         public ActionResult DiemDen()
         {
             var maDiemDi = Request.Params["maDiemDi"];
-            var kq = service.GetDiemDen(maDiemDi);
+            var maTramLen = int.Parse(Request.Params["maTramLen"]);
+            var maTramXuong = int.Parse(Request.Params["maTramXuong"]);
+            var kq = service.GetDiemDen(maDiemDi,maTramLen,maTramXuong);
             if (kq == null)
             {
                 return HttpNotFound();
@@ -50,9 +66,8 @@ namespace C43QLXeKhach.Controllers
         [HttpGet]
         public ActionResult TramLen()
         {
-            var maDiemDi = Request.Params["maDiemDi"];
-            var maDiemDen = Request.Params["maDiemDen"];
-            var kq = service.GetTramLen(maDiemDi, maDiemDen);
+            
+            var kq = service.GetTramLen();
             if (kq == null)
             {
                 return HttpNotFound();
@@ -65,10 +80,8 @@ namespace C43QLXeKhach.Controllers
         [HttpGet]
         public ActionResult TramXuong()
         {
-            var maDiemDi = Request.Params["maDiemDi"];
-            var maDiemDen = Request.Params["maDiemDen"];
-            var thuTuTramLen = int.Parse(Request.Params["thuTuTramLen"]);
-            var kq = service.GetTramXuong(maDiemDi, maDiemDen,thuTuTramLen);
+            var maTramLen = int.Parse(Request.Params["maTramLen"]);
+            var kq = service.GetTramXuong(maTramLen);
             if (kq == null)
             {
                 return HttpNotFound();

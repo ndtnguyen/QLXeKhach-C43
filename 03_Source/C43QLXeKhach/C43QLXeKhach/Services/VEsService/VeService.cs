@@ -84,31 +84,56 @@ namespace C43QLXeKhach.Services.VEsService
                 return context.VEs.Find(id);
             }
         }
-        public IList<sp_Get_DiemDen_Result> GetDiemDen(string maDiemDi)
+        public IList<sp_GetDiemDi_Result> GetDiemDi(int maTramLen, int maTramXuong)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                //return (from tx in context.TUYENXEs
-                //        join tt in context.TINHTHANHs
-                //        on tx.DiemDen equals tt.MaTT
-                //        where tx.DiemDi == maDiemDi
-                //        select tt).ToList();
-                return context.sp_Get_DiemDen(maDiemDi).ToList();
-            }
-        }
 
-        public IList<sp_GetTramLen_Result> GetTramLen(string maDiemDi, string maDiemDen)
-        {
-            using (QLXeKhachEntities context = new QLXeKhachEntities())
-            {
-                return context.sp_GetTramLen(maDiemDi, maDiemDen).ToList();
+                return context.sp_GetDiemDi(maTramLen, maTramXuong).ToList();
             }
         }
-        public IList<sp_GetTramXuong_Result> GetTramXuong(string maDiemDi, string maDiemDen, int thuTuTramLen)
+        //public IList<sp_Get_DiemDen_Result> GetDiemDen(string maDiemDi)
+        //{
+        //    using (QLXeKhachEntities context = new QLXeKhachEntities())
+        //    {
+               
+        //        return context.sp_Get_DiemDen(maDiemDi).ToList();
+        //    }
+        //}
+        public IList<sp_Get_DiemDen_v2_Result> GetDiemDen(string maDiemDi, int maTramLen, int maTramXuong)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.sp_GetTramXuong(maDiemDi, maDiemDen, thuTuTramLen).ToList();
+
+                return context.sp_Get_DiemDen_v2(maDiemDi, maTramLen, maTramXuong).ToList();
+            }
+        }
+        //public IList<sp_GetTramLen_Result> GetTramLen(string maDiemDi, string maDiemDen)
+        //{
+        //    using (QLXeKhachEntities context = new QLXeKhachEntities())
+        //    {
+        //        return context.sp_GetTramLen(maDiemDi, maDiemDen).ToList();
+        //    }
+        //}
+        public IList<sp_GetTramLen_v2_Result> GetTramLen()
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetTramLen_v2().ToList();
+            }
+        }
+        //public IList<sp_GetTramXuong_Result> GetTramXuong(string maDiemDi, string maDiemDen, int thuTuTramLen)
+        //{
+        //    using (QLXeKhachEntities context = new QLXeKhachEntities())
+        //    {
+        //        return context.sp_GetTramXuong(maDiemDi, maDiemDen, thuTuTramLen).ToList();
+        //    }
+        //}
+        public IList<sp_GetTramXuong_v2_Result> GetTramXuong(int maTramLen)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_GetTramXuong_v2(maTramLen).ToList();
             }
         }
         public IList<sp_GetGioKH_Result> GetGioKH(string maDiemDi, string maDiemDen)
