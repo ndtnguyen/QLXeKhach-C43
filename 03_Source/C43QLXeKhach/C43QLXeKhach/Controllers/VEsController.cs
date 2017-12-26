@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using C43QLXeKhach.Models;
 using NLog;
 using C43QLXeKhach.Services.VEsService;
+using C43QLXeKhach.Services.KHACHHANGsService;
 using System.Security.Cryptography;
 using System.Text;
 using C43QLXeKhach.Utils;
@@ -18,11 +19,13 @@ namespace C43QLXeKhach.Controllers
     public class VEsController : Controller
     {
         IVeService service;
+        IKhachHangService khService;
         ILogger logger = LogManager.GetCurrentClassLogger();
 
-        public VEsController(IVeService service)
+        public VEsController(IVeService service,IKhachHangService khService)
         {
             this.service = service;
+            this.khService = khService;
         }
         // GET: VEs
         public ActionResult Index()
@@ -158,11 +161,22 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="TenKH,SDT,CMND,DiaChi,Email")] KHACHHANG KH, [Bind(Include = "GiaMua,MaGhe,MaChuyen,TramLen,TramXuong,GioDi,MaXe")] VE vE)
+        public ActionResult Create([Bind(Include="TenKH,SDT,CMND,DiaChi,Email")] KHACHHANG KH, [Bind(Include = "GiaMua,MaChuyen,TramLen,TramXuong,GioDi,MaXe")] VE vE, [Bind(Include = "strGhe")] string strGhe)
         {
             if (ModelState.IsValid)
             {
-                
+                string[] dsGhe= strGhe.Split(',');
+                KH.isDeleted = 0;
+                int MaKH=khService.Add(KH);
+                DateTime current = DateTime.Now;
+                for(int i = 0; i < dsGhe.Length; i++)
+                {
+                    vE.MaKH = MaKH;
+                    vE.MaGhe = int.Parse(dsGhe[i]);
+                    vE.isDeleted = 0;
+                    vE.NgayMua = current;
+                    service.Add(vE);
+;                }            
                 return RedirectToAction("Index");
             }
 

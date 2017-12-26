@@ -1,14 +1,13 @@
 ﻿@model C43QLXeKhach.Models.KHACHHANG
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Đặt Vé";
 }
 
-<h2>Create</h2>
+<h2>Đặt Vé</h2>
 
 
-@using (Html.BeginForm()) 
-{
+<form action="/VEs/Create" method="post" id="frmCreate">
     @Html.AntiForgeryToken()
 
     <div>
@@ -26,15 +25,15 @@
                     <label>Điểm Đi</label>
                 </div>
                 <div class="col-md-4">
-                <select class="form-control" id="selectDiemDi">
-                    @foreach (var item in @C43QLXeKhach.Utils.VeInfo.GetDiemDi())
-                    {
-                        <option value=@item.MaTT>
-                            @item.TenTT
-                        </option>
-                    }
+                    <select class="form-control" id="selectDiemDi">
+                        @foreach (var item in @C43QLXeKhach.Utils.VeInfo.GetDiemDi())
+                        {
+                            <option value=@item.MaTT>
+                                @item.TenTT
+                            </option>
+                        }
 
-                </select>
+                    </select>
 
                 </div>
             </div>
@@ -52,9 +51,7 @@
                     <label>Điểm Đến</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="form-control" id="selectDiemDen">
-                     
-                    </select>
+                    <select class="form-control" id="selectDiemDen"></select>
                 </div>
             </div>
         </div>
@@ -109,7 +106,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="form-group">
                 <div class="col-md-2">
@@ -122,7 +119,7 @@
                     <label>Giờ Lên Xe</label>
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" id="gioLenXe" readonly name="GioDi"/>
+                    <input class="form-control" id="gioLenXe" readonly name="GioDi" />
                 </div>
             </div>
         </div>
@@ -138,7 +135,7 @@
                     <label>Giá Vé</label>
                 </div>
                 <div class="col-md-4">
-                    <input class="form-control" id="giaVe" readonly name="GiaMua"/>
+                    <input class="form-control" id="giaVe" readonly name="GiaMua" />
                 </div>
             </div>
         </div>
@@ -153,10 +150,10 @@
                 <div class="col-md-2">
                     <label>Chọn Ghế</label>
                 </div>
-                <div class="col-md-4" id="groupGhe">
-                    <select class="selectpicker" id="selectGhe" name="MaGhe" multiple title="Chọn ghế ..." data-live-search="true">
-                    </select>
-                    <input id="maXe" readonly name="MaXe" hidden/>
+                <div class="col-md-4">
+                    <select class="selectpicker" id="selectGhe" name="MaGhe" multiple title="Chọn ghế ..." data-live-search="true"></select>
+                    <input id="maXe" readonly name="MaXe" hidden />
+                    <input id="dsGhe" readonly name="strGhe" hidden />
                 </div>
             </div>
         </div>
@@ -256,235 +253,243 @@
                 </div>
             </div>*@
 
+    </div>
+    </form>
+    <div class="row">
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-success" />
+            <div class="col-md-offset-5 col-md-2">
+                <button class="btn btn-success" id="btn_submit">Thêm</button>
             </div>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Quay Về", "Index")
-</div>
+    <div>
+        @Html.ActionLink("Quay Về", "Index")
+    </div>
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-        $(document).ready(function () {
-            getDiemDen();
-            getTramLen();
-            getTramXuong();
-            getGioKH();
-            getGioLenXe();
-            getGiaVe();
-            getGheTrong();
-        });
-        $('#selectDiemDi').on('change', function () {
-            getDiemDen();
-            getTramLen();
-            getTramXuong();
-            getGioKH();
-            getGioLenXe();
-            getGiaVe();
-        });
-        $('#selectDiemDen').on('change', function () {
-            getTramLen();
-            getTramXuong();
-            getGioKH();
-            getGioLenXe();
-            getGiaVe();
-        });
-        $('#selectTramLen').on('change', function () {
-            getTramXuong();
-            getGioLenXe();
-            getGiaVe();
-        });
-        $('#selectTramXuong').on('change', function () {
-            getGiaVe();
-        });
-        $('#selectGioKH').on('change', function () {
-            getGioLenXe();
-            getGiaVe();
-            //$("#groupGhe").empty();
-            //var html = '<select id="selectGhe" title="Chọn ghế ..."></select>';
-            //$("#groupGhe").append(html)
-            //$("#selectGhe").addClass("selectpicker")
-            //$("#selectGhe").multiple();
-            getGheTrong();
-        });
-        $('#selectGhe').on('change', function () {
-            
-        });
-        function getDiemDen() {
-            var maDiemDi = $("#selectDiemDi").val();
-            $("#selectDiemDen").empty();
-            $.ajax({
-                url: '/VEs/DiemDen?maDiemDi=' + maDiemDi,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    for (var i = 0; i < result.length; i++) {
-                        var html = "<option value=" + result[i].MaTT + ">"
-                            + result[i].TenTT
-                            + "</option>"
-                        $("#selectDiemDen").append(html)
-                    }
-                },
-                error: function (err) {
-                    console.log(err)
-                }
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+            $(document).ready(function () {
+                getDiemDen();
+                getTramLen();
+                getTramXuong();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
             });
-        }
-
-        function getTramLen() {
-            var maDiemDi = $("#selectDiemDi").val();
-            var maDiemDen = $("#selectDiemDen").val();
-            $("#selectTramLen").empty();
-            $.ajax({
-                url: '/VEs/TramLen?maDiemDi=' + maDiemDi +'&maDiemDen=' + maDiemDen ,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    for (var i = 0; i < result.length; i++) {
-                        var html = "<option id=" + result[i].MaTram + " value=" + result[i].MaTram + " data-id=" + result[i].ThuTu +">"
-                            + result[i].TenTram
-                            + "</option>"
-                        $("#selectTramLen").append(html)
-                    }
-                },
-                error: function (err) {
-                    console.log(err)
-                }
+           
+            $('#selectDiemDi').on('change', function () {
+                getDiemDen();
+                getTramLen();
+                getTramXuong();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
             });
-        }
-        function getTramXuong() {
-            var maDiemDi = $("#selectDiemDi").val();
-            var maDiemDen = $("#selectDiemDen").val();
-            var maTramLen = $("#selectTramLen").val();
-            if (maTramLen == null) {
+            $('#selectDiemDen').on('change', function () {
+                getTramLen();
+                getTramXuong();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+            });
+            $('#selectTramLen').on('change', function () {
+                getTramXuong();
+                getGioLenXe();
+                getGiaVe();
+            });
+            $('#selectTramXuong').on('change', function () {
+                getGiaVe();
+            });
+            $('#selectGioKH').on('change', function () {
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $("#btn_submit").on('click', function () {
+                var temp = $(".filter-option").text();
+                if (temp === "Chọn ghế ...") {
+                    alert("Vui lòng chọn ghế trước khi đặt vé");
+                    return;
+                }
+                temp = temp.replace(/\ /g, '');
+                temp = temp.replace(/\G/g, '');
+                $("#dsGhe").val(temp);
+                $("#frmCreate").submit();
+            });
+            function getDiemDen() {
+                var maDiemDi = $("#selectDiemDi").val();
+                $("#selectDiemDen").empty();
+                $.ajax({
+                    url: '/VEs/DiemDen?maDiemDi=' + maDiemDi,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTT + ">"
+                                + result[i].TenTT
+                                + "</option>"
+                            $("#selectDiemDen").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+            function getTramLen() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maDiemDen = $("#selectDiemDen").val();
+                $("#selectTramLen").empty();
+                $.ajax({
+                    url: '/VEs/TramLen?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option id=" + result[i].MaTram + " value=" + result[i].MaTram + " data-id=" + result[i].ThuTu + ">"
+                                + result[i].TenTram
+                                + "</option>"
+                            $("#selectTramLen").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+            function getTramXuong() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maDiemDen = $("#selectDiemDen").val();
+                var maTramLen = $("#selectTramLen").val();
+                if (maTramLen == null) {
+                    $("#selectTramXuong").empty();
+                    return
+                }
+                var thuTuTramLen = $("#" + maTramLen).data("id");
                 $("#selectTramXuong").empty();
-                return
+                $.ajax({
+                    url: '/VEs/TramXuong?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&thuTuTramLen=' + thuTuTramLen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTram + ">"
+                                + result[i].TenTram
+                                + "</option>"
+                            $("#selectTramXuong").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
             }
-            var thuTuTramLen = $("#" + maTramLen).data("id");
-            $("#selectTramXuong").empty();
-            $.ajax({
-                url: '/VEs/TramXuong?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&thuTuTramLen=' + thuTuTramLen,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    for (var i = 0; i < result.length; i++) {
-                        var html = "<option value=" + result[i].MaTram + ">"
-                            + result[i].TenTram
-                            + "</option>"
-                        $("#selectTramXuong").append(html)
-                    }
-                },
-                error: function (err) {
-                    console.log(err)
-                }
-            });
-        }
 
-        function getGioKH() {
-            var maDiemDi = $("#selectDiemDi").val();
-            var maDiemDen = $("#selectDiemDen").val();
-            $("#selectGioKH").empty();
-            $.ajax({
-                url: '/VEs/GioKH?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    for (var i = 0; i < result.length; i++) {
-                        var html = "<option value=" + result[i].MaChuyen + ">"
-                            + result[i].GioKH
-                            + "</option>"
-                        $("#selectGioKH").append(html)
+            function getGioKH() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maDiemDen = $("#selectDiemDen").val();
+                $("#selectGioKH").empty();
+                $.ajax({
+                    url: '/VEs/GioKH?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaChuyen + ">"
+                                + result[i].GioKH
+                                + "</option>"
+                            $("#selectGioKH").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
                     }
-                },
-                error: function (err) {
-                    console.log(err)
+                });
+            }
+            function getGioLenXe() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maDiemDen = $("#selectDiemDen").val();
+                var maChuyen = $("#selectGioKH").val();
+                var maTramLen = $("#selectTramLen").val();
+                if (maChuyen == null || maTramLen == null) {
+                    $("#gioLenXe").val("");
+                    return
                 }
-            });
-        }
-        function getGioLenXe() {
-            var maDiemDi = $("#selectDiemDi").val();
-            var maDiemDen = $("#selectDiemDen").val();
-            var maChuyen = $("#selectGioKH").val();
-            var maTramLen = $("#selectTramLen").val();
-            if (maChuyen == null || maTramLen == null) {
                 $("#gioLenXe").val("");
-                return
-            }
-            $("#gioLenXe").val("");
-            $.ajax({
-                url: '/VEs/GioLenXe?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&maChuyen=' + maChuyen +'&maTramLen='+ maTramLen,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    $("#gioLenXe").val(result);
-                },
-                error: function (err) {
-                    console.log(err)
-                }
-            });
-        }
-
-        function getGiaVe() {
-            var maChuyen = $("#selectGioKH").val();
-            var maTramLen = $("#selectTramLen").val();
-            var maTramXuong = $("#selectTramXuong").val();
-            if (maChuyen == null || maTramLen == null || maTramXuong==null) {
-                $("#giaVe").val("");
-                return
-            }
-            $("#giaVe").val("");
-            $.ajax({
-                url: '/VEs/GiaVe?maChuyen=' + maChuyen + '&maTramLen=' + maTramLen + '&maTramXuong=' +maTramXuong,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    $("#giaVe").val(result);
-                },
-                error: function (err) {
-                    console.log(err)
-                }
-            });
-        }
-        function getGheTrong() {
-            var maChuyen = $("#selectGioKH").val();
-            if (maChuyen == null) {
-                //$("#selectGhe").empty();
-                return;
-            }
-            
-            //$("#selectGhe").empty();
-            $.ajax({
-                url: '/VEs/GheTrong?maChuyen=' + maChuyen,
-                type: 'GET',
-                dataType: 'json',
-                async: false,
-                success: function (result) {
-                    for (var i = 0; i < result.length; i++) {
-                        var html = "<option value=" + result[i].MaGhe + ">"
-                            + "G" + result[i].MaGhe
-                            + "</option>"
-                        $("#selectGhe").append(html)
+                $.ajax({
+                    url: '/VEs/GioLenXe?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&maChuyen=' + maChuyen + '&maTramLen=' + maTramLen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        $("#gioLenXe").val(result);
+                    },
+                    error: function (err) {
+                        console.log(err)
                     }
-                    $("#maXe").val(result[0].MaXe);
-                },
-                error: function (err) {
-                    console.log(err)
-                }
-            });
-        }
+                });
+            }
 
-    </script>
-}
+            function getGiaVe() {
+                var maChuyen = $("#selectGioKH").val();
+                var maTramLen = $("#selectTramLen").val();
+                var maTramXuong = $("#selectTramXuong").val();
+                if (maChuyen == null || maTramLen == null || maTramXuong == null) {
+                    $("#giaVe").val("");
+                    return
+                }
+                $("#giaVe").val("");
+                $.ajax({
+                    url: '/VEs/GiaVe?maChuyen=' + maChuyen + '&maTramLen=' + maTramLen + '&maTramXuong=' + maTramXuong,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        $("#giaVe").val(result);
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+            function getGheTrong() {
+                var maChuyen = $("#selectGioKH").val();
+                if (maChuyen == null) {
+                    $("#selectGhe").empty();
+                    return;
+                }
+
+                $("#selectGhe").empty();
+                $.ajax({
+                    url: '/VEs/GheTrong?maChuyen=' + maChuyen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaGhe + ">"
+                                + "G" + result[i].MaGhe
+                                + "</option>"
+                            $("#selectGhe").append(html)
+                        }
+                        if (result.length > 0) {
+                            $("#maXe").val(result[0].MaXe);
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+                $('.selectpicker').selectpicker('refresh');
+            }
+
+        </script>
+    }

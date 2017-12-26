@@ -35,7 +35,7 @@ namespace C43QLXeKhach.Services.KHACHHANGsService
                 kh.lastupdateDate = current;
                 context.KHACHHANGs.Add(kh);
                 context.SaveChanges();
-                return 1;
+                return kh.MaKH;
             }
         }
         public void Update(KHACHHANG kh)
