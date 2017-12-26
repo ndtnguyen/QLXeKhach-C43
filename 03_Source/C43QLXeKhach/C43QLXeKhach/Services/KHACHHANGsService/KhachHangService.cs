@@ -16,7 +16,7 @@ namespace C43QLXeKhach.Services.KHACHHANGsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.KHACHHANGs.Where(x=>x.isDeleted!=1).ToList();
+                return context.KHACHHANGs.Where(x => x.isDeleted != 1).ToList();
             }
         }
         public int Add(KHACHHANG kh)
@@ -27,7 +27,7 @@ namespace C43QLXeKhach.Services.KHACHHANGsService
                 if (user != null)
                 {
                     NHANVIEN currentUser = (NHANVIEN)user;
-                    kh.createUser= currentUser.MaNV;
+                    kh.createUser = currentUser.MaNV;
                     kh.lastupdateUser = currentUser.MaNV;
                 }
                 DateTime current = DateTime.Now;
@@ -92,6 +92,24 @@ namespace C43QLXeKhach.Services.KHACHHANGsService
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
                 return context.KHACHHANGs.Where(x => x.isDeleted != 1 && (x.TenKH.Contains(input) || input == "")).ToList();
+            }
+        }
+        public KHACHHANG GetKH_SDT(string sdt)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.KHACHHANGs.Where(x => x.SDT == sdt).FirstOrDefault();
+            }
+        }
+        public KHACHHANG GetKH_MaVe(int? mave)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return (from ve in context.VEs
+                        join kh in context.KHACHHANGs
+                        on ve.MaKH equals kh.MaKH
+                        where ve.MaVe ==mave
+                        select kh).FirstOrDefault();
             }
         }
     }

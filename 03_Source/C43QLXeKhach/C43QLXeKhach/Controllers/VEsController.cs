@@ -148,6 +148,16 @@ namespace C43QLXeKhach.Controllers
 
             return Json(kq, JsonRequestBehavior.AllowGet);
         }
+        //GetKhachHang
+        [HttpGet]
+        public ActionResult KhachHang()
+        {
+            var sdt = Request.Params["SDT"];
+            var kq = khService.GetKH_SDT(sdt);
+            
+
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
         // GET: VEs/Details/5
         public ActionResult Details(int? id)
         {
@@ -174,17 +184,24 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="TenKH,SDT,CMND,DiaChi,Email")] KHACHHANG KH, [Bind(Include = "GiaMua,MaChuyen,TramLen,TramXuong,GioDi,MaXe")] VE vE, [Bind(Include = "strGhe")] string strGhe)
+        public ActionResult Create([Bind(Include="TenKH,SDT,CMND,DiaChi,Email")] KHACHHANG KH, [Bind(Include = "GiaMua,MaChuyen,TramLen,TramXuong,GioDi,MaXe")] VE vE, string strGhe,string MaKH)
         {
             if (ModelState.IsValid)
             {
                 string[] dsGhe= strGhe.Split(',');
-                KH.isDeleted = 0;
-                int MaKH=khService.Add(KH);
+                int maKHNew=-1;
+                if (MaKH=="") {
+                    KH.isDeleted = 0;
+                    maKHNew = khService.Add(KH);
+                }
+                else
+                {
+                    maKHNew = int.Parse(MaKH);
+                }            
                 DateTime current = DateTime.Now;
                 for(int i = 0; i < dsGhe.Length; i++)
                 {
-                    vE.MaKH = MaKH;
+                    vE.MaKH = maKHNew;
                     vE.MaGhe = int.Parse(dsGhe[i]);
                     vE.isDeleted = 0;
                     vE.NgayMua = current;
@@ -199,8 +216,16 @@ namespace C43QLXeKhach.Controllers
         // GET: VEs/Edit/5
         public ActionResult Edit(int? id)
         {
-          
-            return View();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            KHACHHANG kHACHHANG = khService.GetKH_MaVe(id);
+            if(kHACHHANG == null)
+            {
+                return HttpNotFound();
+            }
+            return View(kHACHHANG);
         }
 
         // POST: VEs/Edit/5

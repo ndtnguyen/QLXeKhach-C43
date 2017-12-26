@@ -1,146 +1,551 @@
-﻿@model C43QLXeKhach.Models.VE
+﻿@model C43QLXeKhach.Models.KHACHHANG
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Đổi Vé";
 }
 
-<h2>Edit</h2>
+<h2>Đổi Vé</h2>
 
 
-@using (Html.BeginForm())
-{
+<form action="/VEs/Create" method="post" id="frmCreate">
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>VE</h4>
-        <hr />
+
+    <div>
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaVe)
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    @*<input id="maKH" name="MaKH" hidden />*@
+                    <label>Số Điện Thoại</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <input id="maVe" name="MaVe" hidden />
+                    <label>Trạm Lên</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="selectTramLen" name="TramLen"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Tên Khách Hàng</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.NgayMua, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayMua, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgayMua, "", new { @class = "text-danger" })
+                <div class="col-md-2">
+                    <label>Trạm Xuống</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="selectTramXuong" name="TramXuong"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>CMND</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <label>Điểm Đi</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="selectDiemDi"></select>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Địa Chỉ</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <label>Điểm Đến</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="selectDiemDen"></select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Email</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" , @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-2">
+                    <label>Giờ Khởi Hành</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="selectGioKH" name="MaChuyen"></select>
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GiaMua, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GiaMua, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GiaMua, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Giờ Lên Xe</label>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" id="gioLenXe" readonly name="GioDi" />
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaGhe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaGhe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaGhe, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Giá Vé</label>
+                </div>
+                <div class="col-md-4">
+                    <input class="form-control" id="giaVe" readonly name="GiaMua" />
+                </div>
             </div>
         </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaXe, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaXe, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaXe, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Ghế</label>
+                </div>
+                <div class="col-md-4">
+                    <select class="selectpicker" id="selectGhe" name="MaGhe" multiple title="Chọn ghế ..." data-live-search="true"></select>
+                    <input id="maXe" name="MaXe" hidden />
+                    <input id="dsGhe" name="strGhe" hidden />
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaChuyen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaChuyen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaChuyen, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.MaGhe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaGhe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaGhe, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaKH, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaXe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaXe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaXe, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TramLen, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TramLen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TramLen, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaChuyen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaChuyen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaChuyen, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TramXuong, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TramXuong, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TramXuong, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MaKH, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.MaKH, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.MaKH, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.GioDi, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.GioDi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GioDi, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TramLen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TramLen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TramLen, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.createUser, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.createUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createUser, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.TramXuong, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TramXuong, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.TramXuong, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lastupdateUser, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lastupdateUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.lastupdateUser, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.GioDi, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GioDi, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GioDi, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.createDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.createDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createDate, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.createUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.createUser, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.createUser, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lastupdateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lastupdateDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.lastupdateDate, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.lastupdateUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.lastupdateUser, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.lastupdateUser, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.isDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.isDeleted, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.isDeleted, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.createDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.createDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.createDate, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="form-group">
+                @Html.LabelFor(model => model.lastupdateDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.lastupdateDate, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.lastupdateDate, "", new { @class = "text-danger" })
+                </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.isDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.isDeleted, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.isDeleted, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+
+    </div>
+</form>
+<div class="row">
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-2">
+            <button class="btn btn-success" id="btn_submit">Đổi</button>
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+<div>
+    @Html.ActionLink("Quay Về", "Index")
+</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+            $(document).ready(function () {
+                getTramLen();
+                getTramXuong();
+                getDiemDi();
+                getDiemDen();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $('#selectTramLen').on('change', function () {
+                getTramXuong();
+                getDiemDi();
+                getDiemDen();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $('#selectTramXuong').on('change', function () {
+                getDiemDi();
+                getDiemDen();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $('#selectDiemDi').on('change', function () {
+                getDiemDen();
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $('#selectDiemDen').on('change', function () {
+                getGioKH();
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $('#selectGioKH').on('change', function () {
+                getGioLenXe();
+                getGiaVe();
+                getGheTrong();
+            });
+            $("#btn_submit").on('click', function () {
+                var temp = $(".filter-option").text();
+                if (temp === "Chọn ghế ...") {
+                    alert("Vui lòng chọn ghế trước khi đặt vé");
+                    return;
+                }
+                temp = temp.replace(/\ /g, '');
+                temp = temp.replace(/\G/g, '');
+                $("#dsGhe").val(temp);
+                $("#frmCreate").submit();
+            });
+
+            function getDiemDi() {
+                var maTramLen = $("#selectTramLen").val();
+                var maTramXuong = $("#selectTramXuong").val();
+                if (maTramLen == null||maTramXuong==null) {
+                    $("#selectDiemDi").empty();
+                    return
+                }
+                $("#selectDiemDi").empty();
+                $.ajax({
+                    url: '/VEs/DiemDi?maTramLen=' + maTramLen + '&maTramXuong=' + maTramXuong,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTT + ">"
+                                + result[i].TenTT
+                                + "</option>"
+                            $("#selectDiemDi").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+            function getDiemDen() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maTramLen = $("#selectTramLen").val();
+                var maTramXuong = $("#selectTramXuong").val();
+                if (maTramLen == null || maTramXuong == null) {
+                    $("#selectDiemDen").empty();
+                    return
+                }
+                $("#selectDiemDen").empty();
+                $.ajax({
+                    url: '/VEs/DiemDen?maDiemDi=' + maDiemDi + '&maTramLen=' + maTramLen + '&maTramXuong=' + maTramXuong,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTT + ">"
+                                + result[i].TenTT
+                                + "</option>"
+                            $("#selectDiemDen").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+            function getTramLen() {
+                $("#selectTramLen").empty();
+                $.ajax({
+                    url: '/VEs/TramLen',
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTram +">"
+                                + result[i].TenTram
+                                + "</option>"
+                            $("#selectTramLen").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+            function getTramXuong() {
+                var maTramLen = $("#selectTramLen").val();
+                if (maTramLen == null) {
+                    $("#selectTramXuong").empty();
+                    return
+                }
+                $("#selectTramXuong").empty();
+                $.ajax({
+                    url: '/VEs/TramXuong?maTramLen=' + maTramLen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaTram + ">"
+                                + result[i].TenTram
+                                + "</option>"
+                            $("#selectTramXuong").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+            function getGioKH() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maDiemDen = $("#selectDiemDen").val();
+                $("#selectGioKH").empty();
+                $.ajax({
+                    url: '/VEs/GioKH?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaChuyen + ">"
+                                + result[i].GioKH
+                                + "</option>"
+                            $("#selectGioKH").append(html)
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+            function getGioLenXe() {
+                var maDiemDi = $("#selectDiemDi").val();
+                var maDiemDen = $("#selectDiemDen").val();
+                var maChuyen = $("#selectGioKH").val();
+                var maTramLen = $("#selectTramLen").val();
+                if (maChuyen == null || maTramLen == null) {
+                    $("#gioLenXe").val("");
+                    return
+                }
+                $("#gioLenXe").val("");
+                $.ajax({
+                    url: '/VEs/GioLenXe?maDiemDi=' + maDiemDi + '&maDiemDen=' + maDiemDen + '&maChuyen=' + maChuyen + '&maTramLen=' + maTramLen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        $("#gioLenXe").val(result);
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+
+            function getGiaVe() {
+                var maChuyen = $("#selectGioKH").val();
+                var maTramLen = $("#selectTramLen").val();
+                var maTramXuong = $("#selectTramXuong").val();
+                if (maChuyen == null || maTramLen == null || maTramXuong == null) {
+                    $("#giaVe").val("");
+                    return
+                }
+                $("#giaVe").val("");
+                $.ajax({
+                    url: '/VEs/GiaVe?maChuyen=' + maChuyen + '&maTramLen=' + maTramLen + '&maTramXuong=' + maTramXuong,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        $("#giaVe").val(result);
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            }
+            function getGheTrong() {
+                var maChuyen = $("#selectGioKH").val();
+                if (maChuyen == null) {
+                    $("#selectGhe").empty();
+                    return;
+                }
+
+                $("#selectGhe").empty();
+                $.ajax({
+                    url: '/VEs/GheTrong?maChuyen=' + maChuyen,
+                    type: 'GET',
+                    dataType: 'json',
+                    async: false,
+                    success: function (result) {
+                        for (var i = 0; i < result.length; i++) {
+                            var html = "<option value=" + result[i].MaGhe + ">"
+                                + "G" + result[i].MaGhe
+                                + "</option>"
+                            $("#selectGhe").append(html)
+                        }
+                        if (result.length > 0) {
+                            $("#maXe").val(result[0].MaXe);
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+                $('.selectpicker').selectpicker('refresh');
+            }
+
+
+            $("#SDT").focusout(function () {
+                if ($(this).val()) {
+                    $("#maKH").val("");
+                    $.ajax({
+                        url: '/VEs/KhachHang?SDT=' + $(this).val(),
+                        type: 'GET',
+                        dataType: 'json',
+                        async: false,
+                        success: function (result) {
+                            if (result) {
+                                $("#maKH").val(result.MaKH);
+                                $("#TenKH").val(result.TenKH);
+                                $("#SDT").val(result.SDT);
+                                $("#CMND").val(result.CMND);
+                                $("#DiaChi").val(result.DiaChi);
+                                $("#Email").val(result.Email);
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err)
+                        }
+                    });
+                }
+            });
+    </script>
 }

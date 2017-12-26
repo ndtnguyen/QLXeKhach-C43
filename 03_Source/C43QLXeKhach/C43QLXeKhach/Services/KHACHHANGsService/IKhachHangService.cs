@@ -14,6 +14,7 @@ namespace C43QLXeKhach.Services.KHACHHANGsService
         KHACHHANG Detail(int ?id);
         void Dispose();
         IList<KHACHHANG> Search(string input);
-
+        KHACHHANG GetKH_SDT(string sdt);
+        KHACHHANG GetKH_MaVe(int? mave);
     }
 }
