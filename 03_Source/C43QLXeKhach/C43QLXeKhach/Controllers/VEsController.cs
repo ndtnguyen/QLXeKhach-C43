@@ -112,7 +112,7 @@ namespace C43QLXeKhach.Controllers
             var maDiemDen = Request.Params["maDiemDen"];
             var maChuyen = int.Parse(Request.Params["maChuyen"]);
             var maTramLen = int.Parse(Request.Params["maTramLen"]);
-            var kq = service.GetGioLenXe(maDiemDi, maDiemDen,maChuyen,maTramLen).ToString();
+            var kq = service.GetGioLenXe(maDiemDi, maDiemDen,maChuyen,maTramLen);
             if (kq == null)
             {
                 return HttpNotFound();
@@ -158,6 +158,14 @@ namespace C43QLXeKhach.Controllers
 
             return Json(kq, JsonRequestBehavior.AllowGet);
         }
+        //GetVeEdit
+        [HttpGet]
+        public ActionResult VeEdit()
+        {
+            var mave = int.Parse(Request.Params["maVe"]);
+            var kq = service.GetVeEdit(mave);
+            return Json(kq, JsonRequestBehavior.AllowGet);
+        }
         // GET: VEs/Details/5
         public ActionResult Details(int? id)
         {
@@ -188,25 +196,30 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                string[] dsGhe= strGhe.Split(',');
-                int maKHNew=-1;
-                if (MaKH=="") {
-                    KH.isDeleted = 0;
-                    maKHNew = khService.Add(KH);
+                if (strGhe != "")
+                {
+                    string[] dsGhe = strGhe.Split(',');
+                    int maKHNew = -1;
+                    if (MaKH == "")
+                    {
+                        KH.isDeleted = 0;
+                        maKHNew = khService.Add(KH);
+                    }
+                    else
+                    {
+                        maKHNew = int.Parse(MaKH);
+                    }
+                    DateTime current = DateTime.Now;
+                    for (int i = 0; i < dsGhe.Length; i++)
+                    {
+                        vE.MaKH = maKHNew;
+                        vE.MaGhe = int.Parse(dsGhe[i]);
+                        vE.isDeleted = 0;
+                        vE.NgayMua = current;
+                        service.Add(vE);
+                        
+                    }
                 }
-                else
-                {
-                    maKHNew = int.Parse(MaKH);
-                }            
-                DateTime current = DateTime.Now;
-                for(int i = 0; i < dsGhe.Length; i++)
-                {
-                    vE.MaKH = maKHNew;
-                    vE.MaGhe = int.Parse(dsGhe[i]);
-                    vE.isDeleted = 0;
-                    vE.NgayMua = current;
-                    service.Add(vE);
-;                }            
                 return RedirectToAction("Index");
             }
 
@@ -233,11 +246,31 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaVe,NgayMua,GiaMua,MaGhe,MaXe,MaChuyen,MaKH,TramLen,TramXuong,GioDi,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] VE vE)
+        public ActionResult Edit([Bind(Include = "GiaMua,MaChuyen,TramLen,TramXuong,GioDi,MaXe")] VE vE, string strGhe, string MaKH,string maVe)
         {
             if (ModelState.IsValid)
             {
-                
+                if (strGhe != ""&&MaKH!="")
+                {
+                    if (maVe != "")
+                    {
+                        VE vE_Delete = service.LoadVeWWithMaVe(int.Parse(maVe));
+                        vE_Delete.isDeleted = 1;
+                        service.Delete(vE_Delete);
+                    }
+
+                    string[] dsGhe = strGhe.Split(',');
+                    DateTime current = DateTime.Now;
+                    for (int i = 0; i < dsGhe.Length; i++)
+                    {
+                        vE.MaKH = int.Parse(MaKH);
+                        vE.MaGhe = int.Parse(dsGhe[i]);
+                        vE.isDeleted = 0;
+                        vE.NgayMua = current;
+                        service.Add(vE);
+                        
+                    }
+                }
                 return RedirectToAction("Index");
             }
             return View(vE);

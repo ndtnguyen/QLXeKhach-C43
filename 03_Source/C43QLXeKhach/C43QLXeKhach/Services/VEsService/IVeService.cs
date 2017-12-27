@@ -23,8 +23,9 @@ namespace C43QLXeKhach.Services.VEsService
         //IList<sp_GetTramXuong_Result> GetTramXuong(string maDiemDi, string maDiemDen,int thuTuTramLen);
         IList<sp_GetTramXuong_v2_Result> GetTramXuong(int maTramLen);
         IList<sp_GetGioKH_Result> GetGioKH(string maDiemDi, string maDiemDen);
-        DateTime? GetGioLenXe(string maDiemDi, string maDiemDen,int maChuyen,int maTramLen);
+        string GetGioLenXe(string maDiemDi, string maDiemDen,int maChuyen,int maTramLen);
         decimal? GetGiaVe(int maTramLen, int maTramXuong, int maChuyen);
         IList<sp_getGheTrong_Result> GetGheTrong(int maChuyen);
+        sp_Get_Ve_Detail_Result GetVeEdit(int mave);
     }
 }

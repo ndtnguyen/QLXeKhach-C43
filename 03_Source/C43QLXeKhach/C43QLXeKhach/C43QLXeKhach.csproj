@@ -281,10 +281,10 @@
     <Compile Include="Models\sp_GetTramXuong_v2_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_Get_DiemDen_Result.cs">
+    <Compile Include="Models\sp_Get_DiemDen_v2_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_Get_DiemDen_v2_Result.cs">
+    <Compile Include="Models\sp_Get_Ve_Detail_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TAIXE.cs">

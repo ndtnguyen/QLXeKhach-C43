@@ -143,7 +143,7 @@ namespace C43QLXeKhach.Services.VEsService
                 return context.sp_GetGioKH(maDiemDi, maDiemDen).ToList();
             }
         }
-        public DateTime? GetGioLenXe(string maDiemDi, string maDiemDen, int maChuyen, int maTramLen)
+        public string GetGioLenXe(string maDiemDi, string maDiemDen, int maChuyen, int maTramLen)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
@@ -162,6 +162,13 @@ namespace C43QLXeKhach.Services.VEsService
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
                 return context.sp_getGheTrong(maChuyen).ToList();
+            }
+        }
+        public sp_Get_Ve_Detail_Result GetVeEdit(int mave)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                return context.sp_Get_Ve_Detail(mave).FirstOrDefault();
             }
         }
         public void Dispose()

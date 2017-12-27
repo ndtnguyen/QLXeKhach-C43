@@ -9,7 +9,7 @@ create procedure sp_GetGioLenXe(
 as
 begin
 	select 
-		(select DATEADD(minute,lt.KhoangThoiGian,cx.NgayKH)
+		(select convert(varchar, DATEADD(minute,lt.KhoangThoiGian,cx.NgayKH),22)
 		from CHUYENXE cx
 		where cx.MaChuyen=@machuyen) as GioLenXe
 	from TUYENXE tx
@@ -22,3 +22,4 @@ begin
 		and lt.isDeleted!=1
 end
 go
+exec sp_GetGioLenXe 1,4,10000,10001

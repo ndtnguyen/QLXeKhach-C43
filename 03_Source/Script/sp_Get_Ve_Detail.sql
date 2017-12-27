@@ -1,13 +1,14 @@
-drop procedure Get_Ve_Detail
+drop procedure sp_Get_Ve_Detail
 go
-create procedure Get_Ve_Detail(
+create procedure sp_Get_Ve_Detail(
 			@maVe int)
 as
 begin
 	select v.MaVe
 		   ,v.MaChuyen
 		   ,v.MaGhe
-		   ,v.GioDi
+		   ,v.MaXe
+		   ,convert(varchar, v.GioDi,22 ) as GioDi
 		   ,v.GiaMua
 		   ,v.TramLen
 		   ,v.TramXuong
@@ -21,4 +22,4 @@ begin
 	where v.MaVe=@maVe
 end
 go
-exec Get_Ve_Detail 10001
+exec sp_Get_Ve_Detail 10001
