@@ -309,6 +309,8 @@
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\CHUYENXEsService\ChuyenXeService.cs" />
+    <Compile Include="Services\CHUYENXEsService\IChuyenXeService.cs" />
     <Compile Include="Services\DOITACsService\DoiTacService.cs" />
     <Compile Include="Services\DOITACsService\IDoiTacService.cs" />
     <Compile Include="Services\HOPDONGsService\HopDongService.cs" />
@@ -323,6 +325,8 @@
     <Compile Include="Services\LOTRINHsService\LoTrinhService.cs" />
     <Compile Include="Services\NHANVIENsService\INhanVienService.cs" />
     <Compile Include="Services\NHANVIENsService\NhanVienService.cs" />
+    <Compile Include="Services\TAIXEsService\ITaiXeService.cs" />
+    <Compile Include="Services\TAIXEsService\TaiXeService.cs" />
     <Compile Include="Services\TINHTHANHsService\ITinhThanhService.cs" />
     <Compile Include="Services\TINHTHANHsService\TinhThanhService.cs" />
     <Compile Include="Services\TRAMXEsService\ITramXeService.cs" />

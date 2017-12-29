@@ -1,105 +1,137 @@
 ﻿@model IEnumerable<C43QLXeKhach.Models.TAIXE>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tài Xế";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-4" id="taixeTitle" style="cursor:pointer"><h2>Danh Sách Tài Xế</h2></div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TenTX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CMND)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SDT)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SoBangLai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LoaiBangLai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThoiHanBangLai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </th>
-        <th></th>
-    </tr>
+            <a href="/TAIXEs/Create" class="btn btn-primary" title="add">
+                Thêm
+                @*<span class="glyphicon glyphicon-plus"></span>*@
+            </a>
+            <button class="btn btn-danger text-right" id="btnDelete" title="delete">
+                Xóa
+                @*<span class="glyphicon glyphicon-remove"></span>*@
+            </button>
+        </p>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenTX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CMND)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDT)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DiaChi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgaySinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoBangLai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LoaiBangLai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThoiHanBangLai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaTX }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaTX }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaTX })
-        </td>
-    </tr>
+<form action="/TAIXEs/Index" method="POST" id="frmtaixe">
+    @Html.AntiForgeryToken()
+    <div class="table-responsive">
+        <table class="table table-hover" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+                        TenTX
+                    </th>
+                    <th>
+                        CMND
+                    </th>
+                    <th>
+                        SDT
+                    </th>
+                    <th>
+                        DiaChi
+                    </th>
+                    <th>
+                        NgaySinh
+                    </th>
+                    <th>
+                        SoBangLai
+                    </th>
+                    <th>
+                        ThoiHanBangLai
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaTX>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CMND)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SoBangLai)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ThoiHanBangLai)
+                        </td>
+                        <td class="text-right">
+                            <div style="width:70px">
+                                <a href="/CHUYENXEs/Details/@item.MaTX" class="btn btn-xs btn btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a href="/CHUYENXEs/Edit/@item.MaTX" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</form>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop("disabled", true);
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những chuyến xe này?");
+            if (returnVal)
+                $('#frmtaixe').submit();
+            else
+                return;
+        });
+        $('#nhanVienTitle').on('click', function () {
+            window.location="/NHANVIENs/Index";
+        });
+    </script>
 }
-
-</table>

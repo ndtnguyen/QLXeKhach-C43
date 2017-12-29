@@ -1,87 +1,128 @@
 ﻿@model IEnumerable<C43QLXeKhach.Models.CHUYENXE>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Chuyến Xe";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-4" id="chuyenxeTitle" style="cursor:pointer"><h2>Danh Sách Chuyến Xe</h2></div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayKH)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayDen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaTuyen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaXe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaTX)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.createDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </th>
-        <th></th>
-    </tr>
+            <a href="/CHUYENXEs/Create" class="btn btn-primary" title="add">
+                Thêm
+                @*<span class="glyphicon glyphicon-plus"></span>*@
+            </a>
+            <button class="btn btn-danger text-right" id="btnDelete" title="delete">
+                Xóa
+                @*<span class="glyphicon glyphicon-remove"></span>*@
+            </button>
+        </p>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayKH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayDen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaTuyen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaXe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MaTX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateUser)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.createDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.lastupdateDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.isDeleted)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MaChuyen }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MaChuyen }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MaChuyen })
-        </td>
-    </tr>
+<form action="/CHUYENXEs/Index" method="POST" id="frmchuyenxe">
+    @Html.AntiForgeryToken()
+    <div class="table-responsive">
+        <table class="table table-hover" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>
+                  
+                    </th>
+                    <th>
+                        NgayKH
+                    </th>
+                    <th>
+                        NgayDen
+                    </th>
+                    <th>
+                        MaTuyen
+                    </th>
+                    <th>
+                        MaXe
+                    </th>
+                    <th>
+                        MaTX
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaChuyen>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayKH)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NgayDen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaTuyen)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaXe)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaTX)
+                        </td>
+                        <td class="text-right">
+                            <div style="width:70px">
+                                <a href="/CHUYENXEs/Details/@item.MaChuyen" class="btn btn-xs btn btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a href="/CHUYENXEs/Edit/@item.MaChuyen" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</form>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop("disabled", true);
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những chuyến xe này?");
+            if (returnVal)
+                $('#frmchuyenxe').submit();
+            else
+                return;
+        });
+        $('#nhanVienTitle').on('click', function () {
+            window.location="/NHANVIENs/Index";
+        });
+    </script>
 }
-
-</table>
