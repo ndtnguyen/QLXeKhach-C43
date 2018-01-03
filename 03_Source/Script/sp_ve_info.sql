@@ -15,8 +15,8 @@ select v.MaVe
 		,kh.DiaChi
 		,kh.Email
 		,kh.CMND
-		,tx1.TenTram + '(' +tx1.DiaChi+ ')' as TramLen
-		,tx2.TenTram + '(' +tx2.DiaChi+ ')' as TramXuong
+		,tx1.DiaChi as TramLen
+		,tx2.DiaChi as TramXuong
 		,x.BienSoXe
 		,lx.TenLoai
 from VE v
