@@ -70,11 +70,11 @@ namespace C43QLXeKhach.Services.VEsService
                 context.SaveChanges();
             }
         }
-        public vw_ve Detail(int ?id)
+        public sp_ve_info_Result Detail(int ?id)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.vw_ve.Where(x => x.MaVe == id).FirstOrDefault();
+                return context.sp_ve_info(id).FirstOrDefault();
             }
         }
         public VE LoadVeWWithMaVe(int ?id)

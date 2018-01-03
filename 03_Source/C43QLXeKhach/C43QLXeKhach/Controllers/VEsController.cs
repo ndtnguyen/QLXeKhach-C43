@@ -173,7 +173,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            vw_ve vE = service.Detail(id);
+            sp_ve_info_Result vE = service.Detail(id);
             if (vE == null)
             {
                 return HttpNotFound();

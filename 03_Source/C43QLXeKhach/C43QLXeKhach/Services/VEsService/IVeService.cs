@@ -12,7 +12,7 @@ namespace C43QLXeKhach.Services.VEsService
         int Add(VE v);
         void Update(VE nv);
         void Delete(VE nv);
-        vw_ve Detail(int? id);
+        sp_ve_info_Result Detail(int? id);
         VE LoadVeWWithMaVe(int? id);
         void Dispose();
         IList<sp_GetDiemDi_Result> GetDiemDi(int maTramLen,int maTramXuong);

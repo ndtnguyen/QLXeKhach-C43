@@ -1,130 +1,157 @@
-﻿@model C43QLXeKhach.Models.VE
+﻿@model C43QLXeKhach.Models.sp_ve_info_Result
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Vé";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Vé</h2>
+
+
+<form>
+    @Html.AntiForgeryToken()
+
+    <div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Số Điện Thoại</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+                <div class="col-md-2">
+                    <label>Trạm Lên</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.TramLen, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Tên Khách Hàng</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+
+                <div class="col-md-2">
+                    <label>Trạm Xuống</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.TramXuong, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>CMND</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+                <div class="col-md-2">
+                    <label>Ngày Mua</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.NgayMua, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Địa Chỉ</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+                <div class="col-md-2">
+                    <label>Giá Vé</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.GiaMua, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label>Email</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+                <div class="col-md-2">
+                    <label>Giờ Lên Xe</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.GioDi, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Loại Xe</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.TenLoai, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Biển Số Xe</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.BienSoXe, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <div class="col-md-2">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-2">
+                    <label>Ghế</label>
+                </div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.MaGhe, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                </div>
+            </div>
+        </div>
+      
+    </div>
+</form>
 
 <div>
-    <h4>VE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayMua)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NgayMua)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GiaMua)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GiaMua)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaGhe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaGhe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaXe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaXe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaChuyen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaChuyen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaKH)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaKH)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TramLen)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TramLen)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TramXuong)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TramXuong)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GioDi)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GioDi)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
-    </dl>
+    @Html.ActionLink("Quay Về", "Index")
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaVe }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -287,6 +287,9 @@
     <Compile Include="Models\sp_Get_Ve_Detail_Result.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_ve_info_Result.cs">
+      <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TAIXE.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
