@@ -158,5 +158,14 @@ namespace C43QLXeKhach.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Get_Ve_Detail_Result>("sp_Get_Ve_Detail", maVeParameter);
         }
+    
+        public virtual ObjectResult<sp_ve_info_Result> sp_ve_info(Nullable<int> mave)
+        {
+            var maveParameter = mave.HasValue ?
+                new ObjectParameter("mave", mave) :
+                new ObjectParameter("mave", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ve_info_Result>("sp_ve_info", maveParameter);
+        }
     }
 }
