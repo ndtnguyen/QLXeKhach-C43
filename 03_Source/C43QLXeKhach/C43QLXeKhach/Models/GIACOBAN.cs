@@ -11,11 +11,19 @@ namespace C43QLXeKhach.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class GIACOBAN
     {
+        [Key]
+        [Column(Order = 0)]
         public string MaTT1 { get; set; }
+        [Key]
+        [Column(Order = 1)]
         public string MaTT2 { get; set; }
+        [Key]
+        [Column(Order = 2)]
         public int MaLoai { get; set; }
         public Nullable<decimal> GiaCoBan1 { get; set; }
         public Nullable<int> createUser { get; set; }

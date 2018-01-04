@@ -4,46 +4,144 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div><h2><span id="giacobanTitle" style="cursor:pointer">Giá cơ bản</span></h2></div>
+</div>
+<div class="row">
+    <div class="col-md-8">
+        <p>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Giá cơ bản
-        </th>
-        <th>
-            Tỉnh thành đi
-        </th>
-        <th>
-            Tỉnh thành đến
-        </th>
+            <a href="/GIACOBANs/Create" class="btn btn-primary" title="add">
+                Thêm
+                @*<span class="glyphicon glyphicon-plus"></span>*@
+            </a>
+            <button class="btn btn-danger" id="btnDelete" title="delete">
+                Xóa
+                @*<span class="glyphicon glyphicon-remove"></span>*@
+            </button>
+        </p>
+    </div>
+</div>
 
-        <th></th>
-    </tr>
+<form action="/GIACOBANs/Index" method="POST" id="frmgiacoban">
+    @Html.AntiForgeryToken()
+    <div class="table-responsive">
+        <table class="table table-hover" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>
+                        Tỉnh thành đi
+                    </th>
+                    <th>
+                        Tỉnh thành đến
+                    </th>
+                    <th>
+                        Loại xe
+                    </th>
+                    <th>
+                        Giá cơ bản
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" />
+                        </td>                   
+                        <td>
+                            @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT1).ToString()
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.GiaCoBan1)
-            </td>
-            <td>
-                @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT1).ToString();
+                        </td>
+                        <td>
+                            @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT2).ToString()
+                        </td>
+                        <td>
+                            @item.MaLoai
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.GiaCoBan1)
+                        </td>
+                        <td>
+                          
+                            <div style="width:70px">
+                                <a onclick="NavigateEdit('@item.MaTT1','@item.MaTT2','@item.MaLoai')" class="btn btn-xs btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a href="/GIACOBANs/Edit" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
 
-            </td>
-            <td>
-                @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT2).ToString();
-            </td>
+        </table>
+    </div>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id1 = item.MaTT1, id2 = item.MaTT2, id3 = item.MaLoai }) |
-                @Html.ActionLink("Details", "Details", new { id1 = item.MaTT1, id2 = item.MaTT2, id3 = item.MaLoai }) |
-                @Html.ActionLink("Delete", "Delete", new { id1 = item.MaTT1, id2 = item.MaTT2, id3 = item.MaLoai })
-            </td>
-        </tr>
-    }
+</form>
+<form action="/GIACOBANs/Details" method="POST" id="hiddenForm">
+    <input id="maTT1" name="maTT1" hidden />
+    <input id="maTT2" name="maTT2" hidden />
+    <input id="maLoai" name="maLoai" hidden />
+</form>
 
-</table>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop("disabled", true);
+            //var url = decodeURIComponent(window.location.search.substring(1));
+            //if (url != "") {
+            //    var searchinput = url.split("=")[1];
+            //    $("#txtSearch").val(searchinput);
+            //}
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những giá cơ bản này?");
+            if (returnVal)
+                $('#frmgiacoban').submit();
+            else
+                return;
+        });
+        //$('#btnSearch').on('click', function () {
+        //    var input = "";
+        //    if ($("#txtSearch").val())
+        //        input = $("#txtSearch").val();
+        //    var url="/NHANVIENs/Index?input="+input;
+        //    window.location=url;
+        //});
+        $('#giacobanTitle').on('click', function () {
+            window.location="/GIACOBANs/Index";
+        });
+
+        //handle click EDIT button
+        function NavigateEdit(maTT1, maTT2, maLoai) {
+            console.log('submit form');
+            $("#maTT1").val(maTT1);
+            $("#maTT2").val(maTT2);
+            $("#maLoai").val(maLoai);
+            $("#hiddenForm").submit();
+        }
+    </script>
+}

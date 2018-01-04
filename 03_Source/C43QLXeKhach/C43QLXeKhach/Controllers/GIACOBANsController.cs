@@ -19,19 +19,37 @@ namespace C43QLXeKhach.Controllers
         {
             return View(db.GIACOBANs.ToList());
         }
+        
+        //POST: GIACOBANs/Details
+
 
         // GET: GIACOBANs/Details/5
-        public ActionResult Details(string id)
+        [HttpPost]
+        public GIACOBAN GetDetails(string maTT1, string maTT2, string maLoai)
         {
-            if (id == null)
+            System.Diagnostics.Debug.WriteLine("hello1");
+            if (maTT1 == null || maTT2 == null || maLoai == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return null;
             }
-            GIACOBAN gIACOBAN = db.GIACOBANs.Find(id);
-            if (gIACOBAN == null)
+            GIACOBAN gIACOBAN = db.GIACOBANs.Find(maTT1,maTT2,int.Parse(maLoai));
+            return gIACOBAN;
+        }
+
+        // GET: GIACOBANs/Details/5
+        [HttpPost]
+        public ActionResult Details()
+        {
+            string maTT1 = Request["maTT1"];
+            string maTT2 = Request["maTT2"];
+            string maLoai = Request["maLoai"];
+            System.Diagnostics.Debug.WriteLine("hello2"+maTT1+maTT2);
+            System.Diagnostics.Debug.WriteLine("hello1");
+            if (maTT1 == null || maTT2 == null || maLoai == null)
             {
-                return HttpNotFound();
+                return null;
             }
+            GIACOBAN gIACOBAN = db.GIACOBANs.Find(maTT1, maTT2, int.Parse(maLoai));
             return View(gIACOBAN);
         }
 
