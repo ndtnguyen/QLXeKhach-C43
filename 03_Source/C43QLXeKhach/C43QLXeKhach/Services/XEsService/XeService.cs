@@ -72,12 +72,12 @@ namespace C43QLXeKhach.Services.XEsService
             }
         }
 
-        public IList<XE> Detail(int? id)
+        public IList <XE> Detail(int? id)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                //return context.XEs.Find(id);
-                return context.XEs.Where(x => x.MaXe == id).Include(x => x.LOAIXE1).ToList();
+                 // return context.XEs.Find(id);
+               return context.XEs.Where(x => x.MaXe == id).Include(x => x.LOAIXE1).ToList();
 
             }
         }

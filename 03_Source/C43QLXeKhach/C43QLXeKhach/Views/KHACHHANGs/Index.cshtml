@@ -12,11 +12,11 @@
         <p>
 
             <a href="/KHACHHANGs/Create" class="btn btn-primary" title="add">
-                Thêm Khách Hàng
+                Thêm 
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
             <button class="btn btn-danger" id="btnDelete" title="delete">
-                Xóa Khách Hàng
+                Xóa 
                 @*<span class="glyphicon glyphicon-remove"></span>*@
             </button>
         </p>
@@ -57,10 +57,10 @@
                         CMND
                     </th>
                     <th>
-                        Ngày Sinh
+                        Địa Chỉ
                     </th>
                     <th>
-                        Địa Chỉ
+                        Ngày Sinh
                     </th>
                     <th>
                         Email
@@ -79,7 +79,7 @@
                             <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaKH>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TenKH)
+                            <div style="white-space:nowrap">@Html.DisplayFor(modelItem => item.TenKH)</div>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SDT)
@@ -88,7 +88,7 @@
                             @Html.DisplayFor(modelItem => item.CMND)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DiaChi)
+                            <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px">@Html.DisplayFor(modelItem => item.DiaChi)</div>
                         </td>
                         <td>
                             @if (item.NgaySinh != null)
@@ -101,16 +101,19 @@
                             }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px">@Html.DisplayFor(modelItem => item.Email)</div>
                         </td>
                         
+
                         <td>
-                            <a href="/KHACHHANGs/Edit/@item.MaKH" class="btn btn-xs btn-primary" title="edit">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            @*<a href="/KHACHHANGs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
-        <span class="glyphicon glyphicon-book"></span>
-    </a>*@
+                            <div style="width:70px">
+                                <a href="/KHACHHANGs/Details/@item.MaKH" class="btn btn-xs btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a href="/KHACHHANGs/Edit/@item.MaKH" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -126,11 +129,11 @@
     <script type="text/javascript">
         $(document).ready(function () {
             $('#btnDelete').prop("disabled", true);
-            var url = decodeURIComponent(window.location.search.substring(1));
-            if (url != "") {
-                var searchinput = url.split("=")[1];
-                $("#txtSearch").val(searchinput);
-            }
+          //  var url = decodeURIComponent(window.location.search.substring(1));
+          //  if (url != "") {
+            //    var searchinput = url.split("=")[1];
+             //   $("#txtSearch").val(searchinput);
+          //  }
         });
         var listDelete = [];
         $('.deleteCheckbox').on('change', function () {

@@ -8,10 +8,10 @@ namespace C43QLXeKhach.Services.XEsService
         int Add(XE xe);
         void Update(XE xe);
         void Delete(XE xe);
-        //TRAMXE Detail(int? id);
+         //XE Detail(int? id);
         void Dispose();
         IList<XE> Search(string input);
-        IList<XE> Detail(int? id);
+      IList<XE> Detail(int? id);
 
     }
 }

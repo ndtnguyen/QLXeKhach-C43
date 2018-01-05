@@ -37,12 +37,15 @@ namespace C43QLXeKhach.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             IList<XE> xE = service.Detail(id);
-            ViewBag.loaixe = xE[0].LOAIXE1.MaLoai;
+            XE xe = new XE();
+           
+            ViewBag.loaixe = xE[0].LOAIXE1.TenLoai;
             if (xE == null)
             {
                 return HttpNotFound();
             }
-            return View(xE);
+            xe = xE[0];
+            return View(xe);
         }
 
         // GET: TRAMXEs/Create
