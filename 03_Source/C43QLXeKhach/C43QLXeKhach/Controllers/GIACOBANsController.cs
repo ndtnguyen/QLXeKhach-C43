@@ -7,13 +7,22 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using C43QLXeKhach.Services.GIACOBANsService;
+using NLog;
 
 namespace C43QLXeKhach.Controllers
 {
     public class GIACOBANsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
 
+        private QLXeKhachEntities db = new QLXeKhachEntities();
+        IGiaCoBanService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public GIACOBANsController(IGiaCoBanService service)
+        {
+            this.service = service;
+        }
         // GET: GIACOBANs
         public ActionResult Index()
         {
@@ -43,11 +52,9 @@ namespace C43QLXeKhach.Controllers
             string maTT1 = Request["maTT1"];
             string maTT2 = Request["maTT2"];
             string maLoai = Request["maLoai"];
-            System.Diagnostics.Debug.WriteLine("hello2"+maTT1+maTT2);
-            System.Diagnostics.Debug.WriteLine("hello1");
             if (maTT1 == null || maTT2 == null || maLoai == null)
             {
-                return null;
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             GIACOBAN gIACOBAN = db.GIACOBANs.Find(maTT1, maTT2, int.Parse(maLoai));
             return View(gIACOBAN);
@@ -76,23 +83,25 @@ namespace C43QLXeKhach.Controllers
             return View(gIACOBAN);
         }
 
-        // GET: GIACOBANs/Edit/5
-        public ActionResult Edit(string id1, string id2, int id3)
+        // GET: GIACOBANs/Edit/
+        [HttpPost]
+        public ActionResult GetEditView()
         {
-
-            if (id1 == null || id2 == null || id3 < 0)
+            string maTT1 = Request["maTT1"];
+            string maTT2 = Request["maTT2"];
+            string maLoai = Request["maLoai"];
+            if (maTT1 == null || maTT2 == null || maLoai == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             try
             {
-                GIACOBAN gIACOBAN = db.GIACOBANs.Find(id1,id2,id3);
-                //GIACOBAN gIACOBAN = db.GIACOBANs.Where(x=> x.MaTT1 == id1 && x.MaTT2 == id2 && x.MaLoai == id3);
+                GIACOBAN gIACOBAN = db.GIACOBANs.Find(maTT1,maTT2,int.Parse(maLoai));
                 if (gIACOBAN == null)
                 {
                     return HttpNotFound();
                 }
-                return View(gIACOBAN);
+                return View("Edit",gIACOBAN);
             }
             catch (Exception e)
             {
@@ -102,20 +111,42 @@ namespace C43QLXeKhach.Controllers
             
         }
 
+       
+
         // POST: GIACOBANs/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaTT1,MaTT2,MaLoai,GiaCoBan1,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] GIACOBAN gIACOBAN)
+        public ActionResult Edit()
         {
-            if (ModelState.IsValid)
+            string maTT1 = Request["maTT1"];
+            string maTT2 = Request["maTT2"];
+            string maLoai = Request["maLoai"];
+            string gia = Request["gia"];
+            if (maTT1 == null || maTT2 == null || maLoai == null)
             {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            try
+            {
+                GIACOBAN gIACOBAN = db.GIACOBANs.Find(maTT1, maTT2, int.Parse(maLoai));
+                //GIACOBAN gIACOBAN = db.GIACOBANs.Where(x=> x.MaTT1 == id1 && x.MaTT2 == id2 && x.MaLoai == id3);
+                if (gIACOBAN == null)
+                {
+                    return HttpNotFound();
+                }
+                gIACOBAN.GiaCoBan1 = int.Parse(gia);
                 db.Entry(gIACOBAN).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(gIACOBAN);
+            catch (Exception e)
+            {
+
+                return null;
+            }
+           
         }
 
         // GET: GIACOBANs/Delete/5
@@ -141,6 +172,29 @@ namespace C43QLXeKhach.Controllers
             GIACOBAN gIACOBAN = db.GIACOBANs.Find(id);
             db.GIACOBANs.Remove(gIACOBAN);
             db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ActionName("Index")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteMany()
+        {
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            string[] paramList = temp.Split('+',' ');
+            
+            for (int i = 0; i < paramList.Length-1; i++)
+            {
+                string[] param = paramList[i].Split(',',' ');
+                string maTT1 = param[0], maTT2 = param[1], maLoai = param[2];
+                GIACOBAN gcb = service.Detail(maTT1,maTT2,int.Parse(maLoai));
+                gcb.isDeleted = 1;
+                service.Delete(gcb);
+            }
             return RedirectToAction("Index");
         }
 

@@ -1,20 +1,69 @@
 ﻿@model C43QLXeKhach.Models.GIACOBAN
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi tiết giá vé";
 }
 
-<h2>Details</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<div>
-    <h4>GIACOBAN</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        detail hello
+    <div class="form-horizontal">
+        <h4>Chi tiết giá</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Tỉnh thành đi</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(Model.MaTT1).ToString()" />
+            </div>
+        </div>
 
-    </dl>
-</div>
+        <div class="form-group">
+            <label class="control-label col-md-2">Tỉnh thành đến</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(Model.MaTT2).ToString()" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Loại ghế</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.MaLoai" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Giá</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.GiaCoBan1" />
+            </div>
+        </div>
+
+        
+    </div>
+}
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-primary" id="btnEdit" title="edit" onclick="RenderEditView()">
+        Chỉnh sửa
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
+    <button class="btn btn-danger" id="btnDelete" title="delete" onclick="location.href='@Url.Action("Index", "GIACOBANs")'">
+        Quay trở lại
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
+
 </p>
+<form action="/GIACOBANs/GetEditView" method="POST" id="hiddenForm">
+    <input id="maTT1" name="maTT1" hidden value="@Model.MaTT1" />
+    <input id="maTT2" name="maTT2" hidden value="@Model.MaTT2" />
+    <input id="maLoai" name="maLoai" hidden value="@Model.MaLoai" />
+</form>
+@section Scripts {
+   
+    <script type="text/javascript">
+        function RenderEditView() {
+            $("#hiddenForm").submit();
+        }
+    </script>
+}

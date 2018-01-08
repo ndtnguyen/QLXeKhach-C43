@@ -316,6 +316,8 @@
     <Compile Include="Services\CHUYENXEsService\IChuyenXeService.cs" />
     <Compile Include="Services\DOITACsService\DoiTacService.cs" />
     <Compile Include="Services\DOITACsService\IDoiTacService.cs" />
+    <Compile Include="Services\GIACOBANsService\GiaCoBanService.cs" />
+    <Compile Include="Services\GIACOBANsService\IGiaCoBanService.cs" />
     <Compile Include="Services\HOPDONGsService\HopDongService.cs" />
     <Compile Include="Services\HOPDONGsService\IHopDongService.cs" />
     <Compile Include="Services\KHAOSATsService\IKhaoSatService.cs" />

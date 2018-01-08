@@ -24,6 +24,7 @@ namespace C43QLXeKhach.App_Start
     using Services.VEsService;
     using Services.CHUYENXEsService;
     using Services.TAIXEsService;
+    using Services.GIACOBANsService;
 
     public static class NinjectWebCommon 
     {
@@ -89,6 +90,7 @@ namespace C43QLXeKhach.App_Start
             kernel.Bind<IVeService>().To<VeService>();
             kernel.Bind<IChuyenXeService>().To<ChuyenXeService>();
             kernel.Bind<ITaiXeService>().To<TaiXeService>();
+            kernel.Bind<IGiaCoBanService>().To<GiaCoBanService>();
         }
     }
 }

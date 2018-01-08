@@ -4,82 +4,59 @@
     ViewBag.Title = "Edit";
 }
 
-<h2>Edit</h2>
-
-
-@using (Html.BeginForm())
-{
+<form method="post" action="/GIACOBANs/Edit">
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>GIACOBAN</h4>
+        <h4>Chi tiết giá</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.MaTT1)
-
-        @Html.HiddenFor(model => model.MaTT2)
-
-        @Html.HiddenFor(model => model.MaLoai)
-
         <div class="form-group">
-            @Html.LabelFor(model => model.GiaCoBan1, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Tỉnh thành đi</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.GiaCoBan1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.GiaCoBan1, "", new { @class = "text-danger" })
+                <input hidden name="maTT1" value="@Model.MaTT1" />
+                <input class="form-control" disabled value="@C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(Model.MaTT1).ToString()" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.createUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Tỉnh thành đến</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.createUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createUser, "", new { @class = "text-danger" })
+                <input hidden name="maTT2" value="@Model.MaTT2" />
+                <input class="form-control" disabled value="@C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(Model.MaTT2).ToString()" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.lastupdateUser, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Loại ghế</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.lastupdateUser, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.lastupdateUser, "", new { @class = "text-danger" })
+                <input hidden name="maLoai" value="@Model.MaLoai" />
+                <input class="form-control" disabled value="@Model.MaLoai" />
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.createDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2">Giá</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.createDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.createDate, "", new { @class = "text-danger" })
+                <input class="form-control" name="gia" value="@Model.GiaCoBan1" />
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.lastupdateDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.lastupdateDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.lastupdateDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.isDeleted, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.isDeleted, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.isDeleted, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
     </div>
-}
+    <p>
+        <button class="btn btn-primary" id="btnEdit" title="edit" type="submit">
+            Cập nhật
+            @*<span class="glyphicon glyphicon-remove"></span>*@
+        </button>
+        <button class="btn btn-danger" id="btnDelete" title="delete" onclick="location.href='@Url.Action("Index", "GIACOBANs")'">
+            Quay trở lại
+            @*<span class="glyphicon glyphicon-remove"></span>*@
+        </button>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    </p>
+</form> 
+
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

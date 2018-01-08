@@ -50,7 +50,7 @@
                 {
                     <tr>
                         <td>
-                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" />
+                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value="@item.MaTT1,@item.MaTT2,@item.MaLoai+" />
                         </td>                   
                         <td>
                             @C43QLXeKhach.Utils.IdFormat.TinhThanhFormat(item.MaTT1).ToString()
@@ -68,10 +68,10 @@
                         <td>
                           
                             <div style="width:70px">
-                                <a onclick="NavigateEdit('@item.MaTT1','@item.MaTT2','@item.MaLoai')" class="btn btn-xs btn-info" title="Xem chi tiết">
+                                <a onclick="NavigateDetail('@item.MaTT1','@item.MaTT2','@item.MaLoai')" class="btn btn-xs btn-info" title="Xem chi tiết">
                                     <span class="glyphicon glyphicon-align-justify"></span>
                                 </a>
-                                <a href="/GIACOBANs/Edit" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                <a onclick="NavigateEdit('@item.MaTT1', '@item.MaTT2', '@item.MaLoai')" class="btn btn-xs btn-primary" title="Chỉnh sửa">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                             </div>
@@ -106,6 +106,7 @@
             listDelete = [];
             $('.deleteCheckbox').map(function () {
                 if ($(this).is(":checked")) {
+                    console.log($(this).val());
                     listDelete.push($(this).val());
                 }
             });
@@ -137,7 +138,14 @@
 
         //handle click EDIT button
         function NavigateEdit(maTT1, maTT2, maLoai) {
-            console.log('submit form');
+            $("#hiddenForm").attr("action", "/GIACOBANs/GetEditView")
+            $("#maTT1").val(maTT1);
+            $("#maTT2").val(maTT2);
+            $("#maLoai").val(maLoai);
+            $("#hiddenForm").submit();
+        }
+        function NavigateDetail(maTT1, maTT2, maLoai) {
+            $("#hiddenForm").attr("action", "/GIACOBANs/Details")
             $("#maTT1").val(maTT1);
             $("#maTT2").val(maTT2);
             $("#maLoai").val(maLoai);
