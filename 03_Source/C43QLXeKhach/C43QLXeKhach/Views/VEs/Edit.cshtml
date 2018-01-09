@@ -143,10 +143,10 @@
 
                 </div>
                 <div class="col-md-2">
-                    <label>Ghế</label>
+                    <label>Ghế/Giường</label>
                 </div>
                 <div class="col-md-4">
-                    <select class="selectpicker" id="selectGhe" name="MaGhe" multiple title="Chọn ghế ..." data-live-search="true"></select>
+                    <select class="selectpicker" id="selectGhe" name="MaGhe" multiple title="Chọn ..." data-live-search="true"></select>
                     <input id="maXe" name="MaXe" hidden />
                     <input id="dsGhe" name="strGhe" hidden />
                 </div>
@@ -267,13 +267,6 @@
     <script type="text/javascript">
             $(document).ready(function () {
                 getTramLen();
-                getTramXuong();
-                getDiemDi();
-                getDiemDen();
-                getGioKH();
-                getGioLenXe();
-                getGiaVe();
-                getGheTrong();
                 getVeEdit();
             });
             $('#selectTramLen').on('change', function () {
@@ -313,8 +306,8 @@
             });
             $("#btn_submit").on('click', function () {
                 var temp = $(".filter-option").text();
-                if (temp === "Chọn ghế ...") {
-                    alert("Vui lòng chọn ghế trước khi đặt vé");
+                if (temp === "Chọn ...") {
+                    alert("Vui lòng chọn ghế/giường trước khi đổi vé");
                     return;
                 }
                 temp = temp.replace(/\ /g, '');
@@ -496,6 +489,7 @@
                 var maChuyen = $("#selectGioKH").val();
                 if (maChuyen == null) {
                     $("#selectGhe").empty();
+                    $('.selectpicker').selectpicker('refresh');
                     return;
                 }
 
@@ -537,9 +531,13 @@
                     success: function (result) {
                         $("#maVe").val(result.MaVe);
                         $("#selectTramLen").val(result.TramLen);
+                        getTramXuong();
                         $("#selectTramXuong").val(result.TramXuong);
+                        getDiemDi();
                         $("#selectDiemDi").val(result.DiemDi);
+                        getDiemDen();
                         $("#selectDiemDen").val(result.DiemDen);
+                        getGioKH();
                         $("#selectGioKH").val(result.MaChuyen);
                         $("#gioLenXe").val(result.GioDi);
                         $("#giaVe").val(result.GiaMua);
