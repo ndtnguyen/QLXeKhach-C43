@@ -7,105 +7,92 @@
 <h2>Chi Tiết Hợp Đồng</h2>
 
 <div>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Mã HĐ
-        </dt>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Mã HĐ</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MaHD, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
 
-        <dd>
-           @Html.DisplayFor(model => model.MaHD)
-        </dd>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Ngày Lập</label>
+        </div>
+        <div class="col-md-10">
+            @if (Model.NgayLap != null)
+            {
+                <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgayLap must be a date." readonly id="NgayLap" name="NgayLap" type="datetime" value="@Model.NgayLap.Value.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgayLap must be a date." readonly id="NgayLap" name="NgayLap" type="datetime" value="@Model.NgayLap" />
+            }
+        </div>
+    </div>
 
-        <dt>
-            Ngày lập
-        </dt>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Giá Thỏa Thuận</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GiaThoaThuan, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
 
-        <dd>
-            @Model.NgayLap.Value.ToString("dd-MM-yyy")
-        </dd>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Trạm Thuê</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TRAMXE.TenTram, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
 
-        <dt>
-            Giá thỏa thuận
-        </dt>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Thời Hạn Thuê</label>
+        </div>
+        <div class="col-md-10">
+            @if (Model.ThoiHanThue != null)
+            {
+                <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanThue must be a date." readonly id="ThoiHanThue" name="ThoiHanThue" type="datetime" value="@Model.ThoiHanThue.Value.ToString("yyyy-MM-dd")" />
+            }
+            else
+            {
+                <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanThue must be a date." readonly id="ThoiHanThue" name="ThoiHanThue" type="datetime" value="@Model.ThoiHanThue" />
+            }
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.GiaThoaThuan)
-        </dd>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Đối Tác</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DOITAC.TenDT, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
 
-        <dt>
-            Trạm thuê
-        </dt>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Người Lập</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NHANVIEN.TenNV, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.TRAMXE.TenTram)
-        </dd>
+    <div class="form-group">
+        <div class="col-md-2">
+            <label>Mô Tả</label>
+        </div>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+        </div>
+    </div>
 
-        <dt>
-            Thời hạn thuê
-        </dt>
-
-        <dd>
-            @Model.ThoiHanThue.Value.ToString("dd-MM-yyyy")
-        </dd>
-
-        <dt>
-            Đối tác
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DOITAC.TenDT)
-        </dd>
-
-        <dt>
-            Người lập
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NHANVIEN.TenNV)
-        </dd>
-
-        <dt>
-            Mô tả
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MoTa)
-        </dd>
-
-        <dt>
-            Người tạo
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createUser)
-        </dd>
-
-        <dt>
-            Người cập nhật
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateUser)
-        </dd>
-
-        <dt>
-            Ngày tạo
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createDate)
-        </dd>
-
-        <dt>
-            Ngày cập nhật
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateDate)
-        </dd>
-
-    </dl>
 </div>
 <p>
     @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MaHD }) |

@@ -13,30 +13,15 @@
         <p>
 
             <a href="/HOPDONGs/Create" class="btn btn-primary" title="add">
-                Thêm Hợp Đồng
+                Thêm
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
             <button class="btn btn-danger" id="btnDelete" title="delete">
-                Xóa Hợp Đồng
+                Xóa
                 @*<span class="glyphicon glyphicon-remove"></span>*@
             </button>
         </p>
     </div>
-    @*<div class="col-md-3">
-                <div class="input-group col-md-12">
-                    <input id="txtSearch" class="form-control" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" id="btnSearch" title="search">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-        </div>*@
-    @*<div class="col-md-1">
-                <button class="btn btn-default" id="btnSearch" title="search">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-        </div>*@
 </div>
 
 <form action="/HOPDONGs/Index" method="POST" id="frmhopdong">
@@ -98,8 +83,7 @@
                             @Html.DisplayFor(modelItem => item.GiaThoaThuan)
                         </td>
                         <td>
-
-                            @Html.DisplayFor(modelItem => item.TRAMXE.TenTram)
+                            <div style="white-space:nowrap">@Html.DisplayFor(modelItem => item.TRAMXE.TenTram)</div>
                         </td>
                         <td>
                             @if (item.ThoiHanThue != null)
@@ -112,17 +96,18 @@
                             }
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DOITAC.TenDT)
+                            <div style="white-space:nowrap">@Html.DisplayFor(modelItem => item.DOITAC.TenDT)</div>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NHANVIEN.TenNV)
+                            <div style="white-space:nowrap">@Html.DisplayFor(modelItem => item.NHANVIEN.TenNV)</div>
                         </td>
-                        <td class="text-right">
-                            <a href="/HOPDONGs/Edit/@item.MaHD" class="btn btn-xs btn-success" title="Sửa">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
+                        <td style="width:70px">
                             <a href="/HOPDONGs/Details/@item.MaHD" class="btn btn-xs btn btn-info" title="Xem chi tiết">
                                 <span class="glyphicon glyphicon-align-justify"></span>
+                            </a>
+
+                            <a href="/HOPDONGs/Edit/@item.MaHD" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </a>
                         </td>
                     </tr>

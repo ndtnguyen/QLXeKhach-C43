@@ -11,30 +11,15 @@
         <p>
 
             <a href="/DOITACs/Create" class="btn btn-primary" title="add">
-                Thêm Đối Tác
+                Thêm
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
             <button class="btn btn-danger" id="btnDelete" title="delete">
-                Xóa Đối Tác
+                Xóa
                 @*<span class="glyphicon glyphicon-remove"></span>*@
             </button>
         </p>
     </div>
-    @*<div class="col-md-3">
-                <div class="input-group col-md-12">
-                    <input id="txtSearch" class="form-control" />
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" id="btnSearch" title="search">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
-                </div>
-        </div>*@
-    @*<div class="col-md-1">
-                <button class="btn btn-default" id="btnSearch" title="search">
-                    <span class="glyphicon glyphicon-search"></span>
-                </button>
-        </div>*@
 </div>
 
 <form action="/DOITACs/Index" method="POST" id="frmdoitac">
@@ -74,27 +59,28 @@
                             <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaDT>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TenDT)
+                            <div style="white-space:nowrap">@Html.DisplayFor(modelItem => item.TenDT)</div>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NguoiDaiDien)
+                            <div style="white-space:nowrap">@Html.DisplayFor(modelItem => item.NguoiDaiDien)</div>
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SDT)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.DiaChi)
+                            <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px">@Html.DisplayFor(modelItem => item.DiaChi)</div>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Email)
+                            <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px">@Html.DisplayFor(modelItem => item.Email)</div>
                         </td>
-                        <td class="text-right">
-                            <a href="/DOITACs/Edit/@item.MaDT" class="btn btn-xs btn-primary" title="Cập nhật">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
+                        <td style="width:70px">
                             <a href="/DOITACs/Details/@item.MaDT" class="btn btn-xs btn-info" title="Xem chi tiết">
                                     <span class="glyphicon glyphicon-align-justify"></span>
-                                </a>
+                            </a>
+
+                            <a href="/DOITACs/Edit/@item.MaDT" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                            </a>
                         </td>
                     </tr>
                 }
