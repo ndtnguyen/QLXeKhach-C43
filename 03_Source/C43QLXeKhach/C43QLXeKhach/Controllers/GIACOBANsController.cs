@@ -26,7 +26,8 @@ namespace C43QLXeKhach.Controllers
         // GET: GIACOBANs
         public ActionResult Index()
         {
-            return View(db.GIACOBANs.ToList());
+            this.service.GetAll();
+            return View(this.service.GetAll());
         }
         
         //POST: GIACOBANs/Details
@@ -185,11 +186,11 @@ namespace C43QLXeKhach.Controllers
                 return RedirectToAction("Index");
             }
 
-            string[] paramList = temp.Split('+',' ');
+            string[] paramList = temp.Split(',');
             
-            for (int i = 0; i < paramList.Length-1; i++)
+            for (int i = 0; i < paramList.Length; i++)
             {
-                string[] param = paramList[i].Split(',',' ');
+                string[] param = paramList[i].Split('+');
                 string maTT1 = param[0], maTT2 = param[1], maLoai = param[2];
                 GIACOBAN gcb = service.Detail(maTT1,maTT2,int.Parse(maLoai));
                 gcb.isDeleted = 1;
