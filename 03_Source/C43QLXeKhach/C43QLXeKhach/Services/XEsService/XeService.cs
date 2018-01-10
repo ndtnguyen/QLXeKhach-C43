@@ -50,7 +50,7 @@ namespace C43QLXeKhach.Services.XEsService
             xe.lastupdateDate = current;
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                context.Entry(xe).State = EntityState.Detached;
+                context.Entry(xe).State = EntityState.Modified;
                 context.SaveChanges();
             }
         }
