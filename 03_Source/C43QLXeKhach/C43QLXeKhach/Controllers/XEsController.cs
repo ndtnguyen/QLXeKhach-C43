@@ -144,6 +144,7 @@ namespace C43QLXeKhach.Controllers
                 LOAIXE lx = loaiXeService.Detail(thuocXe);
                 IList<XE> xe = service.Detail(xE.MaXe);
                 xe[0].LoaiXe = thuocXe;
+                xe[0].LOAIXE1 = lx;
                 xe[0].BienSoXe = xE.BienSoXe;
                 xe[0].HangXe = xE.HangXe;
                 service.Update(xe[0]);
