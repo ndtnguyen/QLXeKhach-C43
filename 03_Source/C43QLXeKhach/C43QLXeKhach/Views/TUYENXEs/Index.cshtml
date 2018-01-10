@@ -15,12 +15,12 @@
         <p>
 
             <a href="/TUYENXEs/Create" class="btn btn-primary" title="add">
-                Thêm Tuyến Xe
+                Thêm 
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
             @* @Html.ActionLink("Them tinh thanh", "Create")*@
             <button class="btn btn-danger" id="btnDelete" title="delete">
-                Xóa Tuyến Xe
+                Xóa
                 @*<span class="glyphicon glyphicon-remove"></span>*@
             </button>
         </p>
@@ -85,12 +85,12 @@
                             @Html.DisplayFor(modelItem => item.SoChuyen1Ngay)
                         </td>
                         <td>
+                            <a href="/TUYENXEs/Details/@item.MaTuyen" class="btn btn-xs btn-info" title="details">
+                                <span class="glyphicon glyphicon-align-justify"></span>
+                            </a>
                             <a href="/TUYENXEs/Edit/@item.MaTuyen" class="btn btn-xs btn-primary" title="edit">
                                 <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
-                                    <span class="glyphicon glyphicon-book"></span>
-                                </a>*@
+                            </a>                          
                         </td>
                     </tr>
                 }

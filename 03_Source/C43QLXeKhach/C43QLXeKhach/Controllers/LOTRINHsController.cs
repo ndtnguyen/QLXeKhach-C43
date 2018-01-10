@@ -16,6 +16,7 @@ namespace C43QLXeKhach.Controllers
 {
     public class LOTRINHsController : Controller
     {
+        private QLXeKhachEntities db = new QLXeKhachEntities();
         ILoTrinhService service;
         ILogger logger = LogManager.GetCurrentClassLogger();
 
@@ -31,17 +32,29 @@ namespace C43QLXeKhach.Controllers
         }
 
         // GET: LOTRINHs/Details/5
-        public ActionResult Details(int? id, int? id1)
+        [HttpPost]
+        public LOTRINH GetDetails(string maTuyen, string maTram)
         {
-            if (id == null || id1 == null)
+            System.Diagnostics.Debug.WriteLine("hello1");
+            if (maTuyen == null || maTram == null)
+            {
+                return null;
+            }
+            LOTRINH lOTRINH = db.LOTRINHs.Find(Int32.Parse(maTuyen), Int32.Parse(maTram));
+            return lOTRINH;
+        }
+
+        // GET: LOTRINHs/Details/5
+        [HttpPost]
+        public ActionResult Details()
+        {
+            string maTuyen = Request["maTuyen"];
+            string maTram = Request["maTram"];
+            if (maTuyen == null || maTram == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IList<LOTRINH> lOTRINH = service.Detail(id, id1);
-            if (lOTRINH == null)
-            {
-                return HttpNotFound();
-            }
+            LOTRINH lOTRINH = db.LOTRINHs.Find(Int32.Parse(maTuyen), Int32.Parse(maTram));
             return View(lOTRINH);
         }
 
@@ -90,99 +103,32 @@ namespace C43QLXeKhach.Controllers
             IList<TRAMXE> txe = tramXeService.Detail(Int32.Parse(thuocTramXe));
             if (ModelState.IsValid)
             {
-                if (lOTRINH.ThuTu == 1)
-                {
-                    if (txe[0].MaTT == tx[0].DiemDi)
-                    {
-                        lOTRINH.isDeleted = 0;
-                        lOTRINH.MaTuyen = Int32.Parse(thuocTuyenXe);
-                        lOTRINH.MaTram = Int32.Parse(thuocTramXe);
-                        service.Add(lOTRINH);
-                        return RedirectToAction("Index", "TUYENXEs");
-                    }
-                    else
-                    {
-                        return RedirectToAction("Create");
-                    }
-                }
-                else
-                {
-                    lOTRINH.isDeleted = 0;
-                    lOTRINH.MaTuyen = Int32.Parse(thuocTuyenXe);
-                    lOTRINH.MaTram = Int32.Parse(thuocTramXe);
-                    service.Add(lOTRINH);
-                    return RedirectToAction("Index");
-                }                
+                lOTRINH.isDeleted = 0;
+                lOTRINH.MaTuyen = Int32.Parse(thuocTuyenXe);
+                lOTRINH.MaTram = Int32.Parse(thuocTramXe);
+                service.Add(lOTRINH);
+                return RedirectToAction("Index");
             }
 
             return View(lOTRINH);
         }
 
-        // GET: LOTRINHs/Edit/5, 10001
-        public ActionResult Edit(int? id, int? id1)
+        // GET: LOTRINHs/Edit/5
+        [HttpPost]
+        public ActionResult EditView()
         {
-            if (id == null || id1 == null)
+            string maTuyen = Request["maTuyen"];
+            string maTram = Request["maTram"];
+            if (maTuyen == null || maTram == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IList<LOTRINH> lOTRINH = service.Detail(id, id1);
+            LOTRINH lOTRINH = db.LOTRINHs.Find(Int32.Parse(maTuyen), Int32.Parse(maTram));
             if (lOTRINH == null)
             {
                 return HttpNotFound();
             }
-            ITuyenXeService tuyenXeService = new TuyenXeService();
-            ITramXeService tramXeService = new TramXeService();
-            IList<TUYENXE> tuyenXeList = tuyenXeService.GetAll();
-            IList<TRAMXE> tramXeList = tramXeService.GetAll();
-            List<SelectListItem> listItems = new List<SelectListItem>();
-            List<SelectListItem> listItems1 = new List<SelectListItem>();
-            for (int i = 0; i < tuyenXeList.Count; i++)
-            {
-                if (lOTRINH[0].MaTuyen == tuyenXeList[i].MaTuyen)
-                {
-                    listItems.Add(new SelectListItem
-                    {
-                        Text = tuyenXeList[i].MaTuyen.ToString(),
-                        Value = tuyenXeList[i].MaTuyen.ToString(),
-                        Selected = true
-
-                    });
-                }
-                else
-                {
-                    listItems.Add(new SelectListItem
-                    {
-                        Text = tuyenXeList[i].MaTuyen.ToString(),
-                        Value = tuyenXeList[i].MaTuyen.ToString()
-
-                    });
-                }
-            }
-            for (int i = 0; i < tramXeList.Count; i++)
-            {
-                if (lOTRINH[0].MaTram == tramXeList[i].MaTram)
-                {
-                    listItems1.Add(new SelectListItem
-                    {
-                        Text = tramXeList[i].TenTram.ToString(),
-                        Value = tramXeList[i].MaTram.ToString(),
-                        Selected = true
-
-                    });
-                }
-                else
-                {
-                    listItems1.Add(new SelectListItem
-                    {
-                        Text = tramXeList[i].TenTram.ToString(),
-                        Value = tramXeList[i].MaTram.ToString()
-
-                    });
-                }
-            }
-            ViewBag.listItems = listItems;
-            ViewBag.listItems1 = listItems1;
-            return View(lOTRINH[0]);
+            return View("Edit", lOTRINH);
         }
 
         // POST: LOTRINHs/Edit/5, 10001
@@ -190,63 +136,33 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaTuyen,MaTram,ThuTu,KhoangThoiGian,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] LOTRINH lOTRINH)
+        public ActionResult Edit()
         {
-            string thuocTuyenXe = Request.Form["tuyenXeDropList"].ToString();
-            string thuocTramXe = Request.Form["tramXeDropList"].ToString();
-            int maTuyen = Int32.Parse(thuocTuyenXe);
-            int maTram = Int32.Parse(thuocTramXe);
-
-            if (ModelState.IsValid)
-            {
-                ITuyenXeService tuyenXeService = new TuyenXeService();
-                ITramXeService tramXeService = new TramXeService();
-                IList<TUYENXE> tuyenxe = tuyenXeService.Detail(maTuyen);
-                IList<TRAMXE> tramxe = tramXeService.Detail(maTram);
-                IList<LOTRINH> ltrinh = service.Detail(lOTRINH.MaTuyen, lOTRINH.MaTram);
-                IList<LOTRINH> lt = service.Detail(lOTRINH.MaTuyen);
-                if (ltrinh[0].ThuTu == 1 || ltrinh[0].ThuTu == lt.Count)
-                {
-                    if (tramxe[0].MaTT == tuyenxe[0].DiemDi || tramxe[0].MaTT == tuyenxe[0].DiemDen)
-                    {
-                        ltrinh[0].MaTuyen = maTuyen;
-                        ltrinh[0].MaTram = maTram;
-                        ltrinh[0].ThuTu = lOTRINH.ThuTu;
-                        ltrinh[0].KhoangThoiGian = lOTRINH.KhoangThoiGian;
-                        ltrinh[0].TUYENXE = tuyenxe[0];
-                        ltrinh[0].TRAMXE = tramxe[0];
-                        service.Update(lOTRINH);
-                        return RedirectToAction("Index");
-                    } 
-                    else
-                    {
-                        return RedirectToAction("Index");
-                    }                   
-                }      
-                else
-                {
-                    ltrinh[0].MaTuyen = maTuyen;
-                    ltrinh[0].MaTram = maTram;
-                    ltrinh[0].ThuTu = lOTRINH.ThuTu;
-                    ltrinh[0].KhoangThoiGian = lOTRINH.KhoangThoiGian;
-                    ltrinh[0].TUYENXE = tuyenxe[0];
-                    ltrinh[0].TRAMXE = tramxe[0];
-                    service.Update(lOTRINH);
-                    return RedirectToAction("Index");
-                }          
-            }
-            return View(lOTRINH);
-        }
-
-        // GET: LOTRINHs/Delete/5
-        public ActionResult Delete(int? id, int? id1)
-        {
-            if (id == null || id1 == null)
+            string maTuyen = Request["maTuyen"];
+            string maTram = Request["maTram"];
+            string tgian = Request["tgian"];
+            if (maTuyen == null || maTram == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //TRAMXE tRAMXE = db.TRAMXEs.Find(id);
-            IList<LOTRINH> lOTRINH = service.Detail(id, id1);
+            LOTRINH lOTRINH = db.LOTRINHs.Find(Int32.Parse(maTuyen), Int32.Parse(maTram));
+            if (lOTRINH == null)
+            {
+                return HttpNotFound();
+            }
+            lOTRINH.KhoangThoiGian = Int32.Parse(tgian);
+            db.Entry(lOTRINH).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        // GET: LOTRINHs/Delete/5
+        public ActionResult Delete(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            LOTRINH lOTRINH = db.LOTRINHs.Find(id);
             if (lOTRINH == null)
             {
                 return HttpNotFound();
@@ -257,11 +173,11 @@ namespace C43QLXeKhach.Controllers
         // POST: LOTRINHs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, int id1)
+        public ActionResult DeleteConfirmed(string id)
         {
-            IList<LOTRINH> lOTRINH = service.Detail(id, id1);
-            lOTRINH[0].isDeleted = 1;
-            service.Delete(lOTRINH[0]);
+            LOTRINH lOTRINH = db.LOTRINHs.Find(id);
+            db.LOTRINHs.Remove(lOTRINH);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -274,14 +190,26 @@ namespace C43QLXeKhach.Controllers
             {
                 return RedirectToAction("Index");
             }
-            string[] listDelete = temp.Split(',');
-            for (int i = 0; i < listDelete.Length; i++)
+
+            string[] paramList = temp.Split('+', ' ');
+
+            for (int i = 0; i < paramList.Length - 1; i++)
             {
-                IList<LOTRINH> lOTRINH = service.Detail(Int32.Parse(listDelete[i]), Int32.Parse(listDelete[i]));
-                lOTRINH[0].isDeleted = 1;
-                service.Delete(lOTRINH[0]);
+                string[] param = paramList[i].Split(',', ' ');
+                string maTuyen = param[0], maTram = param[1];
+                IList<LOTRINH> ltrinh = service.Detail(Int32.Parse(maTuyen), Int32.Parse(maTram));
+                ltrinh[0].isDeleted = 1;
+                service.Delete(ltrinh[0]);
             }
             return RedirectToAction("Index");
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }

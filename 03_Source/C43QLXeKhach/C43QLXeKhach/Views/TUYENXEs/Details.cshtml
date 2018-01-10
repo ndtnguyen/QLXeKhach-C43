@@ -1,98 +1,71 @@
 ﻿@model C43QLXeKhach.Models.TUYENXE
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Tuyến Xe";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Tuyến Xe</h2>
 
-<div>
-    <h4>TUYENXE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.DiemDi)
-        </dt>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.DiemDi)
-        </dd>
+    <div class="form-horizontal">
+        <h4>Chi tiết Tuyến Xe</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Mã tuyến</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.MaTuyen" />
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiemDen)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Điểm đi</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.TINHTHANH.TenTT" />
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.DiemDen)
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">Điểm đến</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.TINHTHANH1.TenTT" />
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QuangDuong)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Quãng đường</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.QuangDuong" />
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.QuangDuong)
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.ThoiGian" />
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ThoiGian)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Số chuyến 1 ngày</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.SoChuyen1Ngay" />
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ThoiGian)
-        </dd>
+    </div>
+}
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SoChuyen1Ngay)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoChuyen1Ngay)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTuyen }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-primary" id="btnEdit" title="edit" onclick="location.href='@Url.Action("Edit", "TUYENXEs", new { id = Model.MaTuyen })'">
+        Chỉnh sửa
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
+    <button class="btn btn-danger" id="btnDelete" title="delete" onclick="location.href='@Url.Action("Index", "TUYENXEs")'">
+        Quay trở lại
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
+
 </p>

@@ -10,8 +10,7 @@ namespace C43QLXeKhach.Services.LOTRINHsService
         void Update(LOTRINH ltrinh);
         void Delete(LOTRINH ltrinh);
         void Dispose();
-        //IList<LOTRINH> Search(string input);
+        IList<LOTRINH> Search(string input);
         IList<LOTRINH> Detail(int? id, int? id1);
-        IList<LOTRINH> Detail(int? id);
     }
 }

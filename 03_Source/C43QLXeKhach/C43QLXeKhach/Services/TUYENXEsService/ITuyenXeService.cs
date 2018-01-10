@@ -10,7 +10,7 @@ namespace C43QLXeKhach.Services.TUYENXEsService
         void Update(TUYENXE tuyen);
         void Delete(TUYENXE tuyen);
         void Dispose();
-        //IList<TUYENXE> Search(string input);
+        IList<TUYENXE> Search(string input);
         IList<TUYENXE> Detail(int? id);
     }
 }

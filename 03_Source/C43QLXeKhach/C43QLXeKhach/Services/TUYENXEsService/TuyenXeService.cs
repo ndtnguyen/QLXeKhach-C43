@@ -89,12 +89,12 @@ namespace C43QLXeKhach.Services.TUYENXEsService
             }
         }
 
-        /*public IList<TUYENXE> Search(string input)
+        public IList<TUYENXE> Search(string input)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.TUYENXEs.Where(x => x.isDeleted != 1 && (x.Tentuyen.Contains(input) || x.DiaChi.Contains(input) || input == "")).ToList();
+                return context.TUYENXEs.Where(x => x.isDeleted != 1 && (x.TINHTHANH.TenTT.Contains(input) || x.TINHTHANH1.TenTT.Contains(input) || input == "")).ToList();
             }
-        }*/
+        }
     }
 }

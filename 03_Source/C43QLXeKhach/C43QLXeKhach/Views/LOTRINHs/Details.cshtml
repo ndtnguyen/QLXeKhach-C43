@@ -1,74 +1,72 @@
 ﻿@model C43QLXeKhach.Models.LOTRINH
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Lộ Trình";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Lộ Trình</h2>
 
-<div>
-    <h4>LOTRINH</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ThuTu)
-        </dt>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.ThuTu)
-        </dd>
+    <div class="form-horizontal">
+        <h4>Chi tiết lộ trình</h4>
+        <hr />
+        <div class="form-group">
+            <label class="control-label col-md-2">Tuyến xe</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.TUYENXE.DiemDi - @Model.TUYENXE.DiemDen" />
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.KhoangThoiGian)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên trạm</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.TRAMXE.TenTram" />
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.KhoangThoiGian)
-        </dd>
+        <div class="form-group">
+            <label class="control-label col-md-2">Thứ tự</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.ThuTu" />
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.createUser)
-        </dt>
+        <div class="form-group">
+            <label class="control-label col-md-2">Khoảng thời gian</label>
+            <div class="col-md-10">
+                <input class="form-control" disabled value="@Model.KhoangThoiGian" />
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.createUser)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </dt>
+    </div>
+}
 
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
-    </dl>
-</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-primary" id="btnEdit" title="edit" onclick="RenderEditView()">
+        Chỉnh sửa
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
+    <button class="btn btn-danger" id="btnDelete" title="delete" onclick="location.href='@Url.Action("Index", "LOTRINHs")'">
+        Quay trở lại
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
+
 </p>
+
+<form action="/LOTRINHs/EditView" method="POST" id="hiddenForm">
+    <input id="maTuyen" name="maTuyen" hidden value="@Model.MaTuyen" />
+    <input id="maTram" name="maTram" hidden value="@Model.MaTram" />
+</form>
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function RenderEditView() {
+            $("#hiddenForm").submit();
+        }
+    </script>
+}

@@ -15,19 +15,19 @@
         <p>
 
             <a href="/LOTRINHs/Create" class="btn btn-primary" title="add">
-                Thêm Lộ Trình
+                Thêm
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
             @* @Html.ActionLink("Them tinh thanh", "Create")*@
             <button class="btn btn-danger" id="btnDelete" title="delete">
-                Xóa Lộ Trình
+                Xóa
                 @*<span class="glyphicon glyphicon-remove"></span>*@
             </button>
         </p>
     </div>
 </div>
 
-<form action="/TUYENXEs/Index" method="POST" id="frmlotrinh">
+<form action="/LOTRINHs/Index" method="POST" id="frmlotrinh">
     @Html.AntiForgeryToken()
     <div class="table-responsive">
         <table class="table table-hover" id="dataTable" cellspacing="0">
@@ -37,10 +37,10 @@
 
                     </th>
                     <th>
-                        Mã tuyến
+                        Tên tuyến
                     </th>
                     <th>
-                        Mã trạm
+                        Tên trạm
                     </th>
                     <th>
                         Thứ tự
@@ -58,13 +58,15 @@
                 {
                     <tr>
                         <td>
-                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaTuyen>
+                            <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value="@item.MaTuyen,@item.MaTram+">
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaTuyen)
+                            @*@Html.DisplayFor(modelItem => item.MaTuyen)*@
+                            @item.TUYENXE.DiemDi - @item.TUYENXE.DiemDen
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaTram)
+                            @*@Html.DisplayFor(modelItem => item.MaTram)*@
+                            @item.TRAMXE.TenTram
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.ThuTu)
@@ -73,12 +75,14 @@
                             @Html.DisplayFor(modelItem => item.KhoangThoiGian)
                         </td>
                         <td>
-                            <a href="/LOTRINHs/Edit/@item.MaTuyen" class="btn btn-xs btn-primary" title="edit">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
-                                    <span class="glyphicon glyphicon-book"></span>
-                                </a>*@
+                            <div>
+                                <a onclick="NavigateDetail('@item.MaTuyen', '@item.MaTram')" class="btn btn-xs btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a onclick="NavigateEdit('@item.MaTuyen', '@item.MaTram')" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -88,6 +92,72 @@
     </div>
 
 </form>
+
+<form action="/LOTRINHs/Details" method="POST" id="hiddenForm">
+    <input id="maTuyen" name="maTuyen" hidden />
+    <input id="maTram" name="maTram" hidden />
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnDelete').prop("disabled", true);
+            var url = decodeURIComponent(window.location.search.substring(1));
+            if (url != "") {
+                var searchinput = url.split("=")[1];
+                $("#txtSearch").val(searchinput);
+            }
+        });
+        var listDelete = [];
+        $('.deleteCheckbox').on('change', function () {
+            listDelete = [];
+            $('.deleteCheckbox').map(function () {
+                if ($(this).is(":checked")) {
+                    listDelete.push($(this).val());
+                }
+            });
+            if(listDelete.length>0) {
+                $('#btnDelete').prop("disabled", false);
+            }
+            else {
+                $('#btnDelete').prop("disabled", true);
+            }
+        });
+
+        $('#btnDelete').on('click', function () {
+            var returnVal = confirm("Bạn có muốn xóa những lộ trình này?");
+            if (returnVal)
+                $('#frmlotrinh').submit();
+            else
+                return;
+        });
+        $('#btnSearch').on('click', function () {
+            var input = "";
+            if ($("#txtSearch").val())
+                input = $("#txtSearch").val();
+            var url="/LOTRINHs/Index?input="+input;
+            window.location=url;
+        });
+        $('#lotrinhTitle').on('click', function () {
+            window.location="/LOTRINHs/Index";
+        });
+
+        function NavigateEdit(maTuyen, maTram) {
+            $("#hiddenForm").attr("action", "/LOTRINHs/EditView")
+            $("#maTuyen").val(maTuyen);
+            $("#maTram").val(maTram);
+            $("#hiddenForm").submit();
+        }
+        function NavigateDetail(maTuyen, maTram) {
+            $("#hiddenForm").attr("action", "/LOTRINHs/Details")
+            $("#maTuyen").val(maTuyen);
+            $("#maTram").val(maTram);
+            $("#hiddenForm").submit();
+        }
+    </script>
+}
+
 @*<p>
         @Html.ActionLink("Create New", "Create")
     </p>

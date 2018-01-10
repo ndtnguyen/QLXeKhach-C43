@@ -15,7 +15,7 @@ namespace C43QLXeKhach.Services.LOTRINHsService
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.LOTRINHs.Where(x => x.isDeleted != 1).Include(x => x.TRAMXE).ToList();
+                return context.LOTRINHs.Where(x => x.isDeleted != 1).Include(x => x.TRAMXE).Include(x => x.TUYENXE).ToList();
             }
         }
         public int Add(LOTRINH ltrinh)
@@ -77,28 +77,19 @@ namespace C43QLXeKhach.Services.LOTRINHsService
             }
         }
 
-        /*public IList<LOTRINH> Search(string input)
+        public IList<LOTRINH> Search(string input)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
-                return context.TRAMXEs.Where(x => x.isDeleted != 1 && (x.TenTram.Contains(input) || x.DiaChi.Contains(input) || input == "")).ToList();
+                return context.LOTRINHs.Where(x => x.isDeleted != 1 && (x.TUYENXE.DiemDi.Contains(input) || x.TUYENXE.DiemDen.Contains(input) || x.TRAMXE.TenTram.Contains(input) || input == "")).ToList();
             }
-        }*/
+        }
         public IList<LOTRINH> Detail(int? id, int? id1)
         {
             using (QLXeKhachEntities context = new QLXeKhachEntities())
             {
                 //return context.TRAMXEs.Find(id);
                 return context.LOTRINHs.Where(x => x.MaTuyen == id && x.MaTram == id1).Include(x => x.TRAMXE).ToList();
-
-            }
-        }
-        public IList<LOTRINH> Detail(int? id)
-        {
-            using (QLXeKhachEntities context = new QLXeKhachEntities())
-            {
-                //return context.TRAMXEs.Find(id);
-                return context.LOTRINHs.Where(x => x.MaTuyen == id).Include(x => x.TRAMXE).ToList();
 
             }
         }

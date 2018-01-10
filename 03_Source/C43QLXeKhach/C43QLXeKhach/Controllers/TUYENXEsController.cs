@@ -15,6 +15,7 @@ namespace C43QLXeKhach.Controllers
 {
     public class TUYENXEsController : Controller
     {
+        private QLXeKhachEntities db = new QLXeKhachEntities();
         ITuyenXeService service;
         ILogger logger = LogManager.GetCurrentClassLogger();
 
@@ -36,8 +37,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            IList<TUYENXE> tUYENXE = service.Detail(id);
-            ViewBag.maTT = tUYENXE[0].TINHTHANH.TenTT;
+            TUYENXE tUYENXE = db.TUYENXEs.Find(id);
             if (tUYENXE == null)
             {
                 return HttpNotFound();
@@ -80,7 +80,7 @@ namespace C43QLXeKhach.Controllers
                     tUYENXE.DiemDi = thuocTinhThanh;
                     tUYENXE.DiemDen = thuocTinhThanh1;
                     service.Add(tUYENXE);
-                    return RedirectToAction("Create", "LOTRINHs");
+                    return RedirectToAction("Index");
                 }
             }            
             else { return RedirectToAction("Create"); }
