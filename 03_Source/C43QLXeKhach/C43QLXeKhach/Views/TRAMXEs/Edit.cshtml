@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaTram)
 
@@ -28,7 +27,7 @@
 
         <div class="form-group">
             <div class="col-md-2">
-                <label>Tỉnh thành</label>
+                <label>Tỉnh Thành</label>
             </div>
             <div class="col-md-10">
                 @Html.DropDownList("tinhThanhDropList", (List<SelectListItem>)ViewBag.listItems, new { @class = "form-control" })
@@ -39,20 +38,24 @@
 
         <div class="form-group">
             <div class="col-md-2">
-                <label>Địa chỉ</label>
+                <label>Địa Chỉ</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea class="form-control" data-val="true" rows="3" id="DiaChi" name="DiaChi" type="text" value="@Model.DiaChi">@Model.DiaChi</textarea>
+
+                @*@Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", style = "Height:100px" } })*@
                 @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-2">
-                <label>Mô tả</label>
+                <label>Mô Tả</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control" } })
+                <textarea class="form-control" data-val="true" rows="3" id="MoTa" name="MoTa" type="text" value="@Model.MoTa">@Model.MoTa</textarea>
+
+                @*@Html.EditorFor(model => model.MoTa, new { htmlAttributes = new { @class = "form-control", style = "Height:100px" } })*@
                 @Html.ValidationMessageFor(model => model.MoTa, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -1,17 +1,23 @@
 ﻿@model C43QLXeKhach.Models.TINHTHANH
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Tỉnh Thành";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Tỉnh Thành</h2>
 
 <div>
-    <h4>TINHTHANH</h4>
-    <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.TenTT)
+            Mã Tỉnh Thành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaTT)
+        </dd>
+
+        <dt>
+            Tên Tỉnh Thành
         </dt>
 
         <dd>
@@ -19,7 +25,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createUser)
+            Người Tạo
         </dt>
 
         <dd>
@@ -27,7 +33,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
+            Người Cập Nhật
         </dt>
 
         <dd>
@@ -35,7 +41,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.createDate)
+            Ngày Tạo
         </dt>
 
         <dd>
@@ -43,24 +49,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
+            Ngày Cập Nhật
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.lastupdateDate)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
+        @*<dt>
+                @Html.DisplayNameFor(model => model.isDeleted)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.isDeleted)
+            </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTT }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaTT }) |
+    @Html.ActionLink("Quay Về", "Index")
 </p>

@@ -5,7 +5,7 @@
 }
 
 <div class="row">
-    <div class="col-md-4" id="tinhThanhTitle" style="cursor:pointer"><h2>Danh Sách Tỉnh Thành</h2></div>
+    <div><h2><span id="tinhThanhTitle" style="cursor:pointer">Danh Sách Trạm Xe</span></h2></div>
 </div>
 
 <div class="row">
@@ -13,12 +13,12 @@
         <p>
 
             <a href="/TRAMXEs/Create" class="btn btn-primary" title="add">
-                Thêm Trạm Xe
+                Thêm
                 @*<span class="glyphicon glyphicon-plus"></span>*@
             </a>
             @* @Html.ActionLink("Them tinh thanh", "Create")*@
             <button class="btn btn-danger" id="btnDelete" title="delete">
-                Xóa Trạm Xe
+                Xóa
                 @*<span class="glyphicon glyphicon-remove"></span>*@
             </button>
         </p>
@@ -38,13 +38,13 @@
                         Tên Trạm
                     </th>
                     <th>
-                        Tỉnh thành
+                        Tỉnh Thành
                     </th>
                     <th>
-                        Địa chỉ
+                        Địa Chỉ
                     </th>
                     <th>
-                        Mô tả
+                        Mô Tả
                     </th>
                     <th>
 
@@ -72,12 +72,14 @@
                             @Html.DisplayFor(modelItem => item.MoTa)
                         </td>
                         <td>
-                            <a href="/TRAMXEs/Edit/@item.MaTram" class="btn btn-xs btn-primary" title="edit">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                            </a>
-                            @*<a href="/NHANVIENs/Details/@item.MaNV" class="btn btn-xs btn-info" title="details">
-                                    <span class="glyphicon glyphicon-book"></span>
-                                </a>*@
+                            <div style="width:70px">
+                                <a href="/TRAMXEs/Details/@item.MaTram" class="btn btn-xs btn-info" title="Xem chi tiết">
+                                    <span class="glyphicon glyphicon-align-justify"></span>
+                                </a>
+                                <a href="/TRAMXEs/Edit/@item.MaTram" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                 }

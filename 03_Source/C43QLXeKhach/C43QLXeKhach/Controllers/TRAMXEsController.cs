@@ -37,12 +37,13 @@ namespace C43QLXeKhach.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             IList<TRAMXE> tRAMXE = service.Detail(id);
+
             ViewBag.maTT = tRAMXE[0].TINHTHANH.TenTT;
             if (tRAMXE == null)
             {
                 return HttpNotFound();
             }
-            return View(tRAMXE);
+            return View(tRAMXE[0]);
         }
 
         // GET: TRAMXEs/Create
