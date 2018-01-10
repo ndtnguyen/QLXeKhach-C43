@@ -35,10 +35,10 @@
 
                     </th>
                     <th>
-                        Loại Xe
+                       Biển Số Xe
                     </th>
                     <th>
-                        Biển Số Xe
+                       Loại Xe
                     </th>
                     <th>
                         Hãng Xe
@@ -55,13 +55,14 @@
                         <td>
                             <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaXe>
                         </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BienSoXe)
+                        </td>
                          <td>
                             @*@Html.DisplayFor(modelItem => item.MaLoai)*@
                             @item.LOAIXE1.TenLoai
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.BienSoXe)
-                        </td>
+                        
                         <td>
                             <div style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px">@Html.DisplayFor(modelItem => item.HangXe)</div>
                         </td>

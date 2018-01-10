@@ -97,7 +97,10 @@
 }
 
 <div>
-    @Html.ActionLink("Quay về", "Index")
+    <button class="btn btn-danger" id="btnDelete" title="index" onclick="location.href='@Url.Action("Index", "KHACHHANGs")'">
+        Quay trở lại
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
 </div>
 
 @section Scripts {

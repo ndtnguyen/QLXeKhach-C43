@@ -21,7 +21,7 @@
                 <label>Loại Xe</label>
             </div>
             <div class="col-md-10">
-                @Html.DropDownList("xeDropList", (List<SelectListItem>)ViewBag.listItems, new { @class = "form-control" })
+                @Html.DropDownList("loaixeDropList", (List<SelectListItem>)ViewBag.listItems, new { @class = "form-control" })
                 @*@Html.EditorFor(model => model.LoaiXe, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.LoaiXe, "", new { @class = "text-danger" })
             </div>
@@ -56,7 +56,10 @@
 }
 
 <div>
-    @Html.ActionLink("Quay Về", "Index")
+    <button class="btn btn-danger" id="btnDelete" title="index" onclick="location.href='@Url.Action("Index", "XEs")'">
+        Quay trở lại
+        @*<span class="glyphicon glyphicon-remove"></span>*@
+    </button>
 </div>
 
 @section Scripts {
