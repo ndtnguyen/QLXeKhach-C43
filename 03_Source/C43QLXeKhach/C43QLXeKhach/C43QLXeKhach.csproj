@@ -246,6 +246,7 @@
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GiaCoBanEntity.cs" />
+    <Compile Include="Models\GiaCoBanViewModel.cs" />
     <Compile Include="Models\HOPDONG.cs">
       <DependentUpon>C43QLXeKhachModel.tt</DependentUpon>
     </Compile>

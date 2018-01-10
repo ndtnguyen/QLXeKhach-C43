@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using C43QLXeKhach.Models;
 using C43QLXeKhach.Services.GIACOBANsService;
 using NLog;
+using C43QLXeKhach.Services.TINHTHANHsService;
+using C43QLXeKhach.Services.LOAIXEsService;
 
 namespace C43QLXeKhach.Controllers
 {
@@ -17,11 +19,15 @@ namespace C43QLXeKhach.Controllers
 
         private QLXeKhachEntities db = new QLXeKhachEntities();
         IGiaCoBanService service;
+        ITinhThanhService tinhThanhService;
+        ILoaiXeService loaiXeService;
         ILogger logger = LogManager.GetCurrentClassLogger();
 
-        public GIACOBANsController(IGiaCoBanService service)
+        public GIACOBANsController(IGiaCoBanService service, ITinhThanhService ttService, ILoaiXeService lxService)
         {
             this.service = service;
+            this.tinhThanhService = ttService;
+            this.loaiXeService = lxService;
         }
         // GET: GIACOBANs
         public ActionResult Index()
@@ -64,7 +70,12 @@ namespace C43QLXeKhach.Controllers
         // GET: GIACOBANs/Create
         public ActionResult Create()
         {
-            return View();
+            IList<TINHTHANH> tt = this.tinhThanhService.GetAll();
+            IList<LOAIXE> lx = this.loaiXeService.GetAll();
+            GiaCoBanViewModel model = new GiaCoBanViewModel();
+            model.tinhThanh = tt;
+            model.lx = lx;
+            return View(model);
         }
 
         // POST: GIACOBANs/Create
@@ -72,16 +83,26 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaTT1,MaTT2,MaLoai,GiaCoBan1,createUser,lastupdateUser,createDate,lastupdateDate,isDeleted")] GIACOBAN gIACOBAN)
+        public ActionResult Create(string tt)
         {
-            if (ModelState.IsValid)
-            {
-                db.GIACOBANs.Add(gIACOBAN);
+            string maTT1 = Request["ttDi"];
+            string maTT2 = Request["ttDen"];
+            string maLoai = Request["maLoai"];
+            string gia = Request["gia"];
+            GIACOBAN gcb = new GIACOBAN();
+            gcb.MaTT1 = maTT1;
+            gcb.MaTT2 = maTT2;
+            gcb.MaLoai = int.Parse(maLoai);
+            gcb.GiaCoBan1 = int.Parse(gia);
+            gcb.isDeleted = 0;
+            gcb.createDate = DateTime.Now;
+            gcb.lastupdateDate = DateTime.Now;
+                db.GIACOBANs.Add(gcb);
                 db.SaveChanges();
                 return RedirectToAction("Index");
-            }
 
-            return View(gIACOBAN);
+
+            return View(gcb);
         }
 
         // GET: GIACOBANs/Edit/
