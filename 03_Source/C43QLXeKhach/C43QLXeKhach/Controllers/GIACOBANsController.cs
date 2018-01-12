@@ -75,6 +75,7 @@ namespace C43QLXeKhach.Controllers
             GiaCoBanViewModel model = new GiaCoBanViewModel();
             model.tinhThanh = tt;
             model.lx = lx;
+            model.gcb = new GIACOBAN();
             return View(model);
         }
 
@@ -83,26 +84,25 @@ namespace C43QLXeKhach.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(string tt)
+        public ActionResult Create(string temp)
         {
-            string maTT1 = Request["ttDi"];
-            string maTT2 = Request["ttDen"];
-            string maLoai = Request["maLoai"];
-            string gia = Request["gia"];
-            GIACOBAN gcb = new GIACOBAN();
-            gcb.MaTT1 = maTT1;
-            gcb.MaTT2 = maTT2;
-            gcb.MaLoai = int.Parse(maLoai);
-            gcb.GiaCoBan1 = int.Parse(gia);
-            gcb.isDeleted = 0;
-            gcb.createDate = DateTime.Now;
-            gcb.lastupdateDate = DateTime.Now;
+                string maTT1 = Request["ttDi"];
+                string maTT2 = Request["ttDen"];
+                string maLoai = Request["maLoai"];
+                string gia = Request["gia"];
+
+                GIACOBAN gcb = new GIACOBAN();
+                gcb.MaTT1 = maTT1;
+                gcb.MaTT2 = maTT2;
+                gcb.MaLoai = int.Parse(maLoai);
+                gcb.GiaCoBan1 = int.Parse(gia);
+                gcb.isDeleted = 0;
+                gcb.createDate = DateTime.Now;
+                gcb.lastupdateDate = DateTime.Now;
                 db.GIACOBANs.Add(gcb);
                 db.SaveChanges();
                 return RedirectToAction("Index");
 
-
-            return View(gcb);
         }
 
         // GET: GIACOBANs/Edit/

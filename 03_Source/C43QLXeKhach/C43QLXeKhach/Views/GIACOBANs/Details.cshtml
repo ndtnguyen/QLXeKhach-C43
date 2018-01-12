@@ -1,15 +1,16 @@
 ﻿@model C43QLXeKhach.Models.GIACOBAN
 
 @{
-    ViewBag.Title = "Chi tiết giá vé";
+    ViewBag.Title = "Chi tiết giá cơ bản";
 }
-
+<div class="row">
+    <div><h2>Chi tiết Giá cơ bản</h2></div>
+</div>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Chi tiết giá</h4>
         <hr />
         <div class="form-group">
             <label class="control-label col-md-2">Tỉnh thành đi</label>
