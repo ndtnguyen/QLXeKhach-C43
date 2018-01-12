@@ -7,7 +7,7 @@
 <h2>Cập Nhật Khách Hàng</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "KHACHHANGs", FormMethod.Post, new { id = "khachhangEdit" }))
 {
     @Html.AntiForgeryToken()
 
@@ -20,8 +20,8 @@
                 <label>Tên KH</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", @id = "tenKH" } })
+                <div id="tenKHError" class="text-danger" hidden>Vui lòng nhập họ tên</div>
             </div>
         </div>
 
@@ -30,8 +30,8 @@
                 <label>SĐT</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @id = "SDT" } })
+                <div id="SDTError" class="text-danger" hidden>Vui lòng nhập số điện thoại</div>
             </div>
         </div>
 
@@ -40,8 +40,8 @@
                 <label>CMND</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", @id = "CMND" } })
+                <div id="CMNDError" class="text-danger" hidden>Vui lòng nhập số điện thoại</div>
             </div>
         </div>
 
@@ -90,7 +90,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Cập Nhật" class="btn btn-success" />
+                <input type="button" id="edit" value="Cập Nhật" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -152,6 +152,36 @@
         }
 
         bindDatePicker();
+    });
+    $(document).ready(function () {
+        $('#edit').on('click', function () {
+
+            let isError = false;
+            var tenKH = $("#tenKH").val();
+            var SDT = $("#SDT").val();
+            var CMND = $("#CMND").val();
+            if (tenKH.length == 0) {
+                $("#tenKHError").show();
+                isError = true;
+            }
+            if (SDT.length == 0) {
+                $("#SDTError").show();
+                isError = true;
+            }
+            if (CMND.length == 0) {
+                $("#CMNDError").show();
+                isError = true;
+            }
+            console.log(isError);
+            if (!isError) {
+                $("#tenKHError").hide()
+                $("#SDTError").hide();
+                $("#CMNDError").hide();
+                $("#khachhangEdit").submit();
+            } else {
+                return;
+            }
+        });
     });
 </script>
 }
