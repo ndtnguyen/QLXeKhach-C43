@@ -66,7 +66,7 @@
                             @Html.DisplayFor(modelItem => item.NgayDen)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaTuyen)
+                            @C43QLXeKhach.Utils.ChuyenXeInfo.GetTuyen(@item.MaTuyen).ToString()
                         </td>
                         <td>
                             @C43QLXeKhach.Utils.ChuyenXeInfo.GetBienSo(@item.MaXe).ToString()

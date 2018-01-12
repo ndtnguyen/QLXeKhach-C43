@@ -40,8 +40,23 @@
                 <label>Tuyến</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaTuyen, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MaTuyen, "", new { @class = "text-danger" })
+                <select class="form-control" name="MaTuyen">
+                    @foreach (var item in @C43QLXeKhach.Utils.ChuyenXeInfo.GetTuyen().ToList())
+                    {
+                        if (Model.MaTuyen == @item.MaTuyen)
+                        {
+                            <option value=@item.MaTuyen selected>
+                                @item.DiemDi - @item.DiemDen
+                            </option>
+                        }
+                        else
+                        {
+                            <option value=@item.MaTuyen>
+                                @item.DiemDi - @item.DiemDen
+                            </option>
+                        }
+                    }
+                </select>
             </div>
         </div>
 
