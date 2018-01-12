@@ -7,7 +7,7 @@
     <div><h2>Cập nhật Giá cơ bản</h2></div>
 </div>
 
-<form method="post" action="/GIACOBANs/Edit">
+<form method="post" action="/GIACOBANs/Edit" id="gcbEdit">
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -39,14 +39,15 @@
         <div class="form-group">
             <label class="control-label col-md-2">Giá</label>
             <div class="col-md-10">
-                <input class="form-control" name="gia" value="@Model.GiaCoBan1" />
+                <input class="form-control" name="gia" id="giacb" value="@Model.GiaCoBan1" type="number" onchange="UpdateGia(event)"/>
+                <div class="text-danger" id="giaError" hidden>Giá không hợp lệ</div>
             </div>
         </div>
 
 
     </div>
     <p>
-        <button class="btn btn-primary" id="btnEdit" title="edit" type="submit">
+        <button class="btn btn-primary" id="btnEdit" title="edit" type="button">
             Cập nhật
             @*<span class="glyphicon glyphicon-remove"></span>*@
         </button>
@@ -62,4 +63,25 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script>
+    function  UpdateGia(e)
+    {
+        Object.assign(@Model.GiaCoBan1,parseInt(e.target.value));
+    }
+
+    $(document).ready(function () {
+        $('#btnEdit').on('click', function() {
+            var gia = $("#giacb").val();
+            if (!gia || gia<=0) {
+                $("#giaError").show();
+                return;
+            } else {
+                $("#giaError").hide();
+                $("#gcbEdit").submit();
+            }
+        });
+
+
+    })
+</script>
 }

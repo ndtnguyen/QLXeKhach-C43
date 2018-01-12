@@ -7,39 +7,39 @@
 <h2>Thêm Khách Hàng</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "KHACHHANGs", FormMethod.Post, new { id = "khachhangCreate" })) 
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new { @class = "text-danger"})
         <div class="form-group">
             <div class="col-md-2">
-                <label>Tên KH</label>
+                <label>Tên KH <span class="text-danger">*</span></label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control", @id="tenKH"} })
+                <div id="tenKHError" class="text-danger" hidden>Vui lòng nhập họ tên</div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-2">
-                <label>SDT</label>
+                <label>SDT <span class="text-danger">*</span></label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control",@id="SDT"} })
+                <div id="SDTError" class="text-danger" hidden>Vui lòng nhập số điện thoại</div>
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-2">
-                <label>CMND</label>
+                <label>CMND <span class="text-danger">*</span></label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control",@id="CMND" } })
+                <div id="CMNDError" class="text-danger" hidden>Vui lòng nhập số điện thoại</div>
             </div>
         </div>
 
@@ -73,14 +73,14 @@
                 <label>Email</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control",@id="email" } })
                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-success" />
+                <input id="create" type="button" value="Thêm" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -138,6 +138,36 @@
         }
 
         bindDatePicker();
+    });
+    $(document).ready(function () {
+        $('#create').on('click', function () {
+
+            let isError = false;
+            var tenKH = $("#tenKH").val();
+            var SDT = $("#SDT").val();
+            var CMND = $("#CMND").val();
+            if (tenKH.length == 0) {
+                $("#tenKHError").show();
+                isError = true;
+            }
+            if (SDT.length == 0) {
+                $("#SDTError").show();
+                isError = true;
+            }
+            if (CMND.length == 0) {
+                $("#CMNDError").show();
+                isError = true;
+            }
+            console.log(isError);
+            if (!isError) {
+                $("#tenKHError").hide()
+                $("#SDTError").hide();
+                $("#CMNDError").hide();
+                $("#khachhangCreate").submit();
+            } else {
+                return;
+            }
+        });
     });
 </script>
 }

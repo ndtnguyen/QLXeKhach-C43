@@ -33,8 +33,8 @@
                         <option value="@item.MaTT">@item.TenTT</option>
                     }
                 </select>
-                @Html.ValidationMessageFor(model => model.gcb.MaTT2, "Vui lòng chọn điểm đến khác điểm đi", new { @class = "text-danger" })
-                <div class="text-danger">@ViewBag.TT2Message</div>
+                <div class="text-danger" id="maTT2Error" hidden>Điểm đến không được trùng với điểm đi</div>
+                
             </div>
         </div>
 
@@ -54,15 +54,15 @@
         <div class="form-group">
             <label class="control-label col-md-2">Giá vé</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.gcb.GiaCoBan1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.gcb.GiaCoBan1, "Vui lòng nhập giá", new { @class = "text-danger" })
+                <input class="form-control" name="gia" id="giacb" value="@Model.gcb.GiaCoBan1" type="number" onchange="UpdateGia(event)" />
+                <div class="text-danger" id="giaError" hidden>Giá không hợp lệ</div>
 
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="create" type="submit" value="Thêm" class="btn btn-success" />
+                <input id="create" type="button" value="Thêm" class="btn btn-success" />
             </div>
         </div>
     </div>
@@ -76,24 +76,46 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script type="text/javascript">
-
         function UpdateMaLoai(e) {
-            @Model.gcb.MaLoai = e.target.value;
+          
         }
 
         function UpdateGia(e) {
-            @Model.gcb.GiaCoBan1 = e.target.value;
+           
         }
 
         function UpdateTT1(e) {
-            @Model.gcb.MaTT1 = e.target.value;
+         
         }
 
         function UpdateTT2(e) {
-            @Model.gcb.MaTT2 = e.target.value;
-            @ViewBag.TT2Message ="";
+         
         }
 
+        $(document).ready(function () {
+            $('#create').on('click', function () {
 
+                let isError = false;
+                var gia = $("#giacb").val();
+                var maTT1 = $("#ttDi").val();
+                var maTT2 = $("#ttDen").val();
+                console.log(gia, maTT1, maTT2);
+                if (!gia || gia <= 0) {
+                    $("#giaError").show();
+                    isError = true;
+                }
+                if (maTT1 === maTT2) {
+                    $("#maTT2Error").show();
+                    isError = true;
+                }
+                if (!isError) {
+                    $("#giaError").hide();
+                    $("#maTT2Error").hide();
+                    $("#gcbCreate").submit();
+                } else {
+                    return;
+                }
+            });
+        });
     </script>
 }
