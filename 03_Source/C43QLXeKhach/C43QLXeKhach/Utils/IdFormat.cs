@@ -23,5 +23,22 @@ namespace C43QLXeKhach.Utils
                 
             }
         }
+
+        public static string LoaiXeFormat(int MaLoai)
+        {
+            using (QLXeKhachEntities context = new QLXeKhachEntities())
+            {
+                LOAIXE lx = context.LOAIXEs.Find(MaLoai);
+                if (lx != null)
+                {
+                    return lx.TenLoai;
+                }
+                else
+                {
+                    return "N/A";
+                }
+
+            }
+        }
     }
 }
