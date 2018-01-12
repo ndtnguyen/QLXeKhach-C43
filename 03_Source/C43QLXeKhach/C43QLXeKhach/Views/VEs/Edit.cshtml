@@ -574,9 +574,7 @@
                 });
             }
             function validate(){
-                var sdt,tenkh,tramlen,tramxuong,diemdi,diemden,giokh,giodi,giave,maghe;
-                sdt=$("#SDT").val();
-                tenkh=$("#TenKH").val();
+                var tramlen,tramxuong,diemdi,diemden,giokh,giodi,giave,maghe;
                 tramlen=$("#selectTramLen").val();
                 tramxuong=$("#selectTramXuong").val();
                 diemdi=$("#selectDiemDi").val();
@@ -585,19 +583,6 @@
                 giodi=$("#gioLenXe").val();
                 giave=$("#giaVe").val();
                 maghe=$("#selectGhe").val();
-                if(sdt==""){
-                    $("#errSDT").text("Số điện thoại là bắt buộc");
-                    return false;
-                }
-                else
-                    $("#errSDT").text("");
-                if(tenkh==""){
-                    $("#errTenKH").text("Tên khách hàng là bắt buộc");
-                    return false;
-                }
-                else{
-                    $("#errTenKH").text("") 
-                }
                 if(tramlen==null){
                     $("#errTramLen").text("Trạm lên là bắt buộc");
                     return false;

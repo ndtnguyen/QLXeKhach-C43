@@ -7,8 +7,7 @@
 <h2>Cập Nhật Chuyến Xe</h2>
 
 
-@using (Html.BeginForm())
-{
+<form action="/CHUYENXEs/Edit" method="post" id="frmEdit">
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -21,7 +20,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NgayKH, new { htmlAttributes = new { @class = "form-control date" } })
-                @Html.ValidationMessageFor(model => model.NgayKH, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.NgayKH, "", new { @class = "text-danger", @id = "errNgayKH" })
             </div>
         </div>
 
@@ -31,7 +30,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NgayDen, new { htmlAttributes = new { @class = "form-control date" } })
-                @Html.ValidationMessageFor(model => model.NgayDen, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.NgayDen, "", new { @class = "text-danger", @id = "errNgayDen" })
             </div>
         </div>
 
@@ -40,7 +39,7 @@
                 <label>Tuyến</label>
             </div>
             <div class="col-md-10">
-                <select class="form-control" name="MaTuyen">
+                <select class="form-control" name="MaTuyen" id="MaTuyen">
                     @foreach (var item in @C43QLXeKhach.Utils.ChuyenXeInfo.GetTuyen().ToList())
                     {
                         if (Model.MaTuyen == @item.MaTuyen)
@@ -57,6 +56,8 @@
                         }
                     }
                 </select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="MaTuyen" data-valmsg-replace="true" id="errMaTuyen"></span>
+
             </div>
         </div>
 
@@ -65,7 +66,7 @@
                 <label>Xe</label>
             </div>
             <div class="col-md-10">
-                <select class="form-control" name="MaXe">
+                <select class="form-control" name="MaXe" id="MaXe">
                     @foreach (var item in @C43QLXeKhach.Utils.ChuyenXeInfo.GetBienSo().ToList())
 
                     {
@@ -86,6 +87,8 @@
                     }
 
                 </select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="MaXe" data-valmsg-replace="true" id="errMaXe"></span>
+
             </div>
         </div>
 
@@ -94,7 +97,7 @@
                 <label>Tài Xế</label>
             </div>
             <div class="col-md-10">
-                <select class="form-control" name="MaTX">
+                <select class="form-control" name="MaTX" id="MaTX">
                     @foreach (var item in @C43QLXeKhach.Utils.ChuyenXeInfo.GetTaiXe().ToList())
                     {
                         if (Model.MaTX == @item.MaTX)
@@ -113,70 +116,115 @@
                         }
                     }
                 </select>
+                <span class="field-validation-valid text-danger" data-valmsg-for="MaTX" data-valmsg-replace="true" id="errMaTX"></span>
+
             </div>
         </div>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <button class="btn btn-success" id="btn_submit">Cập nhật</button>
-                </div>
-            </div>
     </div>
-}
+    </form>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button class="btn btn-success" id="btn_submit">Cập nhật</button>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "CHUYENXEs")'">Quay Trở Lại</button>
+    </div>
 
-<div>
-    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "CHUYENXEs")'">Quay Trở Lại</button>
-</div>
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+            $("#btn_submit").on('click', function () {
+                if (!validate()) {
+                    return;
+                }
+                $("#frmEdit").submit();
+            });
+            $(function () {
+                var bindDatePicker = function () {
+                    $(".date").datetimepicker({
+                        //format: 'YYYY-MM-DD',
+                        //icons: {
+                        //    time: "fa fa-clock-o",
+                        //    date: "fa fa-calendar",
+                        //    up: "fa fa-arrow-up",
+                        //    down: "fa fa-arrow-down"
+                        //}
+                    })
+                    //    .find('input:first').on("blur", function () {
+                    //    // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                    //    // update the format if it's yyyy-mm-dd
+                    //    var date = parseDate($(this).val());
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
-    $(function () {
-        var bindDatePicker = function () {
-            $(".date").datetimepicker({
-                //format: 'YYYY-MM-DD',
-                //icons: {
-                //    time: "fa fa-clock-o",
-                //    date: "fa fa-calendar",
-                //    up: "fa fa-arrow-up",
-                //    down: "fa fa-arrow-down"
+                    //    if (!isValidDate(date)) {
+                    //        //create date based on momentjs (we have that)
+                    //        date = moment().format('YYYY-MM-DD');
+                    //    }
+
+                    //    $(this).val(date);
+                    //});
+                }
+
+                //var isValidDate = function (value, format) {
+                //    format = format || false;
+                //    // lets parse the date to the best of our knowledge
+                //    if (format) {
+                //        value = parseDate(value);
+                //    }
+
+                //    var timestamp = Date.parse(value);
+
+                //    return isNaN(timestamp) == false;
                 //}
-            })
-            //    .find('input:first').on("blur", function () {
-            //    // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
-            //    // update the format if it's yyyy-mm-dd
-            //    var date = parseDate($(this).val());
 
-            //    if (!isValidDate(date)) {
-            //        //create date based on momentjs (we have that)
-            //        date = moment().format('YYYY-MM-DD');
-            //    }
+                //var parseDate = function (value) {
+                //    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+                //    if (m)
+                //        value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
 
-            //    $(this).val(date);
-            //});
-        }
+                //    return value;
+                //}
 
-        //var isValidDate = function (value, format) {
-        //    format = format || false;
-        //    // lets parse the date to the best of our knowledge
-        //    if (format) {
-        //        value = parseDate(value);
-        //    }
-
-        //    var timestamp = Date.parse(value);
-
-        //    return isNaN(timestamp) == false;
-        //}
-
-        //var parseDate = function (value) {
-        //    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
-        //    if (m)
-        //        value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
-
-        //    return value;
-        //}
-
-        bindDatePicker();
-    });
-</script>
-}
+                bindDatePicker();
+            });
+            function validate() {
+                var ngaykh = $("#NgayKH").val(),
+                    ngayden = $("#NgayDen").val(),
+                    matuyen = $("#MaTuyen").val(),
+                    maxe = $("#MaXe").val(),
+                    matx = $("#MaTX").val();
+                if (ngaykh == "") {
+                    $("#errNgayKH").text("Ngày khởi hành là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errNgayKH").text("");
+                if (ngayden == "") {
+                    $("#errNgayDen").text("Ngày đến là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errNgayDen").text("");
+                if (matuyen == null) {
+                    $("#errMaTuyen").text("Tuyến xe là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errMaTuyen").text("");
+                if (maxe == null) {
+                    $("#errMaXe").text("Xe là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errMaXe").text("");
+                if (matx == null) {
+                    $("#errMaTX").text("Tài xế là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errMaTX").text("");
+                return true;
+            }
+        </script>
+    }

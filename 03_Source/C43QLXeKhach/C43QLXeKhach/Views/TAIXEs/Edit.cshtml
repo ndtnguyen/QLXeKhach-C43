@@ -7,8 +7,7 @@
 <h2>Cập Nhật Tài Xế</h2>
 
 
-@using (Html.BeginForm())
-{
+<form action="/TAIXEs/Edit" method="post" id="frmEdit">
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
@@ -21,7 +20,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenTX, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenTX, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TenTX, "", new { @class = "text-danger", id = "errTenTX" })
             </div>
         </div>
 
@@ -31,7 +30,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger", id = "errCMND" })
             </div>
         </div>
 
@@ -41,7 +40,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger", id = "errSDT" })
             </div>
         </div>
 
@@ -51,7 +50,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger", id = "errDiaChi" })
             </div>
         </div>
 
@@ -66,12 +65,12 @@
                     @if (Model.NgaySinh != null)
                     {
                         <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgaySinh" name="NgaySinh" type="datetime" value="@Model.NgaySinh.Value.ToString("yyyy-MM-dd")" />
-                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger", id = "errNgaySinh" })
                     }
                     else
                     {
                         <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgaySinh" name="NgaySinh" type="datetime" value="@Model.NgaySinh" />
-                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger", id = "errNgaySinh" })
                     }
                 </div>
             </div>
@@ -83,7 +82,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoBangLai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoBangLai, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SoBangLai, "", new { @class = "text-danger", id = "errSoBangLai" })
             </div>
         </div>
 
@@ -93,7 +92,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LoaiBangLai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LoaiBangLai, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.LoaiBangLai, "", new { @class = "text-danger", id = "errLoaiBangLai" })
             </div>
         </div>
 
@@ -106,77 +105,142 @@
                     @if (Model.ThoiHanBangLai != null)
                     {
                         <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanBangLai must be a date." id="ThoiHanBangLai" name="ThoiHanBangLai" type="datetime" value="@Model.ThoiHanBangLai.Value.ToString("yyyy-MM-dd")" />
-                        @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger", id = "errThoiHanBangLai" })
                     }
                     else
                     {
                         <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanBangLai must be a date." id="ThoiHanBangLai" name="ThoiHanBangLai" type="datetime" value="@Model.ThoiHanBangLai" />
-                        @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger", id = "errThoiHanBangLai" })
                     }
                 </div>
             </div>
         </div>
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-2">
-                    <button class="btn btn-success" id="btn_submit">Cập nhật</button>
-                </div>
-            </div>
     </div>
-}
-
-<div>
-    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "TAIXEs")'">Quay Trở Lại</button>
+</form>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-success" id="btn_submit">Thêm</button>
+    </div>
 </div>
+    <div>
+        <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "TAIXEs")'">Quay Trở Lại</button>
+    </div>
 
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-<script type="text/javascript">
-    $(function () {
-        var bindDatePicker = function () {
-            $(".date").datetimepicker({
-                format: 'YYYY-MM-DD',
-                icons: {
-                    time: "fa fa-clock-o",
-                    date: "fa fa-calendar",
-                    up: "fa fa-arrow-up",
-                    down: "fa fa-arrow-down"
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+        <script type="text/javascript">
+            $("#btn_submit").on('click', function () {
+                if (!validate()) {
+                    return;
                 }
-            }).find('input:first').on("blur", function () {
-                // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
-                // update the format if it's yyyy-mm-dd
-                var date = parseDate($(this).val());
-
-                if (!isValidDate(date)) {
-                    //create date based on momentjs (we have that)
-                    date = moment().format('YYYY-MM-DD');
-                }
-
-                $(this).val(date);
+                $("#frmEdit").submit();
             });
-        }
+            $(function () {
+                var bindDatePicker = function () {
+                    $(".date").datetimepicker({
+                        format: 'YYYY-MM-DD',
+                        icons: {
+                            time: "fa fa-clock-o",
+                            date: "fa fa-calendar",
+                            up: "fa fa-arrow-up",
+                            down: "fa fa-arrow-down"
+                        }
+                    }).find('input:first').on("blur", function () {
+                        // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                        // update the format if it's yyyy-mm-dd
+                        var date = parseDate($(this).val());
 
-        var isValidDate = function (value, format) {
-            format = format || false;
-            // lets parse the date to the best of our knowledge
-            if (format) {
-                value = parseDate(value);
+                        if (!isValidDate(date)) {
+                            //create date based on momentjs (we have that)
+                            date = moment().format('YYYY-MM-DD');
+                        }
+
+                        $(this).val(date);
+                    });
+                }
+
+                var isValidDate = function (value, format) {
+                    format = format || false;
+                    // lets parse the date to the best of our knowledge
+                    if (format) {
+                        value = parseDate(value);
+                    }
+
+                    var timestamp = Date.parse(value);
+
+                    return isNaN(timestamp) == false;
+                }
+
+                var parseDate = function (value) {
+                    var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+                    if (m)
+                        value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+                    return value;
+                }
+
+                bindDatePicker();
+            });
+            function validate() {
+                var tentx = $("#TenTX").val(),
+                    cmnd = $("#CMND").val(),
+                    ngaysinh = $("#NgaySinh").val(),
+                    diachi = $("#DiaChi").val(),
+                    sdt = $("#SDT").val(),
+                    sobanglai = $("#SoBangLai").val(),
+                    loaibanglai = $("#LoaiBangLai").val(),
+                    thoihanbanglai = $("#ThoiHanBangLai").val();
+                if (tentx == "") {
+                    $("#errTenTX").text("Tên tài xế là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errTenTX").text("");
+                if (cmnd == "") {
+                    $("#errCMND").text("CMND là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errCMND").text("");
+                if (sdt == "") {
+                    $("#errSDT").text("Số điện thoại là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errSDT").text("");
+                if (diachi == "") {
+                    $("#errDiaChi").text("Địa chỉ là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errDiaChi").text("");
+                if (ngaysinh == "") {
+                    $("#errNgaySinh").text("Ngày sinh là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errNgaySinh").text("");
+
+                if (sobanglai == "") {
+                    $("#errSoBangLai").text("Số bằng lái là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errSoBangLai").text("");
+                if (loaibanglai == "") {
+                    $("#errLoaiBangLai").text("Loại bằng lái là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errLoaiBangLai").text("");
+                if (thoihanbanglai == "") {
+                    $("#errThoiHanBangLai").text("Thời hạn bằng lái là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errThoiHanBangLai").text("");
+                return true;
             }
-
-            var timestamp = Date.parse(value);
-
-            return isNaN(timestamp) == false;
-        }
-
-        var parseDate = function (value) {
-            var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
-            if (m)
-                value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
-
-            return value;
-        }
-
-        bindDatePicker();
-    });
-</script>
-}
+        </script>
+    }

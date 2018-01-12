@@ -7,10 +7,9 @@
 <h2>Thêm Tài Xế</h2>
 
 
-@using (Html.BeginForm()) 
-{
+<form action="/TAIXEs/Create" method="post" id="frmCreate">
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -19,7 +18,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenTX, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenTX, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TenTX, "", new { @class = "text-danger",id="errTenTX" })
             </div>
         </div>
 
@@ -29,7 +28,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger", id = "errCMND" })
             </div>
         </div>
 
@@ -39,7 +38,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger", id = "errSDT" })
             </div>
         </div>
 
@@ -50,7 +49,7 @@
 
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger", id = "errDiaChi" })
             </div>
         </div>
 
@@ -61,7 +60,7 @@
 
             <div class="col-md-10">
                 @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control date" } })
-                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger", id = "errNgaySinh" })
             </div>
         </div>
 
@@ -72,7 +71,7 @@
 
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoBangLai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SoBangLai, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SoBangLai, "", new { @class = "text-danger", id = "errSoBangLai" })
             </div>
         </div>
 
@@ -83,7 +82,7 @@
 
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LoaiBangLai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LoaiBangLai, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.LoaiBangLai, "", new { @class = "text-danger", id = "errLoaiBangLai" })
             </div>
         </div>
 
@@ -94,17 +93,18 @@
 
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ThoiHanBangLai, new { htmlAttributes = new { @class = "form-control date" } })
-                @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger", id = "errThoiHanBangLai" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-success" />
-            </div>
-        </div>
+        
     </div>
-}
+</form>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-success" id="btn_submit">Thêm</button>
+    </div>
+</div>
 <p>
     <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "TAIXEs")'">Quay Trở Lại</button>
 </p>
@@ -112,6 +112,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript">
+        $("#btn_submit").on('click', function () {
+            if(!validate()){
+                return;
+            }
+            $("#frmCreate").submit();
+        });
     $(function () {
         var bindDatePicker = function () {
             $(".date").datetimepicker({
@@ -158,5 +164,65 @@
 
         bindDatePicker();
     });
+    function validate(){
+        var tentx=$("#TenTX").val(),
+            cmnd=$("#CMND").val(),
+            ngaysinh=$("#NgaySinh").val(),
+            diachi=$("#DiaChi").val(),
+            sdt=$("#SDT").val(),
+            sobanglai=$("#SoBangLai").val(),
+            loaibanglai=$("#LoaiBangLai").val(),
+            thoihanbanglai=$("#ThoiHanBangLai").val();
+        if(tentx==""){
+            $("#errTenTX").text("Tên tài xế là bắt buộc");
+            return false;
+        }
+        else
+            $("#errTenTX").text("");
+        if(cmnd==""){
+            $("#errCMND").text("CMND là bắt buộc");
+            return false;
+        }
+        else
+            $("#errCMND").text("");
+        if(sdt==""){
+            $("#errSDT").text("Số điện thoại là bắt buộc");
+            return false;
+        }
+        else
+            $("#errSDT").text("");
+        if(diachi==""){
+            $("#errDiaChi").text("Địa chỉ là bắt buộc");
+            return false;
+        }
+        else
+            $("#errDiaChi").text("");
+        if(ngaysinh==""){
+            $("#errNgaySinh").text("Ngày sinh là bắt buộc");
+            return false;
+        }
+        else
+            $("#errNgaySinh").text("");
+       
+        if(sobanglai==""){
+            $("#errSoBangLai").text("Số bằng lái là bắt buộc");
+            return false;
+        }
+        else
+            $("#errSoBangLai").text("");
+        if(loaibanglai==""){
+            $("#errLoaiBangLai").text("Loại bằng lái là bắt buộc");
+            return false;
+        }
+        else
+            $("#errLoaiBangLai").text("");
+        if(thoihanbanglai==""){
+            $("#errThoiHanBangLai").text("Thời hạn bằng lái là bắt buộc");
+            return false;
+        }
+        else
+            $("#errThoiHanBangLai").text("");
+        return true;
+    }
     </script>
 }
