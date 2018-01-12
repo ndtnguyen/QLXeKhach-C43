@@ -7,7 +7,7 @@
 <h2>Thêm Nhân Viên</h2>
 
 
-@using (Html.BeginForm()) 
+<form action="/NHANVIENs/Create" method="post" id="frmCreate">
 {
     @Html.AntiForgeryToken()
 
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenNV, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.TenNV, "", new { @class = "text-danger", @id="errTenNV" })
             </div>
         </div>
 
@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger", @id = "errCMND" })
             </div>
         </div>
 
@@ -43,7 +43,7 @@
                     
                 <div class='date' id='datetimepicker'>
                     @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control date" } })
-                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger", @id = "errNgaySinh" })
                 </div>                  
             </div>
         </div>
@@ -54,7 +54,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger", @id = "errDiaChi" })
             </div>
         </div>
 
@@ -64,7 +64,7 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger", @id = "errSDT" })
             </div>
         </div>
 
@@ -74,24 +74,30 @@
             </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger", @id = "errEmail" })
             </div>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Thêm" class="btn btn-success" />
-            </div>
-        </div>
     </div>
-}
+</form>
 
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <button class="btn btn-success" id="btn_submit">Thêm</button>
+    </div>
+</div>
 <p>
     <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "NHANVIENs")'">Quay Trở Lại</button>
 </p>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
+    $("#btn_submit").on('click', function () {
+        if(!validate()){
+            return;
+        }
+        $("#frmCreate").submit();
+    });
     $(function () {
         var bindDatePicker = function () {
             $(".date").datetimepicker({
@@ -138,5 +144,50 @@
 
         bindDatePicker();
     });
+    function validate(){
+        var tennv=$("#TenNV").val(),
+            cmnd=$("#CMND").val(),
+            ngaysinh=$("#NgaySinh").val(),
+            diachi=$("#DiaChi").val(),
+            sdt=$("#SDT").val(),
+            email=$("#Email").val();
+            if(tennv==""){
+                $("#errTenNV").text("Tên nhân viên là bắt buộc");
+                return false;
+            }
+            else
+                $("#errTenNV").text("");
+            if(cmnd==""){
+                $("#errCMND").text("CMND là bắt buộc");
+                return false;
+            }
+            else
+                $("#errCMND").text("");
+            if(ngaysinh==""){
+                $("#errNgaySinh").text("Ngày sinh là bắt buộc");
+                return false;
+            }
+            else
+                $("#errNgaySinh").text("");
+            if(diachi==""){
+                $("#errDiaChi").text("Địa chỉ là bắt buộc");
+                return false;
+            }
+            else
+                $("#errDiaChi").text("");
+            if(sdt==""){
+                $("#errSDT").text("Số điện thoại là bắt buộc");
+                return false;
+            }
+            else
+                $("#errSDT").text("");
+            if(email==""){
+                $("#errEmail").text("Email là bắt buộc");
+                return false;
+            }
+            else
+                $("#errEmail").text("");
+            return true;
+    }
 </script>
 }
