@@ -44,7 +44,7 @@
                 <label>Xe</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaXe, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+               <input class="form-control" readonly value=@C43QLXeKhach.Utils.ChuyenXeInfo.GetBienSo(Model.MaXe).ToString() />
             </div>
         </div>
 
@@ -53,7 +53,7 @@
                 <label>Tài Xế</label>
             </div>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MaTX, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                <input class="form-control" readonly value=@C43QLXeKhach.Utils.ChuyenXeInfo.GetTaiXe(Model.MaTX).ToString() />
             </div>
         </div>
     </div>

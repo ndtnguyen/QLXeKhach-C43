@@ -97,6 +97,7 @@ namespace C43QLXeKhach.Controllers
                 CHUYENXE cx = service.Detail(cHUYENXE.MaChuyen);
                 cx.NgayKH = cHUYENXE.NgayKH;
                 cx.NgayDen = cHUYENXE.NgayDen;
+                cx.MaTuyen = cHUYENXE.MaTuyen;
                 cx.MaTX = cHUYENXE.MaTX;
                 cx.MaXe = cHUYENXE.MaXe;
                 service.Update(cx);

@@ -69,10 +69,10 @@
                             @Html.DisplayFor(modelItem => item.MaTuyen)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaXe)
+                            @C43QLXeKhach.Utils.ChuyenXeInfo.GetBienSo(@item.MaXe).ToString()
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.MaTX)
+                            @C43QLXeKhach.Utils.ChuyenXeInfo.GetTaiXe(@item.MaTX).ToString()
                         </td>
                         <td class="text-right">
                             <div style="width:70px">
