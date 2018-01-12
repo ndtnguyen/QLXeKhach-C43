@@ -42,7 +42,8 @@ namespace C43QLXeKhach.Services.XEsService
                     ghe.lastupdateDate = DateTime.Now;
                     ghe.MaGhe = i + 1;
                     ghe.MaXe = xe.MaXe;
-               
+                    context.GHEs.Add(ghe);
+                    context.SaveChanges();
                 }
                 return 1;
             }
