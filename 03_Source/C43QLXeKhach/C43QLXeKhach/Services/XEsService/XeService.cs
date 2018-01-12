@@ -32,8 +32,17 @@ namespace C43QLXeKhach.Services.XEsService
                 DateTime current = DateTime.Now;
                 xe.createDate = current;
                 xe.lastupdateDate = current;
-                context.XEs.Add(xe);
+                var result = context.XEs.Add(xe);
                 context.SaveChanges();
+                LOAIXE loaiXe = context.LOAIXEs.Find(xe.LoaiXe);
+                for (int i=0; i < loaiXe.SLGhe; i++)
+                {
+                    GHE ghe = new GHE();
+                    ghe.createDate = DateTime.Now;
+                    ghe.lastupdateDate = DateTime.Now;
+                    ghe.MaGhe = i + 1;
+               
+                }
                 return 1;
             }
         }
