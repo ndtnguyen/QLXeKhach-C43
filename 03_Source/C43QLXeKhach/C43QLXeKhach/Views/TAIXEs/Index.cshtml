@@ -66,6 +66,9 @@
                             <input class="text-center deleteCheckbox" type="checkbox" name="deletecheckbox" value=@item.MaTX>
                         </td>
                         <td>
+                            @Html.DisplayFor(modelItem => item.TenTX)
+                        </td>
+                        <td>
                             @Html.DisplayFor(modelItem => item.CMND)
                         </td>
                         <td>
@@ -75,20 +78,34 @@
                             @Html.DisplayFor(modelItem => item.DiaChi)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NgaySinh)
+                            @if (item.NgaySinh != null)
+                            {
+                                @item.NgaySinh.Value.ToString("yyyy-MM-dd")
+                            }
+                            else
+                            {
+                                @item.NgaySinh
+                            }
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.SoBangLai)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ThoiHanBangLai)
+                            @if (item.ThoiHanBangLai != null)
+                            {
+                                @item.ThoiHanBangLai.Value.ToString("yyyy-MM-dd")
+                            }
+                            else
+                            {
+                                @item.ThoiHanBangLai
+                            }
                         </td>
                         <td class="text-right">
                             <div style="width:70px">
-                                <a href="/CHUYENXEs/Details/@item.MaTX" class="btn btn-xs btn btn-info" title="Xem chi tiết">
+                                <a href="/TAIXEs/Details/@item.MaTX" class="btn btn-xs btn btn-info" title="Xem chi tiết">
                                     <span class="glyphicon glyphicon-align-justify"></span>
                                 </a>
-                                <a href="/CHUYENXEs/Edit/@item.MaTX" class="btn btn-xs btn-primary" title="Chỉnh sửa">
+                                <a href="/TAIXEs/Edit/@item.MaTX" class="btn btn-xs btn-primary" title="Chỉnh sửa">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                             </div>
@@ -130,8 +147,8 @@
             else
                 return;
         });
-        $('#nhanVienTitle').on('click', function () {
-            window.location="/NHANVIENs/Index";
+        $('#taixeTitle').on('click', function () {
+            window.location="/TAIXEs/Index";
         });
     </script>
 }

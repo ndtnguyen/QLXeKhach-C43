@@ -12,13 +12,13 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>TAIXE</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.MaTX)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenTX, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>Tên tài xế</label>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenTX, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenTX, "", new { @class = "text-danger" })
@@ -26,7 +26,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CMND, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>CMND</label>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
@@ -34,7 +36,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>Số điện thoại</label>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
@@ -42,7 +46,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>Địa chỉ</label>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
@@ -50,15 +56,31 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>Ngày sinh</label>
+            </div>
+
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+
+                <div class='date' id='datetimepicker'>
+                    @if (Model.NgaySinh != null)
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgaySinh" name="NgaySinh" type="datetime" value="@Model.NgaySinh.Value.ToString("yyyy-MM-dd")" />
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    }
+                    else
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." id="NgaySinh" name="NgaySinh" type="datetime" value="@Model.NgaySinh" />
+                        @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
+                    }
+                </div>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SoBangLai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>Số bằng lái</label>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.SoBangLai, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.SoBangLai, "", new { @class = "text-danger" })
@@ -66,7 +88,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LoaiBangLai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-2">
+                <label>Loại bằng lái</label>
+            </div>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.LoaiBangLai, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.LoaiBangLai, "", new { @class = "text-danger" })
@@ -74,27 +98,85 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ThoiHanBangLai, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ThoiHanBangLai, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger" })
+            <div class="col-md-2">
+                <label>Thời hạn bằng lái</label>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="form-group">
-                <div class="col-md-offset-5 col-md-2">
-                    <button class="btn btn-success" id="btn_submit">Cập nhật</button>
+            <div class="col-md-10">
+                <div class='date' id='datetimepicker'>
+                    @if (Model.ThoiHanBangLai != null)
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanBangLai must be a date." id="ThoiHanBangLai" name="ThoiHanBangLai" type="datetime" value="@Model.ThoiHanBangLai.Value.ToString("yyyy-MM-dd")" />
+                        @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger" })
+                    }
+                    else
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanBangLai must be a date." id="ThoiHanBangLai" name="ThoiHanBangLai" type="datetime" value="@Model.ThoiHanBangLai" />
+                        @Html.ValidationMessageFor(model => model.ThoiHanBangLai, "", new { @class = "text-danger" })
+                    }
                 </div>
             </div>
         </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-2">
+                    <button class="btn btn-success" id="btn_submit">Cập nhật</button>
+                </div>
+            </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Quay vế", "Index")
+    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "TAIXEs")'">Quay Trở Lại</button>
 </div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $(function () {
+        var bindDatePicker = function () {
+            $(".date").datetimepicker({
+                format: 'YYYY-MM-DD',
+                icons: {
+                    time: "fa fa-clock-o",
+                    date: "fa fa-calendar",
+                    up: "fa fa-arrow-up",
+                    down: "fa fa-arrow-down"
+                }
+            }).find('input:first').on("blur", function () {
+                // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                // update the format if it's yyyy-mm-dd
+                var date = parseDate($(this).val());
+
+                if (!isValidDate(date)) {
+                    //create date based on momentjs (we have that)
+                    date = moment().format('YYYY-MM-DD');
+                }
+
+                $(this).val(date);
+            });
+        }
+
+        var isValidDate = function (value, format) {
+            format = format || false;
+            // lets parse the date to the best of our knowledge
+            if (format) {
+                value = parseDate(value);
+            }
+
+            var timestamp = Date.parse(value);
+
+            return isNaN(timestamp) == false;
+        }
+
+        var parseDate = function (value) {
+            var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+            if (m)
+                value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+            return value;
+        }
+
+        bindDatePicker();
+    });
+</script>
 }

@@ -7,17 +7,25 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using C43QLXeKhach.Models;
+using NLog;
+using C43QLXeKhach.Services.TAIXEsService;
 
 namespace C43QLXeKhach.Controllers
 {
     public class TAIXEsController : Controller
     {
-        private QLXeKhachEntities db = new QLXeKhachEntities();
+        ITaiXeService service;
+        ILogger logger = LogManager.GetCurrentClassLogger();
+
+        public TAIXEsController(ITaiXeService service)
+        {
+            this.service = service;
+        }
 
         // GET: TAIXEs
         public ActionResult Index()
         {
-            return View(db.TAIXEs.ToList());
+            return View(service.GetAll());
         }
 
         // GET: TAIXEs/Details/5
@@ -27,7 +35,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TAIXE tAIXE = db.TAIXEs.Find(id);
+            TAIXE tAIXE = service.Detail(id);
             if (tAIXE == null)
             {
                 return HttpNotFound();
@@ -50,8 +58,8 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.TAIXEs.Add(tAIXE);
-                db.SaveChanges();
+                tAIXE.isDeleted = 0;
+                service.Add(tAIXE);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +73,7 @@ namespace C43QLXeKhach.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TAIXE tAIXE = db.TAIXEs.Find(id);
+            TAIXE tAIXE =service.Detail(id);
             if (tAIXE == null)
             {
                 return HttpNotFound();
@@ -82,44 +90,70 @@ namespace C43QLXeKhach.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tAIXE).State = EntityState.Modified;
-                db.SaveChanges();
+                TAIXE tx = service.Detail(tAIXE.MaTX);
+                tx.TenTX = tAIXE.TenTX;
+                tx.CMND = tAIXE.CMND;
+                tx.SDT = tAIXE.SDT;
+                tx.DiaChi = tAIXE.DiaChi;
+                tx.NgaySinh = tAIXE.NgaySinh;
+                tx.SoBangLai = tAIXE.SoBangLai;
+                tx.LoaiBangLai = tAIXE.LoaiBangLai;
+                tx.ThoiHanBangLai = tAIXE.ThoiHanBangLai;
+                service.Update(tx);
                 return RedirectToAction("Index");
             }
             return View(tAIXE);
         }
 
-        // GET: TAIXEs/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TAIXE tAIXE = db.TAIXEs.Find(id);
-            if (tAIXE == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tAIXE);
-        }
+        //// GET: TAIXEs/Delete/5
+        //public ActionResult Delete(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    TAIXE tAIXE = db.TAIXEs.Find(id);
+        //    if (tAIXE == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(tAIXE);
+        //}
 
-        // POST: TAIXEs/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //// POST: TAIXEs/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    TAIXE tAIXE = db.TAIXEs.Find(id);
+        //    db.TAIXEs.Remove(tAIXE);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpPost, ActionName("Index")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteMany()
         {
-            TAIXE tAIXE = db.TAIXEs.Find(id);
-            db.TAIXEs.Remove(tAIXE);
-            db.SaveChanges();
+            string temp = Request.Form["deletecheckbox"];
+            if (temp == null)
+            {
+                return RedirectToAction("Index");
+            }
+            string[] listDelete = temp.Split(',');
+            for (int i = 0; i < listDelete.Length; i++)
+            {
+                TAIXE tAIXE = service.Detail(int.Parse(listDelete[i]));
+                tAIXE.isDeleted = 1;
+                service.Delete(tAIXE);
+            }
             return RedirectToAction("Index");
         }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                service.Dispose();
             }
             base.Dispose(disposing);
         }

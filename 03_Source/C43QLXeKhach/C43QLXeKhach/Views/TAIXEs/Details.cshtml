@@ -1,122 +1,107 @@
 ﻿@model C43QLXeKhach.Models.TAIXE
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Tài Xế";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Tài Xế</h2>
 
 <div>
-    <h4>TAIXE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.TenTX)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.TenTX)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Tên tài xế</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TenTX, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CMND)
-        </dt>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>CMND</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.CMND)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Số điện thoại</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SDT)
-        </dt>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Địa chỉ</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.SDT)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Ngày sinh</label>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.DiaChi)
-        </dt>
+            <div class="col-md-10">
 
-        <dd>
-            @Html.DisplayFor(model => model.DiaChi)
-        </dd>
+                <div>
+                    @if (Model.NgaySinh != null)
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." readonly id="NgaySinh" name="NgaySinh" type="datetime" value="@Model.NgaySinh.Value.ToString("yyyy-MM-dd")" />
+                    }
+                    else
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field NgaySinh must be a date." readonly id="NgaySinh" name="NgaySinh" type="datetime" value="@Model.NgaySinh" />
+                    }
+                </div>
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgaySinh)
-        </dt>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Số bằng lái</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SoBangLai, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgaySinh)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Loại bằng lái</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LoaiBangLai, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.SoBangLai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SoBangLai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LoaiBangLai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LoaiBangLai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ThoiHanBangLai)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ThoiHanBangLai)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateUser)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateUser)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.createDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.createDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.lastupdateDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.lastupdateDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.isDeleted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.isDeleted)
-        </dd>
-
-    </dl>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Thời hạn bằng lái</label>
+            </div>
+            <div class="col-md-10">
+                <div class='date' id='datetimepicker'>
+                    @if (Model.ThoiHanBangLai != null)
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanBangLai must be a date." id="ThoiHanBangLai" name="ThoiHanBangLai" readonly type="datetime" value="@Model.ThoiHanBangLai.Value.ToString("yyyy-MM-dd")" />
+                    }
+                    else
+                    {
+                        <input class="form-control date text-box single-line" data-val="true" data-val-date="The field ThoiHanBangLai must be a date." id="ThoiHanBangLai" name="ThoiHanBangLai" readonly type="datetime" value="@Model.ThoiHanBangLai" />
+                    }
+                </div>
+            </div>
+        </div>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.MaTX }) |
-    @Html.ActionLink("Back to List", "Index")
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit/" + Model.MaTX, "TAIXEs")'" title="Edit">Chỉnh Sửa</button>
+    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "TAIXEs")'">Quay Trở Lại</button>
 </p>
+
