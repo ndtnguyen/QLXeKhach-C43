@@ -147,9 +147,11 @@
     </div>
 </form>
 
-<div>
-    @Html.ActionLink("Quay Về", "Index")
-</div>
+<p>
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit/" + Model.MaVe, "VEs")'" title="Edit">Đổi</button>
+    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "VEs")'">Quay Trở Lại</button>
+</p>
+
 
 
 @section Scripts {

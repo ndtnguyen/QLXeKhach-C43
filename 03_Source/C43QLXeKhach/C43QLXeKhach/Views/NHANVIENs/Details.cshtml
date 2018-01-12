@@ -77,6 +77,6 @@
     </div>
 </div>
 <p>
-    @Html.ActionLink("Chỉnh Sửa", "Edit", new { id = Model.MaNV }) |
-    @Html.ActionLink("Quay Về", "Index")
+    <button class="btn btn-primary" onclick="location.href='@Url.Action("Edit/" + Model.MaNV, "NHANVIENs")'" title="Edit">Chỉnh Sửa</button>
+    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "NHANVIENs")'">Quay Trở Lại</button>
 </p>

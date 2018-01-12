@@ -86,10 +86,9 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Quay Về", "Index")
-</div>
-
+<p>
+    <button class="btn btn-danger" title="delete" onclick="location.href='@Url.Action("Index", "NHANVIENs")'">Quay Trở Lại</button>
+</p>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 <script type="text/javascript">
