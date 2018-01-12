@@ -20,7 +20,7 @@
                 </div>
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger",@id="errSDT" })
                 </div>
                 <div class="col-md-2">
                     @*<input id="maVe" name="MaVe" hidden />*@
@@ -30,6 +30,7 @@
                     <select class="form-control" id="selectTramLen" name="TramLen">
                        
                     </select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="TramLen" data-valmsg-replace="true" id="errTramLen"></span>
                 </div>
             </div>
         </div>
@@ -40,7 +41,7 @@
                 </div>
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.TenKH, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.TenKH, "", new { @class = "text-danger", @id="errTenKH" })
                 </div>
                 
                 <div class="col-md-2">
@@ -48,6 +49,7 @@
                 </div>
                 <div class="col-md-4">
                     <select class="form-control" id="selectTramXuong" name="TramXuong"></select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="TramXuong" data-valmsg-replace="true" id="errTramXuong"></span>
                 </div>
             </div>
         </div>
@@ -68,6 +70,7 @@
                      
 
                     </select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="DiemDi" data-valmsg-replace="true" id="errDiemDi"></span>
 
                 </div>
             </div>
@@ -86,6 +89,7 @@
                 </div>
                 <div class="col-md-4">
                     <select class="form-control" id="selectDiemDen"></select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="DiemDen" data-valmsg-replace="true" id="errDiemDen"></span>
                 </div>
             </div>
         </div>
@@ -103,6 +107,7 @@
                 </div>
                 <div class="col-md-4">
                     <select class="form-control" id="selectGioKH" name="MaChuyen"></select>
+                    <span class="field-validation-valid text-danger" data-valmsg-for="GioKH" data-valmsg-replace="true" id="errGioKH"></span>
                 </div>
             </div>
         </div>
@@ -120,6 +125,7 @@
                 </div>
                 <div class="col-md-4">
                     <input class="form-control" id="gioLenXe" readonly name="GioDi" />
+                    <span class="field-validation-valid text-danger" data-valmsg-for="GioDi" data-valmsg-replace="true" id="errGioDi"></span>
                 </div>
             </div>
         </div>
@@ -136,6 +142,7 @@
                 </div>
                 <div class="col-md-4">
                     <input class="form-control" id="giaVe" readonly name="GiaMua" />
+                    <span class="field-validation-valid text-danger" data-valmsg-for="GiaMua" data-valmsg-replace="true" id="errGiaMua"></span>
                 </div>
             </div>
         </div>
@@ -155,7 +162,10 @@
                     <input id="maXe" name="MaXe" hidden />
                     <input id="dsGhe" name="strGhe" hidden />
                 </div>
-            </div>
+                <div class="col-md-offset-8 col-md-4">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="MaGhe" data-valmsg-replace="true" id="errMaGhe"></span>
+                 </div>
+              </div>
         </div>
         @*<div class="form-group">
                 @Html.LabelFor(model => model.MaGhe, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -316,6 +326,9 @@
                 getGheTrong();
             });
             $("#btn_submit").on('click', function () {
+                if(!validate()){
+                    return;
+                }
                 var temp = $(".filter-option").text();
                 if (temp === "Chọn ...") {
                     alert("Vui lòng chọn ghế/giường trước khi đặt vé");
@@ -553,5 +566,89 @@
                     });
                 }
             });
+
+            function validate(){
+                var sdt,tenkh,tramlen,tramxuong,diemdi,diemden,giokh,giodi,giave,maghe;
+                sdt=$("#SDT").val();
+                tenkh=$("#TenKH").val();
+                tramlen=$("#selectTramLen").val();
+                tramxuong=$("#selectTramXuong").val();
+                diemdi=$("#selectDiemDi").val();
+                diemden=$("#selectDiemDen").val();
+                giokh=$("#selectGioKH").val();
+                giodi=$("#gioLenXe").val();
+                giave=$("#giaVe").val();
+                maghe=$("#selectGhe").val();
+                if(sdt==""){
+                    $("#errSDT").text("Số điện thoại là bắt buộc");
+                    return false;
+                }
+                else
+                    $("#errSDT").text("");
+                if(tenkh==""){
+                    $("#errTenKH").text("Tên khách hàng là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errTenKH").text("") 
+                }
+                if(tramlen==null){
+                    $("#errTramLen").text("Trạm lên là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errTramLen").text("") 
+                }
+                if(tramxuong==null){
+                    $("#errTramXuong").text("Trạm xuống là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errTramXuong").text("") 
+                }
+                if(diemdi==null){
+                    $("#errDiemDi").text("Điểm đi là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errDiemDi").text("") 
+                }
+                if(diemden==null){
+                    $("#errDiemDen").text("Điểm đến là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errDiemDen").text("") 
+                }
+                if(giokh==null){
+                    $("#errGioKH").text("Giờ khởi hành là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errGioKH").text("") 
+                }
+                if(giodi==""){
+                    $("#errGioDi").text("Giờ lên xe là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errGioDi").text("") 
+                }
+                if(giave==""){
+                    $("#errGiaMua").text("Giá vé là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errGiaMua").text("") 
+                }
+                if(maghe==null){
+                    $("#errMaGhe").text("Mã ghế/giường là bắt buộc");
+                    return false;
+                }
+                else{
+                    $("#errMaGhe").text("") 
+                }
+                return true;
+            }
         </script>
     }
