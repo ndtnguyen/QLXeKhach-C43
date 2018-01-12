@@ -1,56 +1,63 @@
 ﻿@model C43QLXeKhach.Models.CHUYENXE
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chi Tiết Chuyến Xe";
 }
 
-<h2>Details</h2>
+<h2>Chi Tiết Chuyến Xe</h2>
 
-<div>
-    <h4>CHUYENXE</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayKH)
-        </dt>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayKH)
-        </dd>
+    <div class="form-horizontal">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NgayDen)
-        </dt>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Ngày Khởi Hành</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayKH, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.NgayDen)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Ngày Đến</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayDen, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaTuyen)
-        </dt>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Tuyến</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaTuyen, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.MaTuyen)
-        </dd>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Xe</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaXe, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MaXe)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaXe)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.MaTX)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.MaTX)
-        </dd>
-    </dl>
-</div>
+        <div class="form-group">
+            <div class="col-md-2">
+                <label>Tài Xế</label>
+            </div>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MaTX, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+            </div>
+        </div>
+    </div>
+}
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.MaChuyen }) |
     @Html.ActionLink("Quay về", "Index")
